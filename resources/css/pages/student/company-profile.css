@@ -1,0 +1,730 @@
+@import '../../components/rating-modal.css';
+
+/* ========================================
+   COMPANY PUBLIC PROFILE
+======================================== */
+
+.company-public-profile {
+    width: 100%;
+    max-width: 1276px;
+
+    margin: 0 auto;
+    padding: 55px 0 80px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    box-sizing: border-box;
+}
+
+
+/* ========================================
+   PARTE SUPERIOR
+======================================== */
+
+.company-public-profile__top {
+    width: 1276px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 53px;
+}
+
+
+/* ========================================
+   ENCABEZADO
+======================================== */
+
+.company-public-profile__header {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    gap: 369px;
+}
+
+
+/* ========================================
+   IDENTIDAD
+======================================== */
+
+.company-public-profile__identity {
+    display: flex;
+    align-items: center;
+
+    gap: 29px;
+}
+
+
+/* ========================================
+   LOGO
+======================================== */
+
+.company-public-profile__logo {
+    width: 157px;
+    height: 153px;
+
+    display: block;
+
+    border-radius: 33px;
+
+    object-fit: cover;
+}
+
+.company-public-profile__logo--empty {
+    background: #f3f3f3;
+}
+
+
+/* ========================================
+   NOMBRE + RATING
+======================================== */
+
+.company-public-profile__identity-info {
+    width: 455px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 15px;
+}
+
+.company-public-profile__name {
+    width: 455px;
+
+    margin: 0;
+
+    color: #000000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+
+    line-height: 1.1;
+}
+
+
+/* ========================================
+   VALORACIÓN
+======================================== */
+
+.company-public-profile__rating {
+    display: flex;
+    align-items: flex-end;
+
+    gap: 4px;
+}
+
+.company-public-profile__rating-value {
+    width: 30px;
+
+    color: #000000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+
+    line-height: 22px;
+}
+
+.company-public-profile__star {
+    width: 20px;
+    height: 20px;
+
+    display: block;
+
+    object-fit: contain;
+}
+
+
+/* ========================================
+   DEJAR UNA VALORACIÓN
+======================================== */
+
+.company-public-profile__rating-button {
+    width: 266px;
+    height: 46px;
+
+    padding: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    border-radius: 20px;
+
+    background: #000000;
+
+    color: #ffffff;
+
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+
+    transition: transform 0.2s ease;
+}
+
+.company-public-profile__rating-button:hover {
+    transform: translateY(-2px);
+}
+
+.company-public-profile__rating-button:active {
+    transform: translateY(0);
+}
+
+
+/* ========================================
+   TÍTULOS
+======================================== */
+
+.company-public-profile__section-title {
+    width: 100%;
+
+    margin: 0;
+
+    color: #000000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+
+    line-height: 1.2;
+}
+
+.company-public-profile__section-title--center {
+    text-align: center;
+}
+
+
+/* ========================================
+   DESCRIPCIÓN
+======================================== */
+
+.company-public-profile__description {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 19px;
+}
+
+.company-public-profile__description-text {
+    width: 100%;
+
+    margin: 0;
+
+    color: #000000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+
+    line-height: 1.45;
+
+    white-space: pre-line;
+}
+
+
+/* ========================================
+   INFORMACIÓN SECUNDARIA
+======================================== */
+
+.company-public-profile__meta {
+    display: flex;
+    align-items: center;
+
+    gap: 18px;
+}
+
+
+/* ========================================
+   SECTOR
+======================================== */
+
+.company-public-profile__sector {
+    color: #8c8282;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+
+    line-height: 22px;
+}
+
+
+/* ========================================
+   SELECTOR
+======================================== */
+
+.company-public-profile__tabs {
+    width: 100%;
+
+    margin-top: 53px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 45px;
+}
+
+.company-public-profile__tab {
+    position: relative;
+
+    padding: 8px 18px 18px;
+
+    border: 0;
+    background: transparent;
+
+    color: #8c8282;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.company-public-profile__tab--active {
+    color: #000000;
+}
+
+.company-public-profile__tab--active::after {
+    content: '';
+
+    width: 86px;
+    height: 7px;
+
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+
+    transform: translateX(-50%);
+
+    background: rgba(43, 217, 168, 0.51);
+
+    border-radius: 64px;
+}
+
+
+/* ========================================
+   VACANTES
+======================================== */
+
+.company-public-profile__vacancies {
+    width: 100%;
+
+    margin-top: 42px;
+
+    display: grid;
+    grid-template-columns: repeat(2, 410px);
+
+    justify-content: center;
+
+    column-gap: 50px;
+    row-gap: 42px;
+}
+
+
+/* ========================================
+   VALORACIONES
+======================================== */
+
+.company-public-profile__reviews {
+    width: 100%;
+
+    margin-top: 42px;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    gap: 82px;
+}
+
+
+/* ========================================
+   PUNTUACIÓN GENERAL
+======================================== */
+
+.company-public-profile__score {
+    width: 313px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.company-public-profile__score-title {
+    width: 313px;
+
+    margin: 0;
+
+    color: #000000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+
+    line-height: 1.1;
+}
+
+.company-public-profile__score-content {
+    width: 313px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 4px;
+}
+
+.company-public-profile__score-number {
+    width: 67px;
+
+    color: #000000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 40px;
+    font-weight: 500;
+
+    line-height: 53px;
+}
+
+.company-public-profile__score-stars {
+    display: flex;
+    align-items: center;
+
+    gap: 1px;
+}
+
+.company-public-profile__score-star {
+    width: 32px;
+    height: 32px;
+
+    display: block;
+
+    object-fit: contain;
+}
+
+
+/* ========================================
+   CONTENIDO DE VALORACIONES
+======================================== */
+
+.company-public-profile__reviews-content {
+    width: 711px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 53px;
+}
+
+
+/* ========================================
+   CABECERA DE VALORACIONES
+======================================== */
+
+.company-public-profile__reviews-header {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.company-public-profile__reviews-count {
+    color: #000000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+
+/* ========================================
+   DROPDOWN
+======================================== */
+
+.company-public-profile__sort {
+    width: 241px;
+
+    position: relative;
+
+    z-index: 20;
+}
+
+.company-public-profile__sort-trigger {
+    width: 208px;
+    height: 44px;
+
+    padding: 0 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    border: 0;
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.20) 0%,
+            rgba(242, 145, 226, 0.20) 51%
+        );
+
+    box-shadow:
+        0 4px 4px rgba(0, 0, 0, 0.25);
+
+    color: #000000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+}
+
+.company-public-profile__sort-icon {
+    width: 33px;
+    height: 33px;
+
+    display: block;
+
+    object-fit: contain;
+
+    transition: transform 0.2s ease;
+}
+
+.company-public-profile__sort-icon--open {
+    transform: rotate(180deg);
+}
+
+
+/* ========================================
+   MENÚ DEL DROPDOWN
+======================================== */
+
+.company-public-profile__sort-menu {
+    width: 241px;
+
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+
+    padding: 8px 0;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.20);
+
+    overflow: hidden;
+
+    box-sizing: border-box;
+}
+
+.company-public-profile__sort-option {
+    width: 100%;
+    min-height: 45px;
+
+    padding: 8px 15px;
+
+    border: 0;
+    background: transparent;
+
+    color: #000000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+
+    text-align: center;
+
+    cursor: pointer;
+}
+
+.company-public-profile__sort-option:hover {
+    background: rgba(242, 145, 226, 0.15);
+}
+
+.company-public-profile__sort-option--active {
+    background: rgba(242, 145, 226, 0.20);
+}
+
+
+/* ========================================
+   LISTADO
+======================================== */
+
+.company-public-profile__review-list {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 43px;
+}
+
+
+/* ========================================
+   VALORACIÓN INDIVIDUAL
+======================================== */
+
+.company-public-profile__review {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 14px;
+}
+
+
+/* ========================================
+   ESTRELLAS + FECHA
+======================================== */
+
+.company-public-profile__review-rating {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+}
+
+.company-public-profile__review-stars {
+    display: flex;
+    align-items: center;
+
+    gap: 1px;
+}
+
+.company-public-profile__review-star {
+    width: 32px;
+    height: 32px;
+
+    display: block;
+
+    object-fit: contain;
+}
+
+.company-public-profile__review-date {
+    color: #8c8282;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+
+/* ========================================
+   INFORMACIÓN DE LA VALORACIÓN
+======================================== */
+
+.company-public-profile__review-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 8px;
+}
+
+.company-public-profile__review-meta {
+    display: flex;
+    align-items: center;
+
+    gap: 22px;
+
+    color: #777777;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+
+/* ========================================
+   COMENTARIO
+======================================== */
+
+.company-public-profile__review-comment {
+    width: 100%;
+
+    margin: 0;
+
+    color: #000000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+
+    line-height: 1.45;
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 1350px) {
+    .company-public-profile {
+        width: calc(100% - 48px);
+    }
+
+    .company-public-profile__top {
+        width: 100%;
+    }
+
+    .company-public-profile__header {
+        justify-content: space-between;
+
+        gap: 40px;
+    }
+}
+
+@media (max-width: 950px) {
+    .company-public-profile__header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .company-public-profile__vacancies {
+        grid-template-columns: 410px;
+    }
+}
+
+.company-public-profile__vacancies[hidden],
+.company-public-profile__reviews[hidden],
+.company-public-profile__sort-menu[hidden] {
+    display: none !important;
+}
+
+.rating-modal__overlay[hidden] {
+    display: none !important;
+}

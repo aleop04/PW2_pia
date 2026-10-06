@@ -1,0 +1,687 @@
+@import '../../components/vacancy-card.css';
+@import './vacancy-preview.css';
+
+/*  STUDENT HOME  */
+
+.student-home {
+    width: 100%;
+
+    padding: 55px 0 80px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    box-sizing: border-box;
+}
+
+
+/*  BUSCADOR  */
+
+.vacancy-search {
+    width: 809px;
+
+    padding: 8px 0 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background: rgba(108, 250, 210, 0.22);
+
+    border-radius: 44px;
+
+    box-sizing: border-box;
+
+    transition:
+        padding 0.25s ease;
+}
+
+.vacancy-search--expanded {
+    padding-bottom: 30px;
+}
+
+
+/* BARRA PRINCIPAL  */
+
+.vacancy-search__main {
+    width: 809px;
+    height: 63px;
+
+    padding: 0 21px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 38px;
+
+    box-sizing: border-box;
+}
+
+
+/*  CAMPOS PRINCIPALES  */
+
+.vacancy-search__fields {
+    width: 556px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 55px;
+}
+
+.vacancy-search__field {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+}
+
+.vacancy-search__field--location {
+    width: 206px;
+}
+
+.vacancy-search__field-icon {
+    width: 27px;
+    height: 27px;
+
+    flex-shrink: 0;
+
+    display: block;
+
+    object-fit: contain;
+}
+
+.vacancy-search__input {
+    width: 190px;
+
+    padding: 0;
+
+    border: 0;
+    outline: 0;
+
+    background: transparent;
+
+    color: #574f56;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.vacancy-search__field--location .vacancy-search__input {
+    width: 165px;
+}
+
+.vacancy-search__input::placeholder {
+    color: #d4cdd3;
+
+    opacity: 1;
+}
+
+
+/*  SEPARADOR  */
+
+.vacancy-search__separator {
+    width: 1px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    background: #d4cdd3;
+}
+
+
+/*  BOTÓN BUSCAR  */
+
+.vacancy-search__button {
+    width: 173px;
+    height: 54px;
+
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    border-radius: 29px;
+
+    background: rgba(217, 217, 217, 0.20);
+
+    color: #060005;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+.vacancy-search__button:hover {
+    transform: translateY(-2px);
+}
+
+
+/*  BOTÓN BÚSQUEDA AVANZADA  */
+
+.vacancy-search__advanced-toggle {
+    width: 42px;
+    height: 32px;
+
+    margin-top: 2px;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    background: transparent;
+
+    cursor: pointer;
+}
+
+.vacancy-search__advanced-icon {
+    width: 25px;
+    height: 25px;
+
+    display: block;
+
+    object-fit: contain;
+
+    transition: transform 0.25s ease;
+}
+
+.vacancy-search__advanced-icon--open {
+    transform: rotate(180deg);
+}
+
+
+/*  BÚSQUEDA AVANZADA  */
+
+.vacancy-search__advanced {
+    width: 100%;
+
+    padding: 15px 25px 5px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 30px;
+
+    box-sizing: border-box;
+}
+
+
+/*  FILA FECHA + SUELDO  */
+
+.vacancy-search__advanced-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    gap: 79px;
+}
+
+
+/*  GRUPOS  */
+
+.vacancy-search__advanced-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 16px;
+}
+
+.vacancy-search__publication {
+    width: 367px;
+}
+
+/*  FECHA DE PUBLICACIÓN */
+
+.vacancy-search__publication-select-wrapper {
+    width: 240px;
+    height: 39px;
+
+    position: relative;
+}
+
+.vacancy-search__publication-select {
+    width: 100%;
+    height: 100%;
+
+    padding: 7px 38px 7px 10px;
+
+    border: 1px solid rgba(0, 0, 0, 0.13);
+    border-radius: 9px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #8c8282;
+
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    box-sizing: border-box;
+}
+
+.vacancy-search__publication-select:focus {
+    border-color: rgba(0, 0, 0, 0.4);
+
+    box-shadow:
+        0 0 0 2px rgba(0, 0, 0, 0.04);
+}
+
+.vacancy-search__publication-select-icon {
+    width: 22px;
+    height: 22px;
+
+    position: absolute;
+    top: 50%;
+    right: 9px;
+
+    transform: translateY(-50%);
+
+    pointer-events: none;
+
+    object-fit: contain;
+}
+
+.vacancy-search__salary {
+    width: 295px;
+}
+
+.vacancy-search__sector {
+    width: 204px;
+}
+
+
+/*  TÍTULOS  */
+
+.vacancy-search__advanced-title {
+    width: 100%;
+
+    margin: 0;
+
+    color: #060005;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+
+    text-align: center;
+}
+
+
+/*  CONTROLES  */
+
+.vacancy-search__advanced-controls {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 19px;
+}
+
+
+/*  SELECTS  */
+
+.vacancy-search__select-wrapper {
+    width: 138px;
+    height: 39px;
+
+    position: relative;
+}
+
+/*  DROPDOWN DE SECTOR  */
+
+.vacancy-search__sector-dropdown {
+    width: 202px;
+
+    position: relative;
+
+    z-index: 20;
+}
+
+
+/*  CAJA CERRADA  */
+
+.vacancy-search__sector-trigger {
+    width: 202px;
+    height: 39px;
+
+    padding: 7px 10px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    box-sizing: border-box;
+
+    background-color: #ffffff;
+
+    border: 1px solid rgba(0, 0, 0, 0.13);
+    border-radius: 9px;
+
+    color: #000000;
+
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 16px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    text-align: left;
+}
+
+.vacancy-search__sector-trigger:focus {
+    outline: none;
+
+    border-color: rgba(0, 0, 0, 0.4);
+
+    box-shadow:
+        0 0 0 2px rgba(0, 0, 0, 0.04);
+}
+
+
+/*  TEXTO  */
+
+.vacancy-search__sector-text {
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+}
+
+.vacancy-search__sector-placeholder {
+    color: #dacdcd;
+}
+
+
+/*  CHEVRON  */
+
+.vacancy-search__sector-icon {
+    width: 20px;
+    height: 20px;
+
+    flex-shrink: 0;
+
+    transition:
+        transform 0.25s ease;
+}
+
+.vacancy-search__sector-icon--open {
+    transform: rotate(180deg);
+}
+
+
+/*  CAJA DESPLEGABLE  */
+
+.vacancy-search__sector-menu {
+    width: 100%;
+    max-height: 230px;
+
+    position: absolute;
+    top: calc(100% + 7px);
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    box-sizing: border-box;
+
+    background-color: #ffffff;
+
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 14px;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.12);
+
+    z-index: 50;
+}
+
+
+/*  OPCIONES  */
+
+.vacancy-search__sector-option {
+    width: 100%;
+
+    padding: 10px 14px;
+
+    flex-shrink: 0;
+
+    background: transparent;
+
+    border: none;
+
+    color: #000000;
+
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.15s ease;
+}
+
+.vacancy-search__sector-option:hover {
+    background-color:
+        rgba(65, 142, 242, 0.08);
+}
+
+.vacancy-search__sector-option--selected {
+    background-color:
+        rgba(65, 142, 242, 0.12);
+}
+
+
+/*  SCROLLBAR  */
+
+.vacancy-search__sector-menu::-webkit-scrollbar {
+    width: 6px;
+}
+
+.vacancy-search__sector-menu::-webkit-scrollbar-thumb {
+    background-color:
+        rgba(0, 0, 0, 0.18);
+
+    border-radius: 10px;
+}
+
+
+/*  ANIMACIÓN  */
+
+.search-sector-dropdown-enter-active,
+.search-sector-dropdown-leave-active {
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+.search-sector-dropdown-enter-from,
+.search-sector-dropdown-leave-to {
+    opacity: 0;
+
+    transform: translateY(-5px);
+}
+
+.vacancy-search__select {
+    width: 100%;
+    height: 100%;
+
+    padding: 7px 38px 7px 10px;
+
+    border: 1px solid rgba(0, 0, 0, 0.13);
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    color: #8c8282;
+
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 16px;
+    font-weight: 700;
+
+    outline: 0;
+
+    cursor: pointer;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    box-sizing: border-box;
+}
+
+.vacancy-search__select-icon {
+    width: 25px;
+    height: 25px;
+
+    position: absolute;
+    top: 50%;
+    right: 8px;
+
+    transform: translateY(-50%);
+
+    pointer-events: none;
+
+    object-fit: contain;
+}
+
+
+/*  BOTÓN DE BÚSQUEDA AVANZADA  */
+
+
+/*  ANIMACIÓN ABRIR / CERRAR  */
+
+.advanced-search-enter-active,
+.advanced-search-leave-active {
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+.advanced-search-enter-from,
+.advanced-search-leave-to {
+    opacity: 0;
+
+    transform: translateY(-10px);
+}
+
+
+/*  RESPONSIVE  */
+
+@media (max-width: 900px) {
+    .vacancy-search {
+        width: calc(100% - 40px);
+    }
+
+    .vacancy-search__main {
+        width: 100%;
+    }
+}
+
+/*  VACANTES  */
+
+.student-home__vacancy-area {
+    width: 1283px;
+
+    margin-top: 60px;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    gap: 96px;
+}
+
+
+/*  LISTADO IZQUIERDO  */
+
+.student-home__vacancy-list-section {
+    width: 465px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 34px;
+}
+
+.student-home__vacancy-list-title {
+    width: 100%;
+
+    margin: 0;
+
+    color: #000000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+
+    line-height: 42px;
+}
+
+.student-home__vacancy-list {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 38px;
+}
+
+
+/*  RESPONSIVE  */
+
+@media (max-width: 1350px) {
+    .student-home__vacancy-area {
+        width: calc(100% - 48px);
+
+        gap: 50px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .student-home__vacancy-area {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+
+/* ========================================
+   ELEMENTOS CONTROLADOS POR JAVASCRIPT
+======================================== */
+
+.vacancy-search__advanced[hidden],
+.vacancy-search__sector-menu[hidden] {
+    display: none;
+}

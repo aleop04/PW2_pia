@@ -1,0 +1,392 @@
+.company-profile {
+    width: calc(100% - 80px);
+    max-width: 1268px;
+
+    margin: 0 auto;
+    padding: 40px 0 60px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 41px;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.company-profile__header {
+    display: flex;
+    align-items: center;
+
+    gap: 29px;
+}
+
+.company-profile__image {
+    width: 215px;
+    height: 209px;
+
+    object-fit: cover;
+
+    border-radius: 33px;
+
+    display: block;
+}
+
+.company-profile__identity {
+    width: 455px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+.company-profile__name {
+    margin: 0;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.15;
+
+    color: #000;
+}
+
+.company-profile__rating {
+    display: flex;
+    align-items: center;
+
+    gap: 4px;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+
+    color: #000;
+}
+
+.company-profile__star {
+    color: #f291e2;
+
+    font-size: 22px;
+}
+
+
+/* =========================
+   CONTENT
+========================= */
+
+.company-profile__content {
+    width: 100%;
+
+    display: flex;
+    align-items: flex-start;
+
+    gap: 55px;
+}
+
+
+/* =========================
+   LEFT DATA
+========================= */
+
+.company-profile__data {
+    width: 323px;
+    flex-shrink: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 41px;
+}
+
+.company-profile__fields {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 29px;
+}
+
+.company-profile__field {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 11px;
+}
+
+.company-profile__field label {
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 16px;
+    font-weight: 700;
+
+    color: #000;
+}
+
+.company-profile__field input {
+    width: 100%;
+    height: 39px;
+
+    padding: 10px;
+
+    box-sizing: border-box;
+
+    border: 1px solid rgba(0, 0, 0, 0.13);
+    border-radius: 9px;
+
+    background: #fff;
+
+    color: #000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+
+    outline: none;
+}
+
+.company-profile__field input:disabled {
+    color: #000;
+
+    opacity: 1;
+
+    cursor: default;
+}
+
+
+/* =========================
+   ESTADO + CIUDAD
+========================= */
+
+.company-profile__location {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 29px;
+}
+
+
+/* =========================
+   PASSWORD
+========================= */
+
+.company-profile__password-fields {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 29px;
+}
+
+.company-profile__password-fields[hidden] {
+    display: none;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.company-profile__edit-button {
+    min-width: 143px;
+    height: 41px;
+
+    padding: 0 14px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+
+    border: none;
+    border-radius: 16px;
+
+    background: #000;
+    color: #fff;
+
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+
+    text-align: center;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   DESCRIPTION
+========================= */
+
+.company-profile__description {
+    flex: 1;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 19px;
+}
+
+.company-profile__description h2 {
+    margin: 0;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+
+    color: #000;
+}
+
+
+/* Descripción en modo lectura */
+
+.company-profile__description-text {
+    width: 100%;
+    min-height: 401px;
+
+    margin: 0;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.5;
+
+    color: #000;
+
+    white-space: pre-line;
+
+    overflow-wrap: break-word;
+}
+
+
+/* Descripción en modo edición */
+
+.company-profile__description-input {
+    width: 100%;
+    min-height: 401px;
+
+    padding: 10px;
+
+    box-sizing: border-box;
+
+    border: 1px solid rgba(0, 0, 0, 0.13);
+    border-radius: 9px;
+
+    outline: none;
+
+    background: #fff;
+    color: #000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.5;
+
+    resize: none;
+
+    overflow: hidden;
+
+    scrollbar-width: none;
+}
+
+.company-profile__description-input::-webkit-scrollbar {
+    display: none;
+}
+
+.company-profile__description-input[hidden] {
+    display: none;
+}
+
+.company-profile__field input.company-profile__locked-input {
+    background: #f1f1f1;
+    color: #777;
+
+    border-color: rgba(0, 0, 0, 0.10);
+
+    cursor: not-allowed;
+}
+
+.company-profile__field input.company-profile__locked-input:disabled {
+    background: #f1f1f1;
+    color: #777;
+
+    opacity: 1;
+
+    cursor: not-allowed;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+    .company-profile {
+        width: calc(100% - 40px);
+    }
+
+    .company-profile__content {
+        flex-direction: column;
+
+        gap: 45px;
+    }
+
+    .company-profile__data {
+        width: 100%;
+    }
+
+    .company-profile__description {
+        width: 100%;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .company-profile {
+        width: calc(100% - 32px);
+
+        padding-top: 30px;
+    }
+
+    .company-profile__header {
+        align-items: flex-start;
+
+        gap: 20px;
+    }
+
+    .company-profile__image {
+        width: 130px;
+        height: 130px;
+
+        border-radius: 24px;
+    }
+
+    .company-profile__identity {
+        width: auto;
+    }
+
+    .company-profile__name {
+        font-size: 32px;
+    }
+
+    .company-profile__location {
+        grid-template-columns: 1fr;
+    }
+
+}

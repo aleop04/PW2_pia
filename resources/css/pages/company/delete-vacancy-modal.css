@@ -1,0 +1,206 @@
+/* ========================================
+   DELETE VACANCY MODAL - OVERLAY
+======================================== */
+
+.delete-vacancy-modal__overlay {
+    width: 100%;
+    height: 100%;
+
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0, 0, 0, 0.25);
+
+    z-index: 1000;
+}
+
+.delete-vacancy-modal__overlay[hidden] {
+    display: none;
+}
+
+
+/* ========================================
+   MODAL
+======================================== */
+
+.delete-vacancy-modal {
+    width: 509px;
+    height: 551px;
+
+    position: relative;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+    box-sizing: border-box;
+}
+
+
+/* ========================================
+   CONTENT
+======================================== */
+
+.delete-vacancy-modal__content {
+    width: 368px;
+
+    position: absolute;
+
+    top: 48px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 24px;
+}
+
+
+/* ========================================
+   TITLE
+======================================== */
+
+.delete-vacancy-modal__title {
+    width: 368px;
+
+    margin: 0;
+
+    color: #000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.2;
+
+    text-align: center;
+}
+
+
+/* ========================================
+   DESCRIPTION
+======================================== */
+
+.delete-vacancy-modal__description {
+    width: 100%;
+
+    margin: 0;
+
+    color: #000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.25;
+
+    text-align: center;
+}
+
+
+/* ========================================
+   ACTIONS
+======================================== */
+
+.delete-vacancy-modal__actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 24px;
+}
+
+
+/* ========================================
+   BUTTONS
+======================================== */
+
+.delete-vacancy-modal__button {
+    width: 124px;
+    height: 33px;
+
+    padding: 0 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 0;
+    border-radius: 20px;
+
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.delete-vacancy-modal__button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 4px 6px rgba(0, 0, 0, 0.12);
+}
+
+.delete-vacancy-modal__button:active {
+    transform: translateY(0);
+}
+
+
+/* ========================================
+   CANCEL
+======================================== */
+
+.delete-vacancy-modal__button--cancel {
+    background: #ebebeb;
+
+    color: #000;
+}
+
+
+/* ========================================
+   DELETE
+======================================== */
+
+.delete-vacancy-modal__button--delete {
+    background: #000;
+
+    color: #fff;
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 560px) {
+
+    .delete-vacancy-modal {
+        width: calc(100% - 30px);
+
+        background-size: 100% 100%;
+    }
+
+    .delete-vacancy-modal__content {
+        width: calc(100% - 100px);
+    }
+
+    .delete-vacancy-modal__title {
+        width: 100%;
+
+        font-size: 27px;
+    }
+
+}

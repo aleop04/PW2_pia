@@ -1,0 +1,516 @@
+/* ========================================
+   OVERLAY
+======================================== */
+
+.rating-modal__overlay {
+    position: fixed;
+    inset: 0;
+
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    background: rgba(0, 0, 0, 0.20);
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    box-sizing: border-box;
+
+    /* Firefox */
+    scrollbar-width: none;
+
+    /* Edge / Internet Explorer antiguo */
+    -ms-overflow-style: none;
+}
+
+/* Chrome, Edge, Safari */
+.rating-modal__overlay::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* ========================================
+   MODAL
+======================================== */
+
+.rating-modal {
+    width: 592px;
+    max-height: calc(100vh - 60px);
+
+    display: flex;
+    flex-direction: column;
+
+    background: #ffffff;
+
+    border: 0;
+    border-radius: 49px;
+
+    box-shadow:
+        0 4px 4px rgba(0, 0, 0, 0.25);
+
+    overflow: hidden;
+
+    box-sizing: border-box;
+}
+
+
+/* ========================================
+   CUERPO
+======================================== */
+
+.rating-modal__body {
+    width: 100%;
+
+    padding: 45px 64px;
+
+    flex: 1;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    box-sizing: border-box;
+
+    /* Firefox */
+    scrollbar-width: none;
+
+    /* Edge / Internet Explorer antiguo */
+    -ms-overflow-style: none;
+}
+
+/* Chrome, Edge, Safari */
+.rating-modal__body::-webkit-scrollbar {
+    display: none;
+}
+
+.rating-modal__content {
+    width: 464px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 35px;
+}
+
+
+/* ========================================
+   ENCABEZADO
+======================================== */
+
+.rating-modal__header {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 15px;
+}
+
+.rating-modal__company {
+    width: 375px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 29px;
+}
+
+
+/* ========================================
+   LOGO
+======================================== */
+
+.rating-modal__company-logo {
+    width: 99px;
+    height: 97px;
+
+    flex-shrink: 0;
+
+    display: block;
+
+    border-radius: 33px;
+
+    object-fit: cover;
+}
+
+.rating-modal__company-logo--empty {
+    background: #f3f3f3;
+}
+
+
+/* ========================================
+   TÍTULO
+======================================== */
+
+.rating-modal__title {
+    width: 247px;
+
+    margin: 0;
+
+    color: #000000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+
+    line-height: 1.1;
+}
+
+
+/* ========================================
+   TEXTO INTRODUCTORIO
+======================================== */
+
+.rating-modal__intro {
+    width: 100%;
+
+    margin: 0;
+
+    color: #000000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+
+    line-height: 1.35;
+}
+
+
+/* ========================================
+   CAMPOS
+======================================== */
+
+.rating-modal__fields {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 24px;
+}
+
+.rating-modal__field {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 11px;
+}
+
+
+/* ========================================
+   LABEL
+======================================== */
+
+.rating-modal__label {
+    width: 100%;
+
+    color: #000000;
+
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 16px;
+    font-weight: 700;
+
+    line-height: 21px;
+}
+
+
+/* ========================================
+   INPUT
+======================================== */
+
+.rating-modal__input {
+    width: 100%;
+    height: 39px;
+
+    padding: 10px;
+
+    border: 1px solid rgba(0, 0, 0, 0.13);
+    border-radius: 9px;
+
+    background: transparent;
+
+    color: #000000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+
+    outline: none;
+
+    box-sizing: border-box;
+}
+
+.rating-modal__input:focus {
+    border-color: rgba(0, 0, 0, 0.35);
+}
+
+
+/* ========================================
+   TEXTAREA
+======================================== */
+
+.rating-modal__textarea {
+    height: 103px;
+
+    resize: none;
+}
+
+
+/* ========================================
+   ESTRELLAS
+======================================== */
+
+.rating-modal__stars {
+    display: flex;
+    align-items: center;
+
+    gap: 1px;
+}
+
+.rating-modal__star-button {
+    width: 32px;
+    height: 32px;
+
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    background: transparent;
+
+    cursor: pointer;
+}
+
+.rating-modal__star {
+    width: 32px;
+    height: 32px;
+
+    display: block;
+
+    object-fit: contain;
+}
+
+
+/* ========================================
+   FECHAS
+======================================== */
+
+.rating-modal__dates {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 33px;
+}
+
+.rating-modal__date-field {
+    width: 174px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 11px;
+}
+
+.rating-modal__date-control {
+    width: 174px;
+    height: 39px;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 7px 10px;
+
+    border: 1px solid rgba(0, 0, 0, 0.13);
+    border-radius: 9px;
+
+    overflow: hidden;
+
+    box-sizing: border-box;
+}
+
+
+/* ========================================
+   TEXTO DE FECHA
+======================================== */
+
+.rating-modal__date-text {
+    color: #000000;
+
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 14px;
+    font-weight: 700;
+
+    line-height: 19px;
+}
+
+.rating-modal__date-text--empty {
+    color: #dacdcd;
+}
+
+
+/* ========================================
+   CALENDARIO
+======================================== */
+
+.rating-modal__calendar-button {
+    width: 25px;
+    height: 25px;
+
+    padding: 0;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    background: transparent;
+
+    cursor: pointer;
+}
+
+.rating-modal__calendar-icon {
+    width: 25px;
+    height: 25px;
+
+    display: block;
+
+    object-fit: contain;
+}
+
+
+/* Input real utilizado para abrir el date picker */
+.rating-modal__native-date {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    opacity: 0;
+
+    cursor: pointer;
+}
+
+
+/* ========================================
+   FOOTER
+======================================== */
+
+.rating-modal__footer {
+    width: 100%;
+    height: 118px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 -4px 4px rgba(0, 0, 0, 0.25);
+
+    border-radius: 0 0 49px 49px;
+
+    box-sizing: border-box;
+}
+
+
+/* ========================================
+   ACCIONES
+======================================== */
+
+.rating-modal__actions {
+    display: flex;
+    align-items: center;
+
+    gap: 24px;
+}
+
+.rating-modal__cancel,
+.rating-modal__submit {
+    width: 131px;
+    height: 41px;
+
+    padding: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    border-radius: 16px;
+
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+
+    transition: transform 0.2s ease;
+}
+
+.rating-modal__cancel {
+    background: #000000;
+    color: #ffffff;
+}
+
+.rating-modal__submit {
+    background: #ebebeb;
+    color: #000000;
+}
+
+.rating-modal__cancel:hover,
+.rating-modal__submit:hover {
+    transform: translateY(-2px);
+}
+
+.rating-modal__cancel:active,
+.rating-modal__submit:active {
+    transform: translateY(0);
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 850px) {
+    .rating-modal {
+        width: calc(100vw - 40px);
+    }
+
+    .rating-modal__body {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    .rating-modal__content,
+    .rating-modal__header,
+    .rating-modal__fields {
+        width: 100%;
+    }
+}

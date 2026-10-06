@@ -1,0 +1,264 @@
+/* ========================================
+   REVIEW MODAL
+======================================== */
+
+.vacancy-review-modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding: 50px 20px;
+
+    overflow-y: auto;
+
+    box-sizing: border-box;
+}
+
+.vacancy-review-modal[hidden] {
+    display: none;
+}
+
+.vacancy-review-modal__overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.38);
+}
+
+.vacancy-review-modal__dialog {
+    width: 560px;
+    max-width: 100%;
+
+    position: relative;
+
+    z-index: 1;
+
+    padding: 36px 48px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 30px;
+
+    background: #fff;
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.22);
+
+    box-sizing: border-box;
+}
+
+.vacancy-review-modal__title {
+    margin: 0;
+
+    color: #000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+
+    text-align: center;
+}
+
+
+/* ========================================
+   VACANCY REVIEW
+======================================== */
+
+.vacancy-review {
+    width: 464px;
+    max-width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 27px;
+}
+
+.vacancy-review__intro {
+    width: 100%;
+
+    margin: 0;
+
+    color: #7e7b7b;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.2;
+
+    text-align: center;
+}
+
+
+/* ========================================
+   FIELD
+======================================== */
+
+.vacancy-review__field {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 11px;
+}
+
+.vacancy-review__label {
+    width: 100%;
+
+    color: #000;
+
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 21px;
+}
+
+.vacancy-review__value {
+    width: 100%;
+    min-height: 39px;
+
+    padding: 8px 10px;
+
+    display: flex;
+    align-items: center;
+
+    border: 1px solid rgba(0, 0, 0, 0.13);
+    border-radius: 9px;
+
+    color: #8c8282;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+
+    box-sizing: border-box;
+
+    overflow-wrap: anywhere;
+}
+
+.vacancy-review__value--description {
+    min-height: 150px;
+
+    align-items: flex-start;
+
+    line-height: 1.4;
+
+    white-space: pre-line;
+}
+
+
+/* ========================================
+   BENEFITS
+======================================== */
+
+.vacancy-review__benefits {
+    width: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    gap: 14px;
+}
+
+.vacancy-review__benefit {
+    min-height: 26px;
+
+    padding: 2px 8px;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+
+    background: rgba(242, 145, 226, 0.30);
+
+    border-radius: 9px;
+
+    color: #8c8282;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+
+    box-sizing: border-box;
+}
+
+.vacancy-review__benefit img {
+    width: 20px;
+    height: 20px;
+
+    object-fit: contain;
+}
+
+
+/* ========================================
+   MODAL ACTIONS
+======================================== */
+
+.vacancy-review-modal__actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 25px;
+}
+
+.vacancy-review__button {
+    width: 150px;
+    height: 41px;
+
+    padding: 0 10px;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 0;
+    border-radius: 16px;
+
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+
+    transition: transform 0.2s ease;
+}
+
+.vacancy-review__button:hover {
+    transform: translateY(-2px);
+}
+
+.vacancy-review__button:active {
+    transform: translateY(0);
+}
+
+.vacancy-review__button--cancel {
+    background: #ebebeb;
+
+    color: #000;
+}
+
+.vacancy-review__button--confirm {
+    background: #000;
+
+    color: #fff;
+}

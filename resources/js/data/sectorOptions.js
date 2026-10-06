@@ -1,0 +1,23 @@
+export const sectorOptions = [
+    { value: 'technology', label: 'Tecnología e Informática' },
+    { value: 'health', label: 'Salud y Medicina' },
+    { value: 'education', label: 'Educación' },
+    { value: 'finance', label: 'Finanzas y Contabilidad' },
+    { value: 'engineering', label: 'Ingeniería' },
+    { value: 'business', label: 'Administración y Negocios' },
+    { value: 'marketing', label: 'Marketing y Publicidad' },
+    { value: 'sales', label: 'Ventas y Comercio' },
+    { value: 'rh', label: 'Recursos Humanos' },
+    { value: 'law', label: 'Derecho' },
+    { value: 'architecture', label: 'Arquitectura y Diseño' },
+    { value: 'communication', label: 'Comunicación y Medios' },
+    { value: 'tourism', label: 'Turismo, Hotelería y Gastronomía' },
+    { value: 'manufacturing', label: 'Industria y Manufactura' },
+    { value: 'construction', label: 'Construcción' },
+    { value: 'logistics', label: 'Logística y Transporte' },
+    { value: 'energy', label: 'Energía y Medio Ambiente' },
+    { value: 'agriculture', label: 'Agricultura y Agroindustria' },
+    { value: 'science', label: 'Ciencia e Investigación' },
+    { value: 'government', label: 'Sector Público y Gobierno' },
+    { value: 'other', label: 'Otro' }
+];

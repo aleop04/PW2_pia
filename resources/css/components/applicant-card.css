@@ -1,0 +1,115 @@
+/* ========================================
+   APPLICANT CARD
+======================================== */
+
+.applicant-card {
+    width: 312px;
+    height: 193px;
+
+    padding: 30px 26px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+
+    border: none;
+    border-radius: 35px;
+
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.30) 0%,
+        rgba(242, 145, 226, 0.30) 100%
+    );
+
+    color: inherit;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* ========================================
+   HOVER
+======================================== */
+
+.applicant-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 6px 8px rgba(0, 0, 0, 0.16);
+}
+
+
+/* ========================================
+   CONTENT
+======================================== */
+
+.applicant-card__content {
+    width: 260px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 11px;
+}
+
+
+/* ========================================
+   VACANCY TITLE
+======================================== */
+
+.applicant-card__vacancy-title {
+    width: 100%;
+
+    margin: 0;
+
+    color: #000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.1;
+
+    text-align: center;
+
+    overflow-wrap: break-word;
+}
+
+
+/* ========================================
+   APPLICANT
+======================================== */
+
+.applicant-card__applicant {
+    width: 215px;
+
+    margin: 0;
+
+    color: #8c8282;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.25;
+
+    text-align: center;
+
+    overflow-wrap: break-word;
+}
+
+.applicant-card__applicant-name {
+    text-decoration: underline;
+}
+
+.applicant-card[hidden] {
+    display: none;
+}

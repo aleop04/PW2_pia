@@ -1,0 +1,317 @@
+/*  VACANCY PREVIEW  */
+
+.vacancy-preview {
+    width: 722px;
+    min-height: 797px;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    box-shadow:
+        0 1px 4px rgba(0, 0, 0, 0.25);
+
+    border-radius: 34px;
+
+    overflow: hidden;
+
+    box-sizing: border-box;
+}
+
+
+/*  ENCABEZADO  */
+
+.vacancy-preview__header {
+    width: 100%;
+    min-height: 183px;
+
+    padding: 35px 21px 20px 39px;
+
+    background: rgba(255, 255, 255, 0.17);
+
+    box-shadow:
+        0 1px 4px rgba(0, 0, 0, 0.25);
+
+    border-radius: 34px 34px 0 0;
+
+    box-sizing: border-box;
+}
+
+.vacancy-preview__header-content {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.vacancy-preview__main-info {
+    width: 341px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 7px;
+}
+
+
+/*  TÍTULO  */
+
+.vacancy-preview__title {
+    width: 341px;
+
+    margin: 0;
+
+    color: #000000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+
+    line-height: 1.1;
+
+    text-decoration: none;
+
+    cursor: pointer;
+}
+
+.vacancy-preview__title:hover {
+    text-decoration: underline;
+}
+
+
+/*  INFORMACIÓN PRINCIPAL */
+
+.vacancy-preview__meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 3px;
+
+    color: #000000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.vacancy-preview__company {
+    margin: 0;
+    padding: 0;
+
+    border: 0;
+    background: transparent;
+
+    color: #000000;
+
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+
+    text-decoration: underline;
+
+    cursor: pointer;
+}
+
+
+/*  BOOKMARK  */
+
+.vacancy-preview__bookmark {
+    width: 50px;
+    height: 50px;
+
+    padding: 0;
+
+    border: 0;
+    background: transparent;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition: transform 0.2s ease;
+}
+
+.vacancy-preview__bookmark:hover {
+    transform: translateY(-2px);
+}
+
+.vacancy-preview__bookmark-icon {
+    width: 50px;
+    height: 50px;
+
+    display: block;
+    object-fit: contain;
+
+    transition: filter 0.2s ease;
+}
+
+
+/*  CUERPO  */
+
+.vacancy-preview__body {
+    width: 646px;
+
+    margin: 0 auto;
+
+    padding: 32px 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 52px;
+
+    box-sizing: border-box;
+}
+
+
+/*  TÍTULOS DE SECCIÓN  */
+
+.vacancy-preview__section-title {
+    width: 100%;
+
+    margin: 0;
+
+    color: #000000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+
+/*  INFORMACIÓN DE EMPLEO */
+
+.vacancy-preview__employment {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 19px;
+}
+
+.vacancy-preview__employment-content {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.vacancy-preview__employment-row {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 159px 1fr;
+
+    column-gap: 20px;
+
+    align-items: center;
+}
+
+.vacancy-preview__employment-row--benefits {
+    align-items: flex-start;
+}
+
+.vacancy-preview__employment-label {
+    width: 159px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    color: #000000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.vacancy-preview__employment-icon {
+    width: 16px;
+    height: 16px;
+
+    flex-shrink: 0;
+
+    object-fit: contain;
+}
+
+.vacancy-preview__employment-value {
+    color: #8c8282;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+
+/*  PRESTACIONES  */
+
+.vacancy-preview__benefits {
+    width: 462px;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    gap: 14px 12px;
+}
+
+.vacancy-preview__benefit {
+    min-height: 26px;
+
+    padding: 2px 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(242, 145, 226, 0.30);
+
+    border-radius: 10px;
+
+    color: #8c8282;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    box-sizing: border-box;
+}
+
+
+/*  DESCRIPCIÓN  */
+
+.vacancy-preview__description {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 19px;
+}
+
+.vacancy-preview__description-text {
+    width: 100%;
+
+    margin: 0;
+
+    color: #000000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+
+    line-height: 1.45;
+
+    white-space: pre-line;
+}

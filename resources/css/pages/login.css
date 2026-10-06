@@ -1,0 +1,323 @@
+.login-page {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ffffff;
+
+  display: flex;
+  justify-content: center;
+
+  padding: 30px 40px 40px;
+  box-sizing: border-box;
+}
+
+.login-page__container {
+  width: 100%;
+  max-width: 1308px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+/*  Logo  */
+
+.login-page__logo-link {
+  display: inline-flex;
+  margin-bottom: 20px;
+}
+
+.login-page__logo {
+  width: 105px;
+  height: 23px;
+  object-fit: contain;
+  display: block;
+}
+
+/*  Contenido principal  */
+
+.login-page__content {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  gap: 105px;
+}
+
+/*  Imagen izquierda  */
+
+.login-page__image-wrapper {
+  width: 694px;
+  height: 831px;
+
+  flex-shrink: 0;
+
+  border-radius: 35px;
+  overflow: hidden;
+}
+
+.login-page__image {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+  object-fit: cover;
+}
+
+/*  Sección formulario  */
+
+.login-page__form-section {
+  width: 509px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-page__form-content {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 64px;
+}
+
+/*  Encabezado  */
+
+.login-page__header {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 14px;
+}
+
+.login-page__title {
+  width: 100%;
+
+  margin: 0;
+
+  color: #000000;
+
+  font-family: 'Nunito', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.2;
+
+  text-align: center;
+}
+
+.login-page__subtitle {
+  width: 100%;
+
+  margin: 0;
+
+  color: #8d8383;
+
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+
+  text-align: center;
+}
+
+/*  Formulario  */
+
+.login-form {
+  width: 431px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 38px;
+}
+
+.login-form__field {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 9px;
+}
+
+.login-form__label {
+  color: #d0cece;
+
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+/*  Inputs  */
+
+.login-form__input {
+  width: 100%;
+
+  padding: 0 0 9px;
+
+  background: transparent;
+
+  border: none;
+  border-bottom: 1px solid #d0cece;
+  border-radius: 0;
+
+  outline: none;
+
+  color: #000000;
+
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+
+  box-sizing: border-box;
+
+  transition:
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.login-form__input::placeholder {
+  color: #000000;
+  opacity: 1;
+}
+
+.login-form__input:focus {
+  border-bottom-color: #000000;
+}
+
+/*  Botón  */
+
+.login-form__button {
+  min-width: 126px;
+  height: 41px;
+
+  margin-top: 32px;
+
+  padding: 0 18px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #000000;
+
+  border: none;
+  border-radius: 20px;
+
+  color: #ffffff;
+
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.login-form__button:hover {
+  transform: translateY(-3px);
+
+  box-shadow: 0 7px 16px rgba(0, 0, 0, 0.18);
+}
+
+.login-form__button:active {
+  transform: translateY(0);
+}
+
+/* Responsive  */
+
+@media (max-width: 1200px) {
+  .login-page__content {
+    gap: 60px;
+  }
+
+  .login-page__image-wrapper {
+    width: 55%;
+    height: auto;
+    aspect-ratio: 694 / 831;
+  }
+
+  .login-page__form-section {
+    flex: 1;
+  }
+
+  .login-form {
+    width: 100%;
+    max-width: 431px;
+  }
+}
+
+@media (max-width: 900px) {
+  .login-page {
+    padding: 25px;
+  }
+
+  .login-page__container {
+    align-items: center;
+  }
+
+  .login-page__logo-link {
+    align-self: flex-end;
+  }
+
+  .login-page__content {
+    flex-direction: column;
+
+    gap: 60px;
+  }
+
+  .login-page__image-wrapper {
+    width: 100%;
+    max-width: 694px;
+    height: 500px;
+    aspect-ratio: auto;
+  }
+
+  .login-page__form-section {
+    width: 100%;
+    max-width: 509px;
+  }
+}
+
+@media (max-width: 600px) {
+  .login-page {
+    padding: 20px;
+  }
+
+  .login-page__image-wrapper {
+    height: 350px;
+    border-radius: 25px;
+  }
+
+  .login-page__title {
+    font-size: 36px;
+  }
+
+  .login-page__form-content {
+    gap: 45px;
+  }
+
+  .login-form {
+    gap: 30px;
+  }
+
+  .login-form__label,
+  .login-form__input {
+    font-size: 18px;
+  }
+
+  .login-form__button {
+    font-size: 20px;
+  }
+}

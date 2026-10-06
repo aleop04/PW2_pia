@@ -1,0 +1,463 @@
+/* ========================================
+   COMPANY VACANCY CREATE
+======================================== */
+
+.company-vacancy-create {
+    width: 100%;
+}
+
+
+/* ========================================
+   COMPANY VACANCY FORM
+======================================== */
+
+.company-vacancy-form {
+    width: 1298px;
+    max-width: calc(100% - 80px);
+
+    margin: 55px auto 70px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 57px;
+
+    box-sizing: border-box;
+}
+
+
+/* ========================================
+   TITLE
+======================================== */
+
+.company-vacancy-form__title {
+    width: 100%;
+
+    margin: 0;
+
+    color: #000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.15;
+
+    text-align: center;
+}
+
+
+/* ========================================
+   MAIN
+======================================== */
+
+.company-vacancy-form__main {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 529px 626px;
+    justify-content: space-between;
+
+    align-items: start;
+}
+
+
+/* ========================================
+   LEFT FIELDS
+======================================== */
+
+.company-vacancy-form__fields {
+    width: 529px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 28px;
+}
+
+
+/* ========================================
+   GENERIC FIELD
+======================================== */
+
+.company-vacancy-form__field {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 11px;
+}
+
+.company-vacancy-form__field label,
+.company-vacancy-form__description label {
+    width: 100%;
+
+    color: #000;
+
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 21px;
+}
+
+/* ========================================
+   REQUIRED
+======================================== */
+
+.company-vacancy-form__field label::after,
+.company-vacancy-form__description label::after {
+    content: ' *';
+
+    color: #cd1100;
+
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+}
+
+/* ========================================
+   INPUT
+======================================== */
+
+.company-vacancy-form__input {
+    width: 100%;
+    height: 39px;
+
+    padding: 8px 10px;
+
+    border: 1px solid rgba(0, 0, 0, 0.13);
+    border-radius: 9px;
+
+    outline: none;
+
+    background: #fff;
+
+    color: #000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+
+    box-sizing: border-box;
+}
+
+.company-vacancy-form__input:focus,
+.company-vacancy-form__description textarea:focus {
+    border-color: rgba(0, 0, 0, 0.30);
+}
+
+
+/* ========================================
+   LOCATION
+======================================== */
+
+.company-vacancy-form__input-icon-wrapper {
+    width: 100%;
+
+    position: relative;
+}
+
+.company-vacancy-form__input-icon-wrapper input {
+    padding-right: 43px;
+}
+
+.company-vacancy-form__location-icon {
+    width: 23px;
+    height: 23px;
+
+    position: absolute;
+
+    top: 50%;
+    right: 9px;
+
+    transform: translateY(-50%);
+
+    object-fit: contain;
+
+    pointer-events: none;
+}
+
+
+/* ========================================
+   DESCRIPTION
+======================================== */
+
+.company-vacancy-form__description {
+    width: 626px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 11px;
+}
+
+.company-vacancy-form__description textarea {
+    width: 626px;
+    height: 465px;
+
+    padding: 10px;
+
+    border: 1px solid rgba(0, 0, 0, 0.13);
+    border-radius: 9px;
+
+    outline: none;
+
+    resize: none;
+
+    color: #000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.4;
+
+    box-sizing: border-box;
+}
+
+
+/* ========================================
+   SALARY
+======================================== */
+
+.company-vacancy-form__salary {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 23px;
+}
+
+.company-vacancy-form__salary h2,
+.company-vacancy-form__benefits h2 {
+    margin: 0;
+
+    color: #000;
+
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 21px;
+}
+
+
+/* ========================================
+   SALARY FIELDS
+======================================== */
+
+.company-vacancy-form__salary-fields {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: 169px 184px;
+
+    justify-content: start;
+    align-items: end;
+
+    column-gap: 59px;
+}
+
+/* ========================================
+   BENEFITS
+======================================== */
+
+.company-vacancy-form__benefits {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 37px;
+}
+
+.company-vacancy-form__benefit-list {
+    width: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    gap: 37px 30px;
+}
+
+.company-vacancy-form__benefit {
+    min-height: 26px;
+
+    padding: 2px 8px;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+
+    border: 0;
+    border-radius: 9px;
+
+    background: rgba(242, 145, 226, 0.30);
+
+    color: #8c8282;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+.company-vacancy-form__benefit--selected {
+    background: rgba(242, 145, 226, 0.85);
+
+    color: #4f464d;
+
+    box-shadow:
+        0 3px 6px rgba(0, 0, 0, 0.12);
+}
+
+.company-vacancy-form__benefit:hover {
+    transform: translateY(-2px);
+}
+
+.company-vacancy-form__benefit img {
+    width: 20px;
+    height: 20px;
+
+    flex-shrink: 0;
+
+    object-fit: contain;
+
+    transition: transform 0.2s ease;
+}
+
+.company-vacancy-form__benefit-icon--selected {
+    transform: rotate(45deg);
+}
+
+
+/* ========================================
+   ACTIONS
+======================================== */
+
+.company-vacancy-form__actions {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 32px;
+}
+
+.company-vacancy-form__action-button {
+    height: 41px;
+
+    padding: 0 10px;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 0;
+    border-radius: 16px;
+
+    background: #000;
+
+    color: #fff;
+
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+
+    transition: transform 0.2s ease;
+}
+
+.company-vacancy-form__action-button:hover {
+    transform: translateY(-2px);
+}
+
+.company-vacancy-form__action-button:active {
+    transform: translateY(0);
+}
+
+.company-vacancy-form__action-button--publish {
+    width: 150px;
+}
+
+.company-vacancy-form__required {
+    color: #cd1100;
+}
+
+/* ========================================
+   EDIT ACTIONS
+======================================== */
+
+.company-vacancy-form__action-button--cancel {
+    width: 191px;
+
+    background: #ebebeb;
+
+    color: #000;
+
+    text-decoration: none;
+}
+
+.company-vacancy-form__action-button--confirm {
+    width: 203px;
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 1380px) {
+
+    .company-vacancy-form {
+        width: calc(100% - 60px);
+
+        max-width: none;
+    }
+
+}
+
+@media (max-width: 1100px) {
+
+    .company-vacancy-form__main {
+        grid-template-columns: 1fr;
+
+        gap: 35px;
+    }
+
+    .company-vacancy-form__fields,
+    .company-vacancy-form__description,
+    .company-vacancy-form__description textarea {
+        width: 100%;
+    }
+
+    .company-vacancy-form__salary-fields {
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+    }
+
+}

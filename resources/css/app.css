@@ -1,0 +1,83 @@
+/* Fuentes globales */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Tamil:wght@100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Nunito+Sans:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+/* Componentes */
+@import './components/footer.css';
+@import './components/vacancy-card.css';
+@import './components/vacancy-detail.css';
+@import './components/review-modal.css';
+@import './components/applicant-card.css';
+
+/* Páginas */
+@import './pages/home.css';
+@import './pages/login.css';
+@import './pages/register.css';
+@import './pages/student/index.css';
+@import './pages/student/company-profile.css';
+@import './pages/student/profile.css';
+@import './pages/student/bookmarks.css';
+@import './pages/company/profile.css';
+@import './pages/company/membership.css';
+@import './pages/company/change-membership.css';
+@import './pages/company/home.css';
+@import './pages/company/dashboard.css';
+@import './pages/company/applications.css';
+@import './pages/company/applicant-profile.css';
+@import './pages/company/ratings.css';
+@import './pages/company/vacancy-create.css';
+@import './pages/company/vacancy-review.css';
+@import './pages/company/vacancies.css';
+@import './pages/company/delete-vacancy-modal.css';
+
+/* Reset básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    background-color: #ffffff;
+    color: #000000;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+.main-layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-layout__content {
+    flex: 1;
+}
+
+.auth-layout {
+    min-height: 100vh;
+}

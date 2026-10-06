@@ -1,0 +1,15 @@
+.change-membership-page {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+
+    padding: 40px 0 60px;
+
+    box-sizing: border-box;
+}
+
+.change-membership-page .company-membership {
+    justify-content: center;
+    gap: 40px;
+}

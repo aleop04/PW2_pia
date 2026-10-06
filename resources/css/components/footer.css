@@ -1,0 +1,209 @@
+.footer {
+  position: relative;
+  width: 100%;
+  height: 303px;
+  margin-top: auto;
+}
+
+
+/* Fondo rojo */
+
+.footer__background {
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 213px;
+
+  background-color: #F23322;
+
+  border-top-left-radius: 95px;
+  border-top-right-radius: 95px;
+}
+
+
+/* Contenido principal */
+
+.footer__content {
+  position: relative;
+  z-index: 1;
+
+  width: 100%;
+  padding: 0 75px;
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+
+/* =====================================================
+   BLOQUES DE TEXTO
+===================================================== */
+
+.footer__text-block h3 {
+  margin: 0;
+
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+
+  color: #000000;
+}
+
+
+.footer__text-block p {
+  margin: 0;
+
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: normal;
+
+  color: #000000;
+}
+
+
+/* =====================================================
+   IZQUIERDA — OFICINA
+===================================================== */
+
+.footer__office {
+  width: 238px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 23px;
+}
+
+
+.footer__institutions {
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+}
+
+
+.footer__institution-logo {
+  object-fit: contain;
+}
+
+
+.footer__institution-logo--small {
+  width: 24px;
+  height: 13px;
+}
+
+
+.footer__institution-logo--large {
+  width: 48px;
+  height: 13px;
+}
+
+
+.footer__institution-logo--medium {
+  width: 34px;
+  height: 13px;
+}
+
+
+/* =====================================================
+   CENTRO — LOGO
+===================================================== */
+
+.footer__brand {
+  width: 417px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 24px;
+}
+
+
+.footer__main-logo {
+  width: 162px;
+  height: 179px;
+
+  object-fit: contain;
+
+  transform: translateY(10px);
+}
+
+
+.footer__brand-name {
+  width: 417px;
+  height: 75px;
+
+  object-fit: contain;
+}
+
+
+/* =====================================================
+   DERECHA — SOPORTE
+===================================================== */
+
+.footer__support {
+  width: 288px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 21px;
+}
+
+
+.footer__support .footer__text-block {
+  width: 192px;
+}
+
+
+/* Barra verde */
+
+.footer__policies {
+  width: 288px;
+  min-height: 38px;
+
+  padding: 8px 5px 8px 4px;
+
+  background-color: #2BD9A8;
+
+  border-radius: 5px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  box-sizing: border-box;
+}
+
+
+.footer__policies a,
+.footer__policies span {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+
+  color: #000000;
+
+  white-space: nowrap;
+}
+
+
+.footer__policies a {
+  text-decoration: none;
+}
+
+
+.footer__policies a:hover {
+  text-decoration: underline;
+}

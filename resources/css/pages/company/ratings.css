@@ -1,0 +1,430 @@
+/* ========================================
+   COMPANY RATINGS
+======================================== */
+
+.company-ratings {
+    width: 1067px;
+    max-width: calc(100% - 80px);
+
+    margin: 45px auto 60px;
+
+    transform: translateX(40px);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 55px;
+
+    box-sizing: border-box;
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.company-ratings__header {
+    width: 100%;
+    min-height: 122px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 13px;
+}
+
+.company-ratings__title {
+    width: 100%;
+
+    margin: 0;
+
+    color: #000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+.company-ratings__description {
+    width: 100%;
+
+    margin: 0;
+
+    color: #d4cdd3;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+
+/* ========================================
+   COMPANY
+======================================== */
+
+.company-ratings__company {
+    width: 455px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 30px;
+}
+
+
+/* Logo reducido */
+
+.company-ratings__company-image {
+    width: 150px;
+    height: 145px;
+
+    object-fit: cover;
+
+    border-radius: 25px;
+}
+
+.company-ratings__company-info {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+/* Nombre reducido */
+
+.company-ratings__company-info h2 {
+    width: 100%;
+
+    margin: 0;
+
+    color: #000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.1;
+
+    text-align: center;
+}
+
+.company-ratings__company-rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 4px;
+
+    color: #000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.company-ratings__company-rating img {
+    width: 20px;
+    height: 20px;
+
+    object-fit: contain;
+}
+
+
+/* ========================================
+   REVIEWS
+======================================== */
+
+.company-ratings__reviews {
+    width: 711px;
+    max-width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 53px;
+}
+
+
+/* ========================================
+   REVIEWS HEADER
+======================================== */
+
+.company-ratings__reviews-header {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.company-ratings__reviews-header h2 {
+    margin: 0;
+
+    color: #000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+
+/* ========================================
+   SORT
+======================================== */
+
+.company-ratings__sort {
+    width: 241px;
+
+    position: relative;
+
+    z-index: 20;
+}
+
+.company-ratings__sort-trigger {
+    width: 241px;
+    height: 54px;
+
+    padding: 0 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    border: 0;
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.20) 0%,
+            rgba(242, 145, 226, 0.20) 51%
+        );
+
+    box-shadow:
+        0 4px 4px rgba(0, 0, 0, 0.25);
+
+    color: #000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+}
+
+.company-ratings__sort-icon {
+    width: 33px;
+    height: 33px;
+
+    display: block;
+
+    object-fit: contain;
+
+    transition: transform 0.2s ease;
+}
+
+.company-ratings__sort-icon--open {
+    transform: rotate(180deg);
+}
+
+
+/* ========================================
+   SORT MENU
+======================================== */
+
+.company-ratings__sort-menu {
+    width: 241px;
+
+    position: absolute;
+
+    top: calc(100% + 8px);
+    left: 0;
+
+    z-index: 30;
+
+    padding: 8px 0;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #fff;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.20);
+
+    overflow: hidden;
+
+    box-sizing: border-box;
+}
+
+.company-ratings__sort-menu[hidden] {
+    display: none;
+}
+
+.company-ratings__sort-option {
+    width: 100%;
+    min-height: 45px;
+
+    padding: 8px 15px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+
+    text-align: center;
+
+    cursor: pointer;
+}
+
+.company-ratings__sort-option:hover {
+    background: rgba(242, 145, 226, 0.15);
+}
+
+.company-ratings__sort-option--active {
+    background: rgba(242, 145, 226, 0.20);
+}
+
+
+/* ========================================
+   REVIEW LIST
+======================================== */
+
+.company-ratings__review-list {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 43px;
+}
+
+
+/* ========================================
+   REVIEW
+======================================== */
+
+.company-ratings__review {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 14px;
+}
+
+
+/* ========================================
+   STARS + DATE
+======================================== */
+
+.company-ratings__review-rating {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+}
+
+.company-ratings__review-stars {
+    display: flex;
+    align-items: center;
+
+    gap: 1px;
+}
+
+.company-ratings__review-star {
+    width: 32px;
+    height: 32px;
+
+    object-fit: contain;
+}
+
+.company-ratings__review-date {
+    color: #8c8282;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+
+/* ========================================
+   REVIEW INFO
+======================================== */
+
+.company-ratings__review-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 8px;
+}
+
+.company-ratings__review-info h3 {
+    margin: 0;
+
+    color: #000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.company-ratings__review-meta {
+    display: flex;
+    align-items: center;
+
+    gap: 22px;
+
+    color: #777;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+
+/* ========================================
+   COMMENT
+======================================== */
+
+.company-ratings__review-comment {
+    width: 100%;
+
+    margin: 0;
+
+    color: #000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.45;
+
+    white-space: pre-line;
+
+    overflow-wrap: break-word;
+}

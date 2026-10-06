@@ -1,0 +1,1796 @@
+/* ========================================
+   REGISTER PAGE
+======================================== */
+
+.register-page {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+
+  background-color: #ffffff;
+
+  padding: 30px 40px 40px;
+  box-sizing: border-box;
+}
+
+.register-page__container {
+  width: 100%;
+  max-width: 1308px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* ========================================
+   LOGO
+======================================== */
+
+.register-page__logo-link {
+  display: inline-flex;
+  margin-bottom: 20px;
+}
+
+.register-page__logo {
+  width: 105px;
+  height: 23px;
+
+  display: block;
+  object-fit: contain;
+}
+
+/* ========================================
+   CONTENIDO PRINCIPAL
+======================================== */
+
+.register-page__content {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 0;
+}
+
+/* ========================================
+   LADO IZQUIERDO
+======================================== */
+
+.register-page__left {
+  width: 530px;
+  height: 831px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow: visible;
+}
+
+/* ========================================
+   IMAGEN DERECHA
+======================================== */
+
+.register-page__image-wrapper {
+  width: 694px;
+  height: 831px;
+
+  flex-shrink: 0;
+
+  overflow: hidden;
+
+  border-radius: 35px;
+}
+
+.register-page__image {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+/* ========================================
+   ACCOUNT TYPE SELECTOR
+======================================== */
+
+.account-type {
+  width: 509px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 64px;
+}
+
+/* ========================================
+   ENCABEZADO
+======================================== */
+
+.account-type__header {
+  width: 509px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 13px;
+}
+
+.account-type__title {
+  width: 100%;
+
+  margin: 0;
+
+  color: #000000;
+
+  font-family: 'Nunito', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.15;
+
+  text-align: center;
+}
+
+.account-type__subtitle {
+  width: 100%;
+
+  margin: 0;
+
+  color: #8d8383;
+
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+
+  text-align: center;
+}
+
+.account-type__subtitle em {
+  font-style: italic;
+}
+
+/* ========================================
+   OPCIONES
+======================================== */
+
+.account-type__options {
+  width: 387px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 31px;
+}
+
+/* ========================================
+   TARJETA
+======================================== */
+
+.account-type__card {
+  width: 100%;
+  min-height: 140px;
+
+  padding: 30px 21px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 5px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(65, 142, 242, 0.2) 51%
+    );
+
+  border: none;
+  border-radius: 40px;
+
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.account-type__card:hover {
+  transform: translateY(-6px);
+
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.18);
+}
+
+.account-type__card:active {
+  transform: translateY(-2px);
+}
+
+/* ========================================
+   TEXTO TARJETAS
+======================================== */
+
+.account-type__card-title {
+  width: 100%;
+
+  color: #9dadc0;
+
+  font-family: 'Nunito', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+
+  text-align: center;
+}
+
+.account-type__card-description {
+  width: 100%;
+
+  color: #9f9292;
+
+  font-family: 'Nunito', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+
+  text-align: center;
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 1200px) {
+  .register-page__content {
+    gap: 60px;
+  }
+
+  .register-page__image-wrapper {
+    width: 55%;
+    height: auto;
+
+    aspect-ratio: 694 / 931;
+  }
+
+  .register-page__left {
+    flex: 1;
+  }
+}
+
+@media (max-width: 900px) {
+  .register-page {
+    padding: 25px;
+  }
+
+  .register-page__container {
+    align-items: center;
+  }
+
+  .register-page__logo-link {
+    align-self: flex-start;
+  }
+
+  .register-page__content {
+    flex-direction: column;
+
+    gap: 60px;
+  }
+
+  .register-page__left {
+    width: 100%;
+  }
+
+  .register-page__image-wrapper {
+    width: 100%;
+    max-width: 694px;
+    height: 500px;
+
+    aspect-ratio: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .register-page {
+    padding: 20px;
+  }
+
+  .account-type {
+    width: 100%;
+  }
+
+  .account-type__header {
+    width: 100%;
+  }
+
+  .account-type__title {
+    font-size: 36px;
+  }
+
+  .account-type__options {
+    width: 100%;
+  }
+
+  .account-type__card-title {
+    font-size: 27px;
+  }
+
+  .register-page__image-wrapper {
+    height: 350px;
+
+    border-radius: 25px;
+  }
+}
+
+
+/* ========================================
+   SLIDE ENTRE TIPOS DE REGISTRO
+======================================== */
+
+/* Avanzar */
+
+.register-slide-forward-enter-active,
+.register-slide-forward-leave-active {
+  transition:
+    transform 0.4s ease,
+    opacity 0.4s ease;
+}
+
+.register-slide-forward-enter-from {
+  transform: translateX(80px);
+  opacity: 0;
+}
+
+.register-slide-forward-leave-to {
+  transform: translateX(-80px);
+  opacity: 0;
+}
+
+
+/* Regresar */
+
+.register-slide-backward-enter-active,
+.register-slide-backward-leave-active {
+  transition:
+    transform 0.4s ease,
+    opacity 0.4s ease;
+}
+
+.register-slide-backward-enter-from {
+  transform: translateX(-80px);
+  opacity: 0;
+}
+
+.register-slide-backward-leave-to {
+  transform: translateX(80px);
+  opacity: 0;
+}
+
+
+
+/* ========================================
+   STUDENT REGISTER
+======================================== */
+
+.student-register {
+  width: 530px;
+  height: 831px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.student-register__content {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 41px;
+}
+
+/* ========================================
+   ENCABEZADO
+======================================== */
+
+.student-register__header {
+  width: 520px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 46px;
+}
+
+.student-register__back {
+  width: 43px;
+  height: 43px;
+
+  margin-top: 10px;
+
+  padding: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: transparent;
+  border: none;
+
+  cursor: pointer;
+
+  transition: transform 0.2s ease;
+}
+
+.student-register__back:hover {
+  transform: translateX(-4px);
+}
+
+.student-register__back-icon {
+  width: 43px;
+  height: 43px;
+
+  display: block;
+}
+
+.student-register__title {
+  width: 100%;
+
+  margin: 0;
+
+  color: #000000;
+
+  font-family: 'Nunito', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+
+  text-align: left;
+}
+
+/* ========================================
+   FORMULARIO
+======================================== */
+
+.student-register__form {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 18px;
+}
+
+.student-register__field {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 11px;
+}
+
+.student-register__label {
+  width: 100%;
+
+  color: #000000;
+
+  font-family: 'Nunito sans', serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 21px;
+}
+
+/* ========================================
+   INPUTS
+======================================== */
+
+.student-register__input {
+  width: 100%;
+  height: 35px;
+
+  padding: 7px 10px;
+
+  color: #000000;
+
+  font-family: 'Noto Serif Tamil', serif;
+  font-size: 16px;
+  font-weight: 500;
+
+  background-color: #ffffff;
+
+  border: 1px solid rgba(0, 0, 0, 0.13);
+  border-radius: 9px;
+
+  outline: none;
+
+  box-sizing: border-box;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.student-register__input:focus {
+  border-color: rgba(0, 0, 0, 0.4);
+
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.04);
+}
+
+/* ========================================
+   FECHA + TELÉFONO
+======================================== */
+
+.student-register__row {
+  width: 100%;
+
+  display: flex;
+  align-items: flex-end;
+
+  gap: 33px;
+}
+
+.student-register__field--date {
+  width: 174px;
+  flex-shrink: 0;
+}
+
+.student-register__field--phone {
+  width: 323px;
+}
+
+/* ========================================
+   FECHA
+======================================== */
+
+.student-register__date-wrapper {
+  width: 100%;
+  height: 39px;
+
+  position: relative;
+}
+
+.student-register__date-input {
+  padding-right: 38px;
+
+  color: #dacdcd;
+}
+
+/* Ocultamos el calendario nativo de Chrome/Safari
+   para utilizar Calendar.svg */
+.student-register__date-input::-webkit-calendar-picker-indicator {
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  left: 0;
+  top: 0;
+
+  margin: 0;
+
+  opacity: 0;
+
+  cursor: pointer;
+}
+
+.student-register__date-input:valid {
+  color: #000000;
+}
+
+.student-register__calendar-icon {
+  width: 25px;
+  height: 25px;
+
+  position: absolute;
+
+  top: 50%;
+  right: 8px;
+
+  transform: translateY(-50%);
+
+  pointer-events: none;
+}
+
+/* ========================================
+   BOTÓN CONFIRMAR
+======================================== */
+
+.student-register__confirm {
+  min-width: 136px;
+  height: 41px;
+
+  margin: 9px auto 0;
+
+  padding: 0 16px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #000000;
+
+  border: none;
+  border-radius: 20px;
+
+  color: #ffffff;
+
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.student-register__confirm:hover {
+  transform: translateY(-3px);
+
+  box-shadow: 0 7px 16px rgba(0, 0, 0, 0.18);
+}
+
+.student-register__confirm:active {
+  transform: translateY(0);
+}
+
+/* ========================================
+   RESPONSIVE STUDENT REGISTER
+======================================== */
+
+@media (max-width: 600px) {
+  .student-register,
+  .student-register__header {
+    width: 100%;
+  }
+
+  .student-register__row {
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 18px;
+  }
+
+  .student-register__field--date,
+  .student-register__field--phone {
+    width: 100%;
+  }
+
+  .student-register__title {
+    font-size: 28px;
+  }
+}
+
+/* ========================================
+   SLIDER STUDENT REGISTER
+======================================== */
+
+.student-register__slider {
+  width: 100%;
+  height: 100%;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+.student-register__step {
+  width: 100%;
+  height: 100%;
+}
+
+/* Avanzar */
+
+.student-slide-forward-enter-active,
+.student-slide-forward-leave-active {
+  transition:
+    transform 0.4s ease,
+    opacity 0.4s ease;
+}
+
+.student-slide-forward-enter-from {
+  transform: translateX(80px);
+  opacity: 0;
+}
+
+.student-slide-forward-leave-to {
+  transform: translateX(-80px);
+  opacity: 0;
+}
+
+/* Regresar */
+
+.student-slide-backward-enter-active,
+.student-slide-backward-leave-active {
+  transition:
+    transform 0.4s ease,
+    opacity 0.4s ease;
+}
+
+.student-slide-backward-enter-from {
+  transform: translateX(-80px);
+  opacity: 0;
+}
+
+.student-slide-backward-leave-to {
+  transform: translateX(80px);
+  opacity: 0;
+}
+
+/* ========================================
+   VERIFICACIÓN ESCOLAR
+======================================== */
+
+.student-register__verification {
+  width: 530px;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 61px;
+}
+
+/* ========================================
+   ENCABEZADO VERIFICACIÓN
+======================================== */
+
+.student-register__verification-header {
+  width: 520px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 168px;
+}
+
+.student-register__verification-text {
+  width: 509px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 13px;
+}
+
+.student-register__verification-title {
+  width: 100%;
+
+  margin: 0;
+
+  color: #000000;
+
+  font-family: 'Nunito', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.15;
+
+  text-align: center;
+}
+
+.student-register__verification-description {
+  width: 100%;
+
+  margin: 0;
+
+  color: #8d8383;
+
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+
+  text-align: center;
+}
+
+/* ========================================
+   TARJETA KARDEX
+======================================== */
+
+.student-register__kardex-card {
+  width: 310px;
+  min-height: 108px;
+
+  padding: 25px 30px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(242, 65, 68, 0.2) 51%
+    );
+
+  border: none;
+  border-radius: 40px;
+
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.student-register__kardex-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 17px;
+}
+
+.student-register__kardex-icon {
+  width: 36px;
+  height: 36px;
+
+  display: block;
+  object-fit: contain;
+}
+
+.student-register__kardex-card:hover {
+  transform: translateY(-6px);
+
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.18);
+}
+
+.student-register__kardex-card:active {
+  transform: translateY(-2px);
+}
+
+.student-register__kardex-title {
+  color: #9dadc0;
+
+  font-family: 'Nunito', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+
+  text-align: center;
+}
+
+/* Input real oculto */
+
+.student-register__file-input {
+  display: none;
+}
+
+/* Nombre del PDF seleccionado */
+
+.student-register__file-name {
+  max-width: 310px;
+
+  margin: -42px 0 0;
+
+  overflow: hidden;
+
+  color: #8d8383;
+
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 13px;
+
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ========================================
+   CONFIRMAR KARDEX
+======================================== */
+
+.student-register__confirm--kardex {
+  margin-top: 0;
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 600px) {
+  .student-register__verification,
+  .student-register__verification-header,
+  .student-register__verification-text {
+    width: 100%;
+  }
+
+  .student-register__verification-header {
+    gap: 90px;
+  }
+
+  .student-register__verification-title {
+    font-size: 36px;
+  }
+
+  .student-register__kardex-card {
+    width: min(310px, 100%);
+  }
+}
+
+
+/* ========================================
+   COMPANY REGISTER
+======================================== */
+
+.company-register {
+  width: 530px;
+  height: 831px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.company-register__content {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 41px;
+}
+
+/* ========================================
+   ENCABEZADO EMPRESA
+======================================== */
+
+.company-register__header {
+  width: 520px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 46px;
+}
+
+.company-register__title {
+  width: 100%;
+
+  margin: 0;
+
+  color: #000000;
+
+  font-family: 'Nunito', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+
+  text-align: left;
+}
+
+/* ========================================
+   FORMULARIO EMPRESA
+======================================== */
+
+.company-register__form {
+  width: 530px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 18px;
+}
+
+.company-register__field {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 11px;
+}
+
+.company-register__label {
+  width: 100%;
+
+  color: #000000;
+
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 21px;
+}
+
+/* ========================================
+   INPUTS EMPRESA
+======================================== */
+
+.company-register__input {
+  width: 100%;
+  height: 35px;
+
+  padding: 7px 10px;
+
+  color: #000000;
+
+  font-family: 'Noto Serif Tamil', serif;
+  font-size: 16px;
+  font-weight: 500;
+
+  background-color: #ffffff;
+
+  border: 1px solid rgba(0, 0, 0, 0.13);
+  border-radius: 9px;
+
+  outline: none;
+
+  box-sizing: border-box;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.company-register__input:focus {
+  border-color: rgba(0, 0, 0, 0.4);
+
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.04);
+}
+
+/* ========================================
+   SECTOR PERSONALIZADO
+======================================== */
+
+.company-register__custom-sector {
+  margin-top: 5px;
+}
+
+.company-register__custom-sector::placeholder {
+  color: #dacdcd;
+  opacity: 1;
+}
+
+/* ========================================
+   DROPDOWN SECTOR
+======================================== */
+
+.company-register__sector-dropdown {
+  width: 100%;
+
+  position: relative;
+
+  z-index: 20;
+}
+
+/* Caja cerrada */
+
+.company-register__sector-trigger {
+  width: 100%;
+  height: 35px;
+
+  padding: 7px 10px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  box-sizing: border-box;
+
+  background-color: #ffffff;
+
+  border: 1px solid rgba(0, 0, 0, 0.13);
+  border-radius: 9px;
+
+  color: #000000;
+
+  font-family: 'Noto Serif Tamil', serif;
+  font-size: 16px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  text-align: left;
+}
+
+.company-register__sector-trigger:focus {
+  outline: none;
+
+  border-color: rgba(0, 0, 0, 0.4);
+
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.04);
+}
+
+.company-register__sector-placeholder {
+  color: #dacdcd;
+}
+
+
+/* ========================================
+   CHEVRON
+======================================== */
+
+.company-register__select-icon {
+  width: 20px;
+  height: 20px;
+
+  flex-shrink: 0;
+
+  transition: transform 0.25s ease;
+}
+
+.company-register__select-icon--open {
+  transform: rotate(180deg);
+}
+
+
+/* ========================================
+   CAJA DESPLEGABLE
+======================================== */
+
+.company-register__sector-menu {
+  width: 100%;
+  max-height: 230px;
+
+  position: absolute;
+
+  top: calc(100% + 7px);
+  left: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  box-sizing: border-box;
+
+  background-color: #ffffff;
+
+  border: 1px solid rgba(0, 0, 0, 0.1);
+
+  border-radius: 14px;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+
+  z-index: 50;
+}
+
+.company-register__sector-menu[hidden] {
+    display: none;
+}
+
+
+/* ========================================
+   OPCIONES
+======================================== */
+
+.company-register__sector-option {
+  width: 100%;
+
+  padding: 10px 14px;
+
+  flex-shrink: 0;
+
+  background: transparent;
+
+  border: none;
+
+  color: #000000;
+
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition: background-color 0.15s ease;
+}
+
+.company-register__sector-option:hover {
+  background-color: rgba(65, 142, 242, 0.08);
+}
+
+.company-register__sector-option--selected {
+  background-color: rgba(65, 142, 242, 0.12);
+}
+
+
+/* ========================================
+   SCROLLBAR
+======================================== */
+
+.company-register__sector-menu::-webkit-scrollbar {
+  width: 6px;
+}
+
+.company-register__sector-menu::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.18);
+
+  border-radius: 10px;
+}
+
+
+/* ========================================
+   ANIMACIÓN DROPDOWN
+======================================== */
+
+.sector-dropdown-enter-active,
+.sector-dropdown-leave-active {
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.sector-dropdown-enter-from,
+.sector-dropdown-leave-to {
+  opacity: 0;
+
+  transform: translateY(-5px);
+}
+
+/* ========================================
+   ANIMACIÓN INPUT "OTRO"
+======================================== */
+
+.sector-input-enter-active,
+.sector-input-leave-active {
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.sector-input-enter-from,
+.sector-input-leave-to {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
+/* ========================================
+   ESTADO + CIUDAD
+======================================== */
+
+.company-register__row {
+  width: 100%;
+
+  display: flex;
+  align-items: flex-end;
+
+  gap: 33px;
+}
+
+.company-register__field--state {
+  width: 248px;
+
+  flex-shrink: 0;
+}
+
+.company-register__field--city {
+  width: 249px;
+
+  flex-shrink: 0;
+}
+
+/* ========================================
+   BOTÓN EMPRESA
+======================================== */
+
+.company-register__confirm {
+  margin-top: 9px;
+}
+
+/* ========================================
+   RESPONSIVE EMPRESA
+======================================== */
+
+@media (max-width: 600px) {
+  .company-register,
+  .company-register__content,
+  .company-register__header,
+  .company-register__form {
+    width: 100%;
+  }
+
+  .company-register {
+    height: auto;
+    min-height: 831px;
+  }
+
+  .company-register__row {
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 18px;
+  }
+
+  .company-register__field--state,
+  .company-register__field--city {
+    width: 100%;
+  }
+
+  .company-register__title {
+    font-size: 28px;
+  }
+}
+
+/* ========================================
+   COMPANY MEMBERSHIP STEP
+======================================== */
+
+.company-membership {
+  width: 100%;
+  height: 831px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* ========================================
+   PLANES
+======================================== */
+
+.company-membership__plans {
+  width: 530px;
+  height: 100%;
+
+  padding-left: 10px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 66px;
+}
+
+.company-membership__header {
+  width: 520px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 46px;
+}
+
+.company-membership__title {
+  width: 100%;
+
+  margin: 0;
+
+  color: #000000;
+
+  font-family: 'Nunito', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+
+  text-align: left;
+}
+
+/* ========================================
+   OPCIONES DE MEMBRESÍA
+======================================== */
+
+.company-membership__options {
+  width: 387px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 41px;
+}
+
+.company-membership__card {
+  width: 387px;
+  min-height: 140px;
+
+  padding: 25px 21px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 5px;
+
+  border: none;
+  border-radius: 40px;
+
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.company-membership__card--basic {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(43, 217, 168, 0.2) 51%
+    );
+}
+
+.company-membership__card--plus {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(242, 51, 34, 0.2) 51%
+    );
+}
+
+.company-membership__card--premium {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(242, 145, 226, 0.2) 51%
+    );
+}
+
+.company-membership__card:hover {
+  transform: translateY(-5px);
+
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.18);
+}
+
+.company-membership__card--selected {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 10px 18px rgba(0, 0, 0, 0.18),
+    0 0 0 2px rgba(0, 0, 0, 0.12);
+}
+
+.company-membership__card-title {
+  width: 100%;
+
+  color: #636a73;
+
+  font-family: 'Nunito', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.15;
+
+  text-align: center;
+}
+
+.company-membership__card-description {
+  width: 345px;
+
+  color: #9f9292;
+
+  font-family: 'Nunito', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+
+  text-align: center;
+}
+
+/* ========================================
+   PAGO
+======================================== */
+
+.company-membership__payment {
+  width: 694px;
+  height: 831px;
+
+  padding: 65px 82px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  box-sizing: border-box;
+
+  border-radius: 35px;
+}
+
+.company-membership__payment-title {
+  width: 520px;
+
+  margin: 0 0 67px;
+
+  color: #000000;
+
+  font-family: 'Nunito', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+
+  text-align: center;
+}
+
+/* ========================================
+   FORMULARIO DE PAGO
+======================================== */
+
+.company-membership__payment-form {
+  width: 530px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 25px;
+}
+
+.company-membership__field {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 11px;
+}
+
+.company-membership__label {
+  width: 100%;
+
+  color: #000000;
+
+  font-family: 'Noto Serif Tamil', serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 21px;
+}
+
+.company-membership__input {
+  width: 100%;
+  height: 39px;
+
+  padding: 7px 10px;
+
+  box-sizing: border-box;
+
+  background-color: #ffffff;
+
+  border: 1px solid rgba(0, 0, 0, 0.13);
+  border-radius: 9px;
+
+  outline: none;
+
+  color: #000000;
+
+  font-family: 'Noto Serif Tamil', serif;
+  font-size: 16px;
+  font-weight: 700;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.company-membership__input::placeholder {
+  color: #dacdcd;
+  opacity: 1;
+}
+
+.company-membership__input:focus {
+  border-color: rgba(0, 0, 0, 0.4);
+
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.04);
+}
+
+/* ========================================
+   DATOS DE TARJETA
+======================================== */
+
+.company-membership__card-details {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.company-membership__input--card-number {
+  border-radius: 9px 9px 0 0;
+}
+
+.company-membership__card-row {
+  width: 100%;
+
+  display: flex;
+}
+
+.company-membership__input--expiration,
+.company-membership__input--cvc {
+  width: 50%;
+}
+
+.company-membership__input--expiration {
+  border-top: none;
+
+  border-radius: 0 0 0 9px;
+}
+
+.company-membership__input--cvc {
+  border-top: none;
+  border-left: none;
+
+  border-radius: 0 0 9px 0;
+}
+
+/* ========================================
+   BOTÓN DE PAGO
+======================================== */
+
+.company-membership__payment-button {
+  min-width: 249px;
+  height: 45px;
+
+  margin: 42px auto 0;
+
+  padding: 0 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #000000;
+
+  border: none;
+  border-radius: 20px;
+
+  color: #ffffff;
+
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.company-membership__payment-button:hover {
+  transform: translateY(-3px);
+
+  box-shadow: 0 7px 16px rgba(0, 0, 0, 0.18);
+}
+
+.company-membership__payment-button:active {
+  transform: translateY(0);
+}
+
+/* ========================================
+   REGISTER FULL FLOW
+   Empresa + imagen ⇄ Membresía + pago
+======================================== */
+
+.register-flow {
+  width: 100%;
+  height: 831px;
+
+  position: relative;
+
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
+.register-flow__stage {
+  width: 100%;
+  height: 831px;
+
+  position: absolute;
+  inset: 0;
+
+  transition:
+    transform 0.5s ease,
+    opacity 0.5s ease;
+}
+
+
+/* ========================================
+   PANTALLA PRINCIPAL
+======================================== */
+
+.register-flow__stage--main {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.register-flow__stage--main-hidden {
+  transform: translateX(-100%);
+
+  opacity: 0;
+
+  pointer-events: none;
+}
+
+
+/* ========================================
+   MEMBRESÍA + PAGO
+======================================== */
+
+.register-flow__stage--membership {
+  transform: translateX(100%);
+
+  opacity: 0;
+
+  pointer-events: none;
+}
+
+.register-flow__stage--membership-active {
+  transform: translateX(0);
+
+  opacity: 1;
+
+  pointer-events: auto;
+}
+
+
+/* ========================================
+   SLIDES BLADE / JAVASCRIPT
+======================================== */
+
+[data-register-screen],
+[data-student-step] {
+    width: 100%;
+
+    opacity: 1;
+    transform: translateX(0);
+
+    transition:
+        transform 0.4s ease,
+        opacity 0.4s ease;
+}
+
+
+/* Sale hacia la izquierda */
+.slide-exit-left {
+    transform: translateX(-80px);
+    opacity: 0;
+}
+
+
+/* Sale hacia la derecha */
+.slide-exit-right {
+    transform: translateX(80px);
+    opacity: 0;
+}
+
+
+/* Posición inicial entrando desde derecha */
+.slide-enter-right {
+    transform: translateX(80px);
+    opacity: 0;
+
+    transition: none;
+}
+
+
+/* Posición inicial entrando desde izquierda */
+.slide-enter-left {
+    transform: translateX(-80px);
+    opacity: 0;
+
+    transition: none;
+}

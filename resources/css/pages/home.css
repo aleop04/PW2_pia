@@ -1,0 +1,599 @@
+/*  LANDING PAGE  */
+
+.landing-page {
+  width: 100%;
+}
+
+
+/*  PRIMER BLOQUE / HERO  */
+
+.landing-hero {
+  width: 100%;
+  min-height: 953px;
+
+  padding: 39px 73px 0;
+
+  box-sizing: border-box;
+
+  background: linear-gradient(
+    180deg,
+    #FFFFFF 10%,
+    rgba(108, 250, 210, 0.38) 100%
+  );
+
+  border-bottom-left-radius: 84px;
+  border-bottom-right-radius: 84px;
+}
+
+
+/* Contenedor principal */
+
+.landing-hero__container {
+  width: 100%;
+  max-width: 1221px;
+
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 108px;
+}
+
+
+/*  HEADER EXCLUSIVO DE LANDING PAGE */
+
+.landing-header {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.landing-header__logo {
+  width: 140px;
+  height: 30px;
+
+  object-fit: contain;
+}
+
+
+.landing-header__actions {
+  display: flex;
+  align-items: center;
+
+  gap: 24px;
+}
+
+
+/* Botones */
+
+.landing-header__button {
+  width: 110px;
+  height: 41px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 20px;
+
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+
+  text-decoration: none;
+
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+
+.landing-header__button--login {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+
+.landing-header__button--register {
+  background-color: #EBEBEB;
+  color: #000000;
+}
+
+
+.landing-header__button:hover {
+  transform: translateY(-2px);
+  opacity: 0.85;
+}
+
+
+/*  CONTENIDO PRINCIPAL  */
+
+.landing-hero__content {
+  width: 736px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 49px;
+}
+
+
+/*  TEXTO  */
+
+.landing-hero__text {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 34px;
+}
+
+
+.landing-hero__title {
+  width: 100%;
+
+  margin: 0;
+
+  text-align: center;
+
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1.1;
+
+  color: #000000;
+}
+
+
+.landing-hero__description {
+  width: 100%;
+
+  margin: 0;
+
+  text-align: center;
+
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.35;
+
+  color: #000000;
+}
+
+
+.landing-hero__description strong {
+  font-weight: 700;
+}
+
+
+.landing-hero__description em {
+  font-style: italic;
+}
+
+
+/*  IMAGEN */
+
+.landing-hero__image {
+  width: 568px;
+  height: 527px;
+
+  object-fit: contain;
+}
+
+/*  SEGUNDO BLOQUE / SOBRE NOSOTROS  */
+
+.landing-about {
+  width: 100%;
+
+  padding: 100px 48px;
+
+  box-sizing: border-box;
+
+  background-color: #FFFFFF;
+}
+
+
+.landing-about__container {
+  width: 100%;
+  max-width: 1343px;
+
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 71px;
+}
+
+
+/*  PARTE SUPERIOR  */
+
+.landing-about__intro {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  gap: 34px;
+}
+
+
+/* Imagen */
+
+.landing-about__image {
+  width: 625px;
+  height: 487px;
+
+  flex-shrink: 0;
+
+  object-fit: cover;
+
+  border-radius: 29px;
+}
+
+
+/* Contenido */
+
+.landing-about__content {
+  width: 684px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 24px;
+}
+
+
+/*  ETIQUETA "SOBRE NOSOTROS"  */
+
+.landing-about__badge {
+  width: 135px;
+  height: 39px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #FFFFFF;
+
+  border: 3px solid rgba(229, 224, 224, 0.54);
+  border-radius: 34px;
+
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+
+  color: #000000;
+
+  white-space: nowrap;
+}
+
+
+/*  TÍTULO  */
+
+.landing-about__title {
+  width: 100%;
+
+  margin: 0;
+
+  font-family: 'Nunito', sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.2;
+
+  color: #000000;
+}
+
+
+/*  DESCRIPCIÓN  */
+
+.landing-about__description {
+  width: 100%;
+
+  margin: 0;
+
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.4;
+
+  color: #000000;
+}
+
+
+.landing-about__description strong {
+  font-weight: 700;
+  color: #F291E2;
+}
+
+
+/*  ESTADÍSTICAS  */
+
+.landing-about__stats {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 52px;
+}
+
+
+/* Tarjetas */
+
+.landing-about__stat-card {
+  width: 409px;
+  height: 286px;
+
+  box-sizing: border-box;
+
+  padding: 54px 48px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.20) 0%,
+    rgba(242, 145, 226, 0.20) 51%
+  );
+
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+
+  border-radius: 40px;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+.landing-about__stat-card:hover {
+  transform: translateY(-12px);
+
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.20);
+}
+
+
+/* Número */
+
+.landing-about__stat-number {
+  width: 100%;
+
+  text-align: center;
+
+  font-family: 'Nunito', sans-serif;
+  font-size: 96px;
+  font-weight: 700;
+  line-height: 1;
+
+  color: #000000;
+}
+
+
+/* Texto de cada tarjeta */
+
+.landing-about__stat-description {
+  width: 312px;
+
+  margin: 9px 0 0;
+
+  text-align: center;
+
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+
+  color: #9F9292;
+}
+
+/*  TERCER BLOQUE / CONTACTO  */
+
+.landing-contact {
+  width: 100%;
+
+  padding: 0 55px 100px;
+
+  box-sizing: border-box;
+
+  background-color: #FFFFFF;
+}
+
+
+/* Panel azul */
+
+.landing-contact__panel {
+  width: 100%;
+  max-width: 1629px;
+  min-height: 953px;
+
+  margin: 0 auto;
+
+  padding: 30px 93px 116px 91px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 86px;
+
+  background: linear-gradient(
+    180deg,
+    rgba(90, 230, 255, 0.78) 13%,
+    rgba(65, 142, 242, 0.88) 100%
+  );
+
+  border-radius: 84px;
+}
+
+
+/*  ETIQUETA CONTACTO  */
+
+.landing-contact__badge {
+  width: 135px;
+  height: 39px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 3px solid #FFFFFF;
+  border-radius: 34px;
+
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+
+  color: #FFFFFF;
+}
+
+
+/* CONTENIDO */
+
+.landing-contact__content {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 89px;
+}
+
+
+/* TÍTULO Y DESCRIPCIÓN  */
+
+.landing-contact__heading {
+  width: 821px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 79px;
+}
+
+
+.landing-contact__title {
+  margin: 0;
+
+  text-align: center;
+
+  font-family: 'Nunito', sans-serif;
+  font-size: 128px;
+  font-weight: 700;
+  line-height: 0.9;
+
+  color: #FFFFFF;
+}
+
+
+.landing-contact__description {
+  width: 100%;
+
+  margin: 0;
+
+  text-align: center;
+
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.35;
+
+  color: #FFFFFF;
+}
+
+
+/* INFORMACIÓN  */
+
+.landing-contact__info {
+  width: 908px;
+
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  column-gap: 150px;
+  row-gap: 75px;
+}
+
+
+/* Cada bloque */
+
+.landing-contact__info-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+
+.landing-contact__info-item h3 {
+  width: 100%;
+
+  margin: 0;
+
+  text-align: center;
+
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.15;
+
+  color: #FFFFFF;
+}
+
+
+.landing-contact__info-item p {
+  width: 100%;
+
+  margin: 0;
+
+  text-align: center;
+
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.25;
+
+  color: #FFFFFF;
+}
+
+/* ANIMACIÓN AL HACER SCROLL  */
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(45px);
+
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}

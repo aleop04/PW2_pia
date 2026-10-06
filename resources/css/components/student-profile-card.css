@@ -1,0 +1,599 @@
+/* ========================================
+   STUDENT PROFILE CARD
+======================================== */
+
+.student-profile-card {
+    width: 296px;
+    height: 694px;
+
+    position: relative;
+
+    flex-shrink: 0;
+}
+
+
+/* ========================================
+   ELEMENTOS OCULTOS
+======================================== */
+
+.student-profile-card [hidden] {
+    display: none !important;
+}
+
+
+/* ========================================
+   FONDO
+======================================== */
+
+.student-profile-card__background {
+    width: 288px;
+    height: 617px;
+
+    position: absolute;
+
+    left: 50%;
+    top: 77px;
+
+    transform: translateX(-50%);
+
+    background: rgba(43, 217, 168, 0.24);
+
+    border-radius:
+        115px
+        115px
+        36px
+        36px;
+
+    box-shadow:
+        0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+
+/* ========================================
+   CONTENIDO
+======================================== */
+
+.student-profile-card__content {
+    width: 199px;
+
+    position: relative;
+    z-index: 1;
+
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* ========================================
+   IDENTIDAD
+======================================== */
+
+.student-profile-card__identity {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 21px;
+}
+
+
+/* ========================================
+   AVATAR
+======================================== */
+
+.student-profile-card__avatar-wrapper {
+    width: 199px;
+    height: 198px;
+
+    flex-shrink: 0;
+}
+
+.student-profile-card__avatar {
+    width: 199px;
+    height: 198px;
+
+    display: block;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    background: #ffffff;
+}
+
+.student-profile-card__avatar--empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.student-profile-card__avatar-placeholder {
+    width: 80px;
+    height: 80px;
+
+    display: block;
+
+    opacity: 0.55;
+}
+
+
+/* ========================================
+   NOMBRE
+======================================== */
+
+.student-profile-card__name {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/*
+ * Estos contenedores no existían en Vue.
+ * Ahora forman parte del componente Blade.
+ */
+
+[data-profile-view-name] {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 4px;
+}
+
+.student-profile-card__name p {
+    width: 100%;
+
+    margin: 0;
+
+    color: #000000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+
+    line-height: 1.1;
+
+    text-align: center;
+}
+
+
+/* ========================================
+   INFORMACIÓN
+======================================== */
+
+.student-profile-card__information {
+    width: 182px;
+
+    margin-top: 29px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 15px;
+}
+
+
+/*
+ * Correo, teléfono, ubicación y fecha están
+ * dentro de este contenedor en el Blade actual.
+ *
+ * Por eso necesita su propio gap.
+ */
+
+[data-profile-view-info] {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 15px;
+}
+
+
+/* ========================================
+   FILAS DE INFORMACIÓN
+======================================== */
+
+.student-profile-card__info-row {
+    width: 100%;
+    min-height: 24px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    color: #000000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.student-profile-card__info-row span {
+    min-width: 0;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.student-profile-card__info-icon,
+.student-profile-card__document-icon {
+    width: 24px;
+    height: 24px;
+
+    flex-shrink: 0;
+
+    display: block;
+
+    object-fit: contain;
+}
+
+
+/* ========================================
+   DOCUMENTOS
+======================================== */
+
+.student-profile-card__document {
+    min-height: 38px;
+
+    padding: 7px 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    border: 0;
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.55);
+
+    color: #000000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.student-profile-card__document:hover {
+    background: rgba(255, 255, 255, 0.8);
+
+    transform: translateY(-1px);
+}
+
+.student-profile-card__document:active {
+    transform: translateY(0);
+}
+
+
+/* ========================================
+   EDITAR DATOS
+======================================== */
+
+.student-profile-card__edit {
+    min-width: 143px;
+    height: 41px;
+
+    margin-top: 29px;
+
+    padding: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    border-radius: 16px;
+
+    background: #000000;
+
+    color: #ffffff;
+
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.student-profile-card__edit:hover {
+    transform: translateY(-2px);
+}
+
+.student-profile-card__edit:active {
+    transform: translateY(0);
+}
+
+
+/* ========================================
+   MODO EDICIÓN
+======================================== */
+
+.student-profile-card--editing {
+    height: auto;
+    min-height: 915px;
+
+    padding-bottom: 30px;
+
+    box-sizing: border-box;
+}
+
+.student-profile-card__background--editing {
+    height: auto;
+
+    top: 74px;
+    bottom: 0;
+}
+
+
+/* El contenido se ensancha al editar */
+
+.student-profile-card--editing
+.student-profile-card__content {
+    width: 244px;
+
+    margin: 0 auto;
+}
+
+
+/* ========================================
+   NOMBRE - EDICIÓN
+======================================== */
+
+.student-profile-card--editing
+.student-profile-card__name {
+    width: 182px;
+
+    align-self: center;
+    align-items: stretch;
+}
+
+
+/*
+ * Contenedor nuevo de Blade.
+ * Contiene nombre, apellido paterno
+ * y apellido materno.
+ */
+
+[data-profile-edit-name] {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+
+/* ========================================
+   INFORMACIÓN - EDICIÓN
+======================================== */
+
+.student-profile-card--editing
+.student-profile-card__information {
+    width: 182px;
+
+    align-self: center;
+    align-items: stretch;
+
+    margin-top: 15px;
+
+    gap: 15px;
+}
+
+
+/*
+ * Contenedor nuevo de Blade.
+ *
+ * Aquí están correo, teléfono, ubicación,
+ * nacimiento y contraseñas.
+ */
+
+[data-profile-edit-info] {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+
+/* ========================================
+   CAMPOS EDITABLES
+======================================== */
+
+.student-profile-card__edit-field {
+    width: 182px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.student-profile-card__edit-label {
+    width: 100%;
+
+    color: #000000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    text-align: left;
+}
+
+.student-profile-card__edit-input {
+    width: 100%;
+    height: 26px;
+
+    padding: 1px 10px;
+
+    border:
+        1px solid
+        rgba(0, 0, 0, 0.13);
+
+    border-radius: 9px;
+
+    background: transparent;
+
+    color: #000000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+
+    outline: none;
+
+    box-sizing: border-box;
+
+    transition:
+        border-color 0.2s ease;
+}
+
+.student-profile-card__edit-input:focus {
+    border-color:
+        rgba(0, 0, 0, 0.35);
+}
+
+
+/* ========================================
+   FECHA DE NACIMIENTO - EDICIÓN
+======================================== */
+
+.student-profile-card__birth-date-edit {
+    width: 182px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.student-profile-card__birth-date-control {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+}
+
+.student-profile-card__date-input {
+    width: 100%;
+
+    flex: 1;
+    min-width: 0;
+}
+
+
+/* ========================================
+   BOTONES DE EDICIÓN
+======================================== */
+
+.student-profile-card__edit-actions {
+    margin-top: 29px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 16px;
+}
+
+.student-profile-card__confirm,
+.student-profile-card__cancel {
+    width: 113px;
+    height: 41px;
+
+    padding: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    border-radius: 16px;
+
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+
+    transition:
+        transform 0.2s ease;
+}
+
+.student-profile-card__confirm {
+    background: #ffffff;
+
+    color: #000000;
+}
+
+.student-profile-card__cancel {
+    background: #000000;
+
+    color: #ffffff;
+}
+
+.student-profile-card__confirm:hover,
+.student-profile-card__cancel:hover {
+    transform: translateY(-2px);
+}
+
+.student-profile-card__confirm:active,
+.student-profile-card__cancel:active {
+    transform: translateY(0);
+}
+
+/* ========================================
+   CAMPO NO EDITABLE
+======================================== */
+
+.student-profile-card__edit-input--readonly {
+    background: rgba(255, 255, 255, 0.35);
+
+    color: #777777;
+
+    cursor: not-allowed;
+}
+
+.student-profile-card__edit-input--readonly:focus {
+    border-color: rgba(0, 0, 0, 0.13);
+}

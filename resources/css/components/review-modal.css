@@ -1,0 +1,387 @@
+/* ========================================
+   OVERLAY
+======================================== */
+
+.review-modal__overlay {
+    position: fixed;
+    inset: 0;
+
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    background: rgba(0, 0, 0, 0.20);
+
+    box-sizing: border-box;
+}
+
+.review-modal__overlay[hidden] {
+    display: none !important;
+}
+
+
+/* ========================================
+   MODAL
+======================================== */
+
+.review-modal {
+    width: 592px;
+    height: 878px;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #ffffff;
+
+    border-radius: 49px;
+
+    overflow: hidden;
+
+    box-sizing: border-box;
+}
+
+
+/* ========================================
+   CUERPO
+======================================== */
+
+.review-modal__body {
+    width: 100%;
+    height: 760px;
+
+    padding: 52px 64px;
+
+    box-sizing: border-box;
+}
+
+.review-modal__header {
+    width: 464px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 22px;
+}
+
+.review-modal__title {
+    width: 388px;
+
+    margin: 0;
+
+    color: #000000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.15;
+
+    text-align: center;
+}
+
+.review-modal__description {
+    width: 100%;
+
+    color: #7e7b7b;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.2;
+
+    text-align: center;
+}
+
+
+/* ========================================
+   CONTENIDO
+======================================== */
+
+.review-modal__content {
+    width: 464px;
+
+    margin-top: 54px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 27px;
+}
+
+.review-modal__content form {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 27px;
+}
+
+/* ========================================
+   CAMPOS DE REVISIÓN
+======================================== */
+
+.review-modal__field {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 11px;
+}
+
+.review-modal__field-label {
+    width: 100%;
+
+    margin: 0;
+
+    color: #000000;
+
+    font-family: 'Noto Serif Tamil', serif;
+    font-size: 16px;
+    font-weight: 700;
+
+    line-height: 21px;
+}
+
+.review-modal__field-value {
+    width: 100%;
+    min-height: 39px;
+
+    padding: 8px 10px;
+
+    display: flex;
+    align-items: center;
+
+    border: 1px solid rgba(0, 0, 0, 0.13);
+    border-radius: 9px;
+
+    color: #000000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+
+    box-sizing: border-box;
+}
+
+.review-modal__field-value--small {
+    width: 116px;
+}
+
+/* ========================================
+   CAMPOS EDITABLES
+======================================== */
+
+.review-modal__field-input {
+    width: 100%;
+    height: 39px;
+
+    padding: 8px 10px;
+
+    border: 1px solid rgba(0, 0, 0, 0.13);
+    border-radius: 9px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #000000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+
+    box-sizing: border-box;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.review-modal__field-input:focus {
+    border-color: rgba(0, 0, 0, 0.45);
+
+    box-shadow:
+        0 0 0 2px rgba(0, 0, 0, 0.04);
+}
+
+
+/* ========================================
+   CV
+======================================== */
+
+.review-modal__file {
+    width: 100%;
+    min-height: 39px;
+
+    padding: 8px 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    border: 1px solid rgba(0, 0, 0, 0.13);
+    border-radius: 9px;
+
+    background: #ffffff;
+
+    box-sizing: border-box;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.review-modal__file:hover {
+    border-color: rgba(0, 0, 0, 0.35);
+}
+
+.review-modal__file-name {
+    min-width: 0;
+
+    color: #000000;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.review-modal__file-action {
+    flex-shrink: 0;
+
+    color: #7e7b7b;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: underline;
+}
+
+.review-modal__file-input {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+.review-modal__file-message {
+    margin: 0;
+
+    color: #b42318;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+
+/* ========================================
+   FOOTER
+======================================== */
+
+.review-modal__footer {
+    width: 100%;
+    height: 118px;
+
+    gap: 32px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #ffffff;
+
+    box-shadow: 0 -4px 4px rgba(0, 0, 0, 0.25);
+
+    border-radius: 0 0 49px 49px;
+
+    box-sizing: border-box;
+}
+
+
+/* ========================================
+   BOTÓN PRINCIPAL
+======================================== */
+
+.review-modal__primary-button {
+    min-width: 207px;
+    height: 41px;
+
+    padding: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    border-radius: 16px;
+
+    background: #000000;
+
+    color: #ffffff;
+
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: transform 0.2s ease;
+}
+
+.review-modal__primary-button:hover {
+    transform: translateY(-2px);
+}
+
+.review-modal__primary-button:active {
+    transform: translateY(0);
+}
+
+.review-modal__description-link {
+    text-decoration: underline;
+}
+
+/* ========================================
+   VARIANTE REVISIÓN DE VACANTE
+======================================== */
+
+.review-modal--vacancy {
+    height: auto;
+    max-height: calc(100vh - 60px);
+}
+
+.review-modal--vacancy .review-modal__body {
+    height: auto;
+    flex: 1;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    scrollbar-width: none;
+}
+
+.review-modal--vacancy .review-modal__body::-webkit-scrollbar {
+    display: none;
+}
+
+.review-modal--vacancy .review-modal__footer {
+    flex-shrink: 0;
+}
