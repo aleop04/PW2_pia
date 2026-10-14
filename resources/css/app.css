@@ -3,8 +3,10 @@
 
 /* Componentes */
 @import './components/footer.css';
+@import './components/auth-feedback.css';
 @import './components/vacancy-card.css';
 @import './components/vacancy-detail.css';
+@import './components/flow-profile.css';
 @import './components/review-modal.css';
 @import './components/applicant-card.css';
 
@@ -16,6 +18,7 @@
 @import './pages/student/company-profile.css';
 @import './pages/student/profile.css';
 @import './pages/student/bookmarks.css';
+@import './pages/student/applications.css';
 @import './pages/company/profile.css';
 @import './pages/company/membership.css';
 @import './pages/company/change-membership.css';

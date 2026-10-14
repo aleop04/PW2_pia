@@ -84,37 +84,7 @@ if (companyVacancyDetail) {
         'click',
         () => {
 
-            const vacancyId =
-                companyVacancyDetail.dataset.vacancyId
-
-
-            console.log(
-                'Vacante eliminada:',
-                vacancyId
-            )
-
-
-            /*
-             * Después aquí irá la eliminación
-             * real en la base de datos.
-             *
-             * DELETE /vacancies/:id
-             */
-
-
-            const vacanciesUrl =
-                companyVacancyDetail.dataset.vacanciesUrl
-
-
-            closeDeleteModal()
-
-
-            if (vacanciesUrl) {
-
-                window.location.href =
-                    vacanciesUrl
-
-            }
+            document.getElementById('delete-vacancy-form')?.submit()
 
         }
     )

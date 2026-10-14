@@ -2,44 +2,12 @@
 
 @section('dashboard-content')
 
-@php
-
-    /*
-    |--------------------------------------------------------------------------
-    | DATOS TEMPORALES
-    |--------------------------------------------------------------------------
-    |
-    | Después la solicitud y el estudiante vendrán de la base de datos
-    | utilizando el ID de la ruta.
-    |
-    */
-
-    $applicationId = request()->route('id');
-
-    $application = [
-
-        'id' => $applicationId,
-
-        'student' => [
-            'id' => 1,
-            'fullName' => 'Nombre completo',
-            'email' => 'correo@ejemplo.com',
-            'location' => 'Ciudad, Estado',
-            'phone' => '1234567890',
-            'birthDate' => '01/01/2000',
-            'cv' => 'CV.pdf',
-        ],
-
-    ];
-
-@endphp
-
-
 <main
     class="company-applicant-profile"
     data-applicant-profile
     data-applications-url="{{ route('company.applications') }}"
 >
+    @include('components.flow-feedback')
 
     {{--  TITLE  --}}
 
@@ -51,6 +19,10 @@
     {{-- INFORMATION  --}}
 
     <div class="company-applicant-profile__content">
+
+        @if($application['student']['avatar'])
+            <img class="company-applicant-profile__avatar" src="{{ $application['student']['avatar'] }}" alt="Foto del estudiante">
+        @endif
 
 
         {{-- NOMBRE --}}
@@ -153,12 +125,7 @@
                 CV
             </span>
 
-            <button
-                type="button"
-                class="company-applicant-profile__cv"
-                data-download-cv
-                data-cv="{{ $application['student']['cv'] }}"
-            >
+            <a href="{{ route('company.applications.cv', $application['id']) }}" class="company-applicant-profile__cv">
 
                 <span>CV</span>
 
@@ -167,10 +134,14 @@
                     alt="Descargar CV"
                 >
 
-            </button>
+            </a>
 
         </div>
 
+        @if($application['student']['description'])
+            <section class="company-applicant-profile__about"><h2>Sobre el estudiante</h2><p>{{ $application['student']['description'] }}</p></section>
+        @endif
+        <p class="company-applicant-profile__status">Estado: {{ ['pending' => 'Pendiente', 'accepted' => 'Aceptada', 'rejected' => 'Rechazada'][$application['status']] ?? $application['status'] }}</p>
     </div>
 
 
@@ -178,28 +149,16 @@
 
     <div class="company-applicant-profile__actions">
 
-        <button
-            type="button"
-            class="
-                company-applicant-profile__action
-                company-applicant-profile__action--accept
-            "
-            data-accept-application
-        >
-            Aceptar
-        </button>
-
-
-        <button
-            type="button"
-            class="
-                company-applicant-profile__action
-                company-applicant-profile__action--reject
-            "
-            data-reject-application
-        >
-            Rechazar
-        </button>
+        <form method="POST" action="{{ route('company.applications.status', $application['id']) }}">
+            @csrf @method('PATCH')
+            <input type="hidden" name="status" value="accepted">
+            <button type="submit" class="company-applicant-profile__action company-applicant-profile__action--accept">Aceptar</button>
+        </form>
+        <form method="POST" action="{{ route('company.applications.status', $application['id']) }}">
+            @csrf @method('PATCH')
+            <input type="hidden" name="status" value="rejected">
+            <button type="submit" class="company-applicant-profile__action company-applicant-profile__action--reject">Rechazar</button>
+        </form>
 
     </div>
 

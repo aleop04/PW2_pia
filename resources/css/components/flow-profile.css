@@ -1,0 +1,15 @@
+.flow-feedback { margin: 16px 0; padding: 12px 16px; border-radius: 12px; font: 16px/1.5 'Nunito Sans', sans-serif; }
+.flow-feedback--success { background: #d0f6ea; color: #194c3a; }
+.flow-feedback--error { background: #fff0f3; color: #842d46; }
+.flow-feedback[hidden] { display: none; }
+.nextstep-profile-form { display: grid; width: 100%; gap: 14px; color: #151515; font: 16px/1.5 'Nunito Sans', sans-serif; }
+.nextstep-profile-form label { font-weight: 700; }
+.nextstep-profile-form__hint { margin: 0; color: #74808a; }
+.nextstep-profile-form textarea { width: 100%; min-height: 210px; padding: 16px; box-sizing: border-box; border: 1px solid #d3d3d3; border-radius: 12px; resize: vertical; font: inherit; }
+.nextstep-profile-form input[type=file] { max-width: 100%; }
+.nextstep-profile-form__actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+.nextstep-profile-form button, .nextstep-profile-form__actions a { display: inline-block; padding: 13px 22px; border: 0; border-radius: 16px; background: #111; color: white; font: 700 16px 'Nunito Sans', sans-serif; text-decoration: none; cursor: pointer; }
+.nextstep-profile-form__actions a { background: white; color: #111; border: 1px solid #c9e6d9; }
+[data-vacancy-card][hidden], [data-application-open][hidden] { display: none !important; }
+.vacancy-preview__actions { width: 100%; display: flex; align-items: center; gap: 16px; }
+.vacancy-preview__actions [hidden] { display: none !important; }

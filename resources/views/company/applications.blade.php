@@ -3,75 +3,6 @@
 @section('dashboard-content')
 
 @php
-
-    /*
-    |--------------------------------------------------------------------------
-    | SOLICITUDES TEMPORALES
-    |--------------------------------------------------------------------------
-    |
-    | Después vendrán de la base de datos.
-    |
-    */
-
-    $applications = [
-
-        [
-            'id' => 1,
-            'studentId' => 1,
-            'name' => 'Nombre de aplicante',
-            'vacancyId' => 1,
-            'vacancyTitle' => 'Desarrollador Frontend',
-        ],
-
-        [
-            'id' => 2,
-            'studentId' => 2,
-            'name' => 'Nombre de aplicante',
-            'vacancyId' => 1,
-            'vacancyTitle' => 'Desarrollador Frontend',
-        ],
-
-        [
-            'id' => 3,
-            'studentId' => 3,
-            'name' => 'Nombre de aplicante',
-            'vacancyId' => 2,
-            'vacancyTitle' => 'Diseñador UX/UI',
-        ],
-
-        [
-            'id' => 4,
-            'studentId' => 4,
-            'name' => 'Nombre de aplicante',
-            'vacancyId' => 2,
-            'vacancyTitle' => 'Diseñador UX/UI',
-        ],
-
-        [
-            'id' => 5,
-            'studentId' => 5,
-            'name' => 'Nombre de aplicante',
-            'vacancyId' => 3,
-            'vacancyTitle' => 'Analista de datos',
-        ],
-
-        [
-            'id' => 6,
-            'studentId' => 6,
-            'name' => 'Nombre de aplicante',
-            'vacancyId' => 3,
-            'vacancyTitle' => 'Analista de datos',
-        ],
-
-    ];
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | VACANTES PARA EL FILTRO
-    |--------------------------------------------------------------------------
-    */
-
     $vacancies = collect($applications)
         ->unique('vacancyId')
         ->values();
@@ -83,6 +14,7 @@
     class="company-applications"
     data-company-applications
 >
+    @include('components.flow-feedback')
 
     <div class="company-applications__header">
 
@@ -162,14 +94,16 @@
         data-applications-grid
     >
 
-        @foreach ($applications as $application)
+        @forelse ($applications as $application)
 
             @include(
                 'components.company.applicant-card',
                 ['application' => $application]
             )
 
-        @endforeach
+        @empty
+            <p>Aún no recibes postulaciones.</p>
+        @endforelse
 
     </div>
 
