@@ -1,6 +1,7 @@
 @props([
     'vacancy',
     'companyHref' => null,
+    'actionsAtEnd' => false,
 ])
 
 <section class="vacancy-detail">
@@ -165,15 +166,16 @@
 
         </section>
 
+        @if ($actionsAtEnd)
+            <div class="vacancy-detail__actions vacancy-detail__actions--bottom">
+                {{ $actions ?? '' }}
+            </div>
+        @endif
+
     </div>
 
-
-    {{--  ACCIONES  --}}
-
-    <aside class="vacancy-detail__actions">
-
-        {{ $actions ?? '' }}
-
-    </aside>
+    @unless ($actionsAtEnd)
+        <aside class="vacancy-detail__actions">{{ $actions ?? '' }}</aside>
+    @endunless
 
 </section>

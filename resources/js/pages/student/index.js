@@ -205,16 +205,23 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.entries()
         )
 
-        console.log(
-            'Filtros de búsqueda:',
-            filters
-        )
-
-        /*
-         * Más adelante estos filtros se enviarán
-         * a Laravel para consultar las vacantes
-         * reales de la base de datos.
-         */
+        const query = String(filters.query || '').toLocaleLowerCase('es-MX').trim()
+        const location = String(filters.location || '').toLocaleLowerCase('es-MX').trim()
+        const minSalary = Number(filters.min_salary || 0)
+        const maxSalary = Number(filters.max_salary || 0)
+        const age = Number(filters.publication_age || 0)
+        const sector = String(filters.sector || '')
+        vacancyCards.forEach(card => {
+            const vacancy = vacancies.find(item => String(item.id) === String(card.dataset.vacancyId))
+            card.hidden = !vacancy || !(
+                (!query || `${vacancy.title} ${vacancy.company}`.toLocaleLowerCase('es-MX').includes(query)) &&
+                (!location || vacancy.location.toLocaleLowerCase('es-MX').includes(location)) &&
+                (!minSalary || vacancy.salaryFixed >= minSalary) &&
+                (!maxSalary || vacancy.salaryFixed <= maxSalary) &&
+                (!sector || vacancy.sector === sector) &&
+                (!age || (vacancy.createdAt && Date.now() - Date.parse(vacancy.createdAt) <= age * 86400000))
+            )
+        })
 
     })
 
@@ -225,54 +232,8 @@ document.addEventListener('DOMContentLoaded', () => {
         '[data-vacancy-preview]'
     )
 
-    const bookmarkButton = page.querySelector(
-        '[data-preview-bookmark]'
-    )
-
-    const bookmarkIcon = page.querySelector(
-        '[data-preview-bookmark-icon]'
-    )
-
-
-    const savedVacancyIds = new Set()
-
-
     const getPreviewElement = (selector) => {
         return preview?.querySelector(selector)
-    }
-
-
-    const updateBookmark = () => {
-
-        if (!preview || !bookmarkButton || !bookmarkIcon) {
-            return
-        }
-
-        const vacancyId =
-            String(preview.dataset.vacancyId)
-
-        const saved =
-            savedVacancyIds.has(vacancyId)
-
-
-        bookmarkButton.classList.toggle(
-            'vacancy-preview__bookmark--saved',
-            saved
-        )
-
-
-        bookmarkButton.setAttribute(
-            'aria-label',
-            saved
-                ? 'Quitar vacante de guardados'
-                : 'Guardar vacante'
-        )
-
-
-        bookmarkIcon.src = saved
-            ? page.dataset.bookmarkFilledIcon
-            : page.dataset.bookmarkIcon
-
     }
 
 
@@ -346,6 +307,18 @@ document.addEventListener('DOMContentLoaded', () => {
         ).textContent =
             vacancy.description
 
+        const apply = getPreviewElement('[data-preview-apply]')
+        const applied = getPreviewElement('[data-preview-applied]')
+        if (apply) {
+            apply.hidden = Boolean(vacancy.applied)
+        }
+        if (applied) applied.hidden = !vacancy.applied
+
+        const applicationForm = page.querySelector('[data-application-form]')
+        if (applicationForm) {
+            applicationForm.action = page.dataset.applicationUrl.replace('__ID__', vacancy.id)
+            applicationForm.querySelector('[name="vacancy_id"]').value = String(vacancy.id)
+        }
 
         /* PRESTACIONES */
 
@@ -376,7 +349,7 @@ document.addEventListener('DOMContentLoaded', () => {
         )
 
 
-        updateBookmark()
+
 
     }
 
@@ -413,37 +386,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     })
 
-
-    /*  GUARDAR VACANTE  */
-
-    bookmarkButton?.addEventListener(
-        'click',
-        () => {
-
-            const vacancyId =
-                String(preview.dataset.vacancyId)
-
-
-            if (
-                savedVacancyIds.has(vacancyId)
-            ) {
-
-                savedVacancyIds.delete(
-                    vacancyId
-                )
-
-            } else {
-
-                savedVacancyIds.add(
-                    vacancyId
-                )
-
-            }
-
-
-            updateBookmark()
-
-        }
-    )
+    if (page.dataset.initialVacancyId) {
+        const initial = vacancies.find(item => String(item.id) === page.dataset.initialVacancyId)
+        if (initial) updatePreview(initial)
+    }
 
 })

@@ -8,11 +8,14 @@
 
     position: relative;
 
-    display: flow-root;
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    align-items: start;
 }
 
 .company-home__workspace {
     width: 100%;
+    min-width: 0;
     min-height: 100%;
 
     box-sizing: border-box;
@@ -220,7 +223,7 @@
 ======================================== */
 
 .company-publish-button:hover {
-    width: 289px;
+    width: 200px;
 
     border-radius: 28px;
 
@@ -231,12 +234,15 @@
 }
 
 .company-publish-button:hover .company-publish-button__text {
-    max-width: 270px;
+    max-width: 150px;
 
     opacity: 1;
 
     transform: translateX(0);
 }
+
+.company-publish-button__text { font-size: 16px; }
+.company-publish-button { padding: 0 20px; gap: 9px; }
 
 .company-publish-button:active {
     transform: translateY(0);
@@ -272,10 +278,8 @@
 ======================================== */
 
 .company-home__navigation {
-    position: absolute;
-
-    left: 0;
-    top: 120px;
+    position: relative;
+    padding-top: 25px;
 
     display: flex;
     flex-direction: column;
@@ -283,5 +287,11 @@
 
     gap: 22px;
 
-    z-index: 100;
+    z-index: 1;
+}
+
+@media (max-width: 900px) {
+    .company-home { grid-template-columns: minmax(0, 1fr); }
+    .company-home__navigation { width: 100%; padding-top: 10px; }
+    .company-sidebar { width: min(100%, 360px); height: auto; padding: 14px; border-radius: 0 30px 30px 0; }
 }

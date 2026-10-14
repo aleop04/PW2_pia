@@ -172,28 +172,12 @@ if (vacancyCreate) {
             )
 
 
+        const benefitsError = vacancyCreate.querySelector('[data-benefits-error]')
+        benefitsError.hidden = selectedBenefits.length > 0
         if (selectedBenefits.length === 0) {
-
-            alert(
-                'Debes seleccionar al menos una prestación.'
-            )
-
-
-            const benefitsSection =
-                vacancyCreate.querySelector(
-                    '.company-vacancy-form__benefits'
-                )
-
-
-            benefitsSection?.scrollIntoView({
-                behavior: 'smooth',
-                block: 'center'
-            })
-
-
+            benefitsError.scrollIntoView({ behavior: 'smooth', block: 'center' })
             return
         }
-
 
         /*  PREPARAR SALARIO  */
 
@@ -317,27 +301,16 @@ if (vacancyCreate) {
         'click',
         () => {
 
-            console.log(
-                'Publicar vacante'
-            )
-
-
-            /*
-             * Después aquí irá el POST real
-             * hacia Laravel.
-             */
-
-
-            const vacanciesUrl =
-                vacancyCreate.dataset.vacanciesUrl
-
-
-            if (vacanciesUrl) {
-
-                window.location.href =
-                    vacanciesUrl
-
-            }
+            form.querySelectorAll('[data-benefit-value-input]').forEach(input => input.remove())
+            vacancyCreate.querySelectorAll('.company-vacancy-form__benefit--selected').forEach(button => {
+                const input = document.createElement('input')
+                input.type = 'hidden'
+                input.name = 'benefits[]'
+                input.value = button.dataset.benefitValue
+                input.dataset.benefitValueInput = ''
+                form.appendChild(input)
+            })
+            form.submit()
 
         }
     )

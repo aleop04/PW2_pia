@@ -3,71 +3,6 @@
 @section('content')
 
 @php
-
-    /*
-    |--------------------------------------------------------------------------
-    | DATOS TEMPORALES
-    |--------------------------------------------------------------------------
-    |
-    | Más adelante estos datos vendrán de la base de datos.
-    | Por ahora conservamos los que utilizabas en Vue.
-    |
-    */
-
-    $vacancies = [
-
-        [
-            'id' => 1,
-            'companyId' => 1,
-
-            'title' => 'Título de la vacante',
-            'company' => 'Nombre de la empresa',
-            'location' => 'Ubicación',
-
-            'salary' => 'Sueldo',
-            'modality' => 'Modalidad',
-
-            'stayDuration' => 'Más de 4 semanas',
-            'jobType' => 'Medio tiempo',
-
-            'benefits' => [
-                'Seguro dental',
-                'Estacionamiento gratuito',
-                'Uniformes gratuitos',
-                'Caja de ahorro',
-                'Descuento de gimnasio',
-            ],
-
-            'description' => 'Lorem ipsum dolor sit amet consectetur adipiscing elit ullamcorper, volutpat mattis purus potenti eleifend venenatis facilisi.
-
-Scelerisque habitasse quis nulla tellus curae interdum inceptos ligula, eros natoque suspendisse mauris rhoncus euismod.',
-        ],
-
-        [
-            'id' => 2,
-            'companyId' => 2,
-
-            'title' => 'Segunda vacante',
-            'company' => 'Otra empresa',
-            'location' => 'Monterrey',
-
-            'salary' => '$18,000',
-            'modality' => 'Híbrido',
-
-            'stayDuration' => '3 meses',
-            'jobType' => 'Medio tiempo',
-
-            'benefits' => [
-                'Seguro dental',
-                'Caja de ahorro',
-            ],
-
-            'description' => 'Descripción de la segunda vacante.',
-        ],
-
-    ];
-
-
     $salaryOptions = [
         5000,
         10000,
@@ -85,10 +20,11 @@ Scelerisque habitasse quis nulla tellus curae interdum inceptos ligula, eros nat
 <main
     class="student-home"
     data-student-home
-    data-bookmark-icon="{{ asset('images/Bookmark.svg') }}"
-    data-bookmark-filled-icon="{{ asset('images/BookmarkFilled.svg') }}"
     data-vacancy-detail-url="{{ route('student.vacancies.show', ['id' => '__ID__']) }}"
     data-company-profile-url="{{ route('student.companies.show', ['id' => '__ID__']) }}"
+    data-application-url="{{ route('student.applications.store', ['id' => '__ID__']) }}"
+    data-initial-vacancy-id="{{ old('vacancy_id') }}"
+    data-open-on-error="{{ $errors->any() ? 'true' : 'false' }}"
 >
 
     {{-- Datos temporales para JavaScript --}}
@@ -424,14 +360,16 @@ Scelerisque habitasse quis nulla tellus curae interdum inceptos ligula, eros nat
 
             <div class="student-home__vacancy-list">
 
-                @foreach ($vacancies as $vacancy)
+                @forelse ($vacancies as $vacancy)
 
                     <x-vacancy-card
                         :vacancy="$vacancy"
                         variant="home"
                     />
 
-                @endforeach
+                @empty
+                    <p>Aún no hay vacantes publicadas. Cuando una empresa publique una, aparecerá aquí.</p>
+                @endforelse
 
             </div>
 
@@ -440,11 +378,15 @@ Scelerisque habitasse quis nulla tellus curae interdum inceptos ligula, eros nat
 
         {{--  VISTA PREVIA DERECHA  --}}
 
-        <x-student.vacancy-preview
-            :vacancy="$vacancies[0]"
-        />
+        @if($vacancies->isNotEmpty())
+            <x-student.vacancy-preview :vacancy="$vacancies->first()" />
+        @endif
 
     </section>
+
+    @if($vacancies->isNotEmpty())
+        @include('student.partials.application-modal', ['vacancy' => $vacancies->first(), 'student' => auth('web')->user()])
+    @endif
 
 </main>
 

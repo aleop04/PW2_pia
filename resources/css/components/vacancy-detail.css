@@ -242,7 +242,7 @@
 }
 
 .vacancy-detail__description-text {
-    width: 696px;
+    width: min(696px, 100%);
 
     margin: 0;
 
@@ -271,6 +271,8 @@
 
     gap: 27px;
 }
+
+.vacancy-detail__actions--bottom { width: 100%; flex-direction: row; align-items: center; justify-content: flex-start; margin-top: -20px; }
 
 
 /* ========================================

@@ -46,11 +46,15 @@
     data-vacancy-create
     data-vacancies-url="{{ route('company.vacancies.index') }}"
 >
+    @include('components.flow-feedback')
 
     <form
         class="company-vacancy-form"
         data-vacancy-form
+        method="POST"
+        action="{{ route('company.vacancies.store') }}"
     >
+        @csrf
 
         {{-- TITULO --}}
 
@@ -80,6 +84,7 @@
                     <input
                         id="vacancy-title"
                         name="title"
+                        value="{{ old('title') }}"
                         type="text"
                         class="company-vacancy-form__input"
                         required
@@ -103,15 +108,15 @@
                         required
                     >
 
-                        <option value="Remoto">
+                        <option value="Remoto" @selected(old('modality') === 'Remoto')>
                             Remoto
                         </option>
 
-                        <option value="Presencial">
+                        <option value="Presencial" @selected(old('modality') === 'Presencial')>
                             Presencial
                         </option>
 
-                        <option value="Híbrido">
+                        <option value="Híbrido" @selected(old('modality') === 'Híbrido')>
                             Híbrido
                         </option>
 
@@ -133,6 +138,7 @@
                         <input
                             id="vacancy-location"
                             name="location"
+                            value="{{ old('location') }}"
                             type="text"
                             class="company-vacancy-form__input"
                             required
@@ -164,11 +170,11 @@
                         required
                     >
 
-                        <option value="3 meses">
+                        <option value="3 meses" @selected(old('stay_duration') === '3 meses')>
                             3 meses
                         </option>
 
-                        <option value="6 meses">
+                        <option value="6 meses" @selected(old('stay_duration') === '6 meses')>
                             6 meses
                         </option>
 
@@ -200,7 +206,8 @@
                                 id="salary-fixed"
                                 name="salary_fixed"
                                 type="number"
-                                min="0"
+                                min="1"
+                                value="{{ old('salary_fixed') }}"
                                 class="company-vacancy-form__input"
                                 data-salary-fixed
                             >
@@ -222,15 +229,15 @@
                                 class="company-vacancy-form__input"
                             >
 
-                                <option value="Por mes">
+                                <option value="Por mes" @selected(old('periodicity') === 'Por mes')>
                                     Por mes
                                 </option>
 
-                                <option value="Por quincena">
+                                <option value="Por quincena" @selected(old('periodicity') === 'Por quincena')>
                                     Por quincena
                                 </option>
 
-                                <option value="Por semana">
+                                <option value="Por semana" @selected(old('periodicity') === 'Por semana')>
                                     Por semana
                                 </option>
 
@@ -257,7 +264,7 @@
                     id="vacancy-description"
                     name="description"
                     required
-                ></textarea>
+                >{{ old('description') }}</textarea>
 
             </div>
 
@@ -267,6 +274,7 @@
         {{--  PRESTACIONES  --}}
 
         <section class="company-vacancy-form__benefits">
+            <p class="flow-feedback flow-feedback--error" data-benefits-error hidden>Selecciona al menos una prestación.</p>
 
             <h2>
                 Prestaciones <span class="company-vacancy-form__required">*</span>
@@ -278,7 +286,7 @@
 
                     <button
                         type="button"
-                        class="company-vacancy-form__benefit"
+                        class="company-vacancy-form__benefit {{ in_array($benefit, old('benefits', []), true) ? 'company-vacancy-form__benefit--selected' : '' }}"
                         data-benefit
                         data-benefit-value="{{ $benefit }}"
                     >

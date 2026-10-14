@@ -54,7 +54,8 @@
 
 .vacancy-card--company {
     width: 312px;
-    height: 251px;
+    height: auto;
+    min-height: 251px;
 }
 
 .vacancy-card--company .vacancy-card__title {

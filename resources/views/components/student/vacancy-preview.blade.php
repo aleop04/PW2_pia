@@ -49,25 +49,6 @@
 
             </div>
 
-
-            {{-- GUARDAR --}}
-
-            <button
-                type="button"
-                class="vacancy-preview__bookmark"
-                aria-label="Guardar vacante"
-                data-preview-bookmark
-            >
-
-                <img
-                    src="{{ asset('images/Bookmark.svg') }}"
-                    alt=""
-                    class="vacancy-preview__bookmark-icon"
-                    data-preview-bookmark-icon
-                >
-
-            </button>
-
         </div>
 
     </header>
@@ -204,6 +185,13 @@
             </p>
 
         </section>
+
+        <div class="vacancy-preview__actions">
+            <button type="button" class="vacancy-detail__primary-button" data-application-open data-preview-apply
+               @if($vacancy['applied'] ?? false) hidden @endif>Postularse</button>
+            <span class="flow-feedback flow-feedback--success" data-preview-applied
+                  @unless($vacancy['applied'] ?? false) hidden @endunless>Postulación enviada</span>
+        </div>
 
     </div>
 

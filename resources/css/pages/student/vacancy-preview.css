@@ -2,7 +2,7 @@
 
 .vacancy-preview {
     width: 722px;
-    min-height: 797px;
+    min-height: 0;
 
     background: rgba(255, 255, 255, 0.12);
 
@@ -162,7 +162,7 @@
     flex-direction: column;
     align-items: flex-start;
 
-    gap: 52px;
+    gap: 30px;
 
     box-sizing: border-box;
 }

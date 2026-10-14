@@ -4,35 +4,6 @@
 
 @php
 
-    /*
-    |--------------------------------------------------------------------------
-    | DATOS TEMPORALES
-    |--------------------------------------------------------------------------
-    |
-    | Después esta información vendrá de la base de datos utilizando
-    | el ID recibido en la ruta.
-    |
-    */
-
-    $vacancyId = request()->route('id');
-
-    $vacancy = [
-        'id' => $vacancyId,
-        'title' => 'Título de la vacante',
-        'modality' => 'Remoto',
-        'location' => 'Ubicación',
-        'stayDuration' => '6 meses',
-        'salaryFixed' => 12000,
-        'periodicity' => 'Por mes',
-        'description' => 'Descripción actual de la vacante.',
-        'benefits' => [
-            'Seguro dental',
-            'Horarios flexibles',
-            'Trabajo desde casa',
-        ],
-    ];
-
-
     $benefitOptions = [
         'Seguro dental',
         'Estacionamiento de la empresa',
@@ -79,11 +50,16 @@
         ['id' => $vacancy['id']]
     ) }}"
 >
+    @include('components.flow-feedback')
 
     <form
         class="company-vacancy-form"
         data-vacancy-edit-form
+        method="POST"
+        action="{{ route('company.vacancies.update', $vacancy['id']) }}"
     >
+        @csrf
+        @method('PUT')
 
         {{--  TITLE  --}}
 
@@ -328,6 +304,7 @@
         {{--  BENEFITS  --}}
 
         <section class="company-vacancy-form__benefits">
+            <p class="flow-feedback flow-feedback--error" data-benefits-error hidden>Selecciona al menos una prestación.</p>
 
             <h2>
                 Prestaciones

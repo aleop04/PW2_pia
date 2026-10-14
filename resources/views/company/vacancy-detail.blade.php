@@ -2,51 +2,13 @@
 
 @section('content')
 
-@php
-
-    /*
-    |--------------------------------------------------------------------------
-    | VACANTE TEMPORAL
-    |--------------------------------------------------------------------------
-    |
-    | Después estos datos vendrán de la base de datos utilizando
-    | el ID recibido en la ruta.
-    |
-    */
-
-    $vacancyId = request()->route('id');
-
-    $vacancy = [
-        'id' => $vacancyId,
-        'title' => 'Título de la vacante',
-        'company' => 'Nombre de la empresa',
-        'location' => 'Ubicación',
-        'salary' => '$12,000 - Por mes',
-        'modality' => 'Remoto',
-        'stayDuration' => '6 meses',
-
-        'benefits' => [
-            'Seguro dental',
-            'Horarios flexibles',
-            'Trabajo desde casa',
-        ],
-
-        'jobType' => 'Tiempo completo',
-
-        'description' =>
-            'Lorem ipsum dolor sit amet consectetur adipiscing elit. '
-            . 'Esta es la descripción actual de la vacante publicada por la empresa.',
-    ];
-
-@endphp
-
-
 <main
     class="vacancy-detail-page"
     data-company-vacancy-detail
     data-vacancy-id="{{ $vacancy['id'] }}"
     data-vacancies-url="{{ route('company.vacancies.index') }}"
 >
+    @include('components.flow-feedback')
 
     <x-vacancy-detail
         :vacancy="$vacancy"
@@ -88,5 +50,10 @@
 {{--  MODAL DE ELIMINACIÓN  --}}
 
 @include('components.company.delete-vacancy-modal')
+
+    <form id="delete-vacancy-form" method="POST" action="{{ route('company.vacancies.destroy', $vacancy['id']) }}" hidden>
+        @csrf
+        @method('DELETE')
+    </form>
 
 @endsection

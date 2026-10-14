@@ -3,89 +3,12 @@
 @section('dashboard-content')
 
 @php
-
-    /*
-    |--------------------------------------------------------------------------
-    | DATOS TEMPORALES DEL DASHBOARD
-    |--------------------------------------------------------------------------
-    |
-    | Después estos datos vendrán de la base de datos.
-    |
-    */
-
-    $companyName = 'nombredeempresa';
-
-
+    $companyName = auth('web')->user()->company_name;
     $summaryCards = [
-
-        [
-            'icon' => 'Eye.svg',
-            'value' => 45,
-            'trend' => '+3%',
-            'trendIcon' => 'Trendingup.svg',
-            'description' => 'Usuarios que han entrado a tu perfil',
-        ],
-
-        [
-            'icon' => 'Users.svg',
-            'value' => 45,
-            'trend' => '-3%',
-            'trendIcon' => 'Trendingdown.svg',
-            'description' => 'Usuarios que se han postulado en tus vacantes',
-        ],
-
-        [
-            'icon' => 'Starwhite.svg',
-            'value' => 45,
-            'trend' => '+3%',
-            'trendIcon' => 'Trendingup.svg',
-            'description' => 'Usuarios que han valorado tus vacantes',
-        ],
-
+        ['icon' => 'Eye.svg', 'value' => $vacancyCount, 'description' => 'Vacantes publicadas'],
+        ['icon' => 'Users.svg', 'value' => $applicationCount, 'description' => 'Postulaciones recibidas'],
     ];
-
-
-    $applications = [
-
-        [
-            'name' => 'Nombre',
-            'date' => 'DD/MM/AAAA',
-            'cv' => 'cv.pdf',
-            'status' => 'Aceptado',
-            'statusClass' => 'accepted',
-        ],
-
-        [
-            'name' => 'Nombre',
-            'date' => 'DD/MM/AAAA',
-            'cv' => 'cv.pdf',
-            'status' => 'Rechazado',
-            'statusClass' => 'rejected',
-        ],
-
-        [
-            'name' => 'Nombre',
-            'date' => 'DD/MM/AAAA',
-            'cv' => 'cv.pdf',
-            'status' => 'Pendiente',
-            'statusClass' => 'pending',
-        ],
-
-        [
-            'name' => 'Nombre',
-            'date' => 'DD/MM/AAAA',
-            'cv' => 'cv.pdf',
-            'status' => 'Aceptado',
-            'statusClass' => 'accepted',
-        ],
-
-    ];
-
-
-    $totalReach = 987;
-
 @endphp
-
 
 <section class="company-dashboard">
 
@@ -99,9 +22,8 @@
         </h1>
 
         <p class="company-dashboard__welcome">
-            Bienvenido, {{ $companyName }}. Dentro de esta sección tendrás
-            acceso a la información de interacción que los usuarios tienen
-            con tu cuenta y las postulaciones que compartas.
+            Bienvenido, {{ $companyName }}. Aquí puedes revisar tus vacantes publicadas
+            y las postulaciones recibidas.
         </p>
 
     </div>
@@ -138,22 +60,7 @@
                         </div>
 
 
-                        <div class="company-dashboard__trend">
-
-                            <img
-                                src="{{ asset('images/' . $card['trendIcon']) }}"
-                                alt=""
-                                class="company-dashboard__trend-icon"
-                            >
-
-                            <span>
-                                {{ $card['trend'] }}
-                            </span>
-
-                        </div>
-
                     </div>
-
 
                     <p class="company-dashboard__summary-description">
                         {{ $card['description'] }}
@@ -189,11 +96,11 @@
                 <div class="company-dashboard__reach-info">
 
                     <strong>
-                        {{ $totalReach }}
+                        {{ $vacancyCount }}
                     </strong>
 
                     <span>
-                        Total de alcance de tu perfil
+                        Vacantes publicadas
                     </span>
 
                 </div>
@@ -256,7 +163,7 @@
 
                     {{-- FILAS --}}
 
-                    @foreach ($applications as $application)
+                    @forelse ($applications as $application)
 
                         <div class="company-dashboard__application-row">
 
@@ -283,7 +190,9 @@
 
                         </div>
 
-                    @endforeach
+                    @empty
+                        <p>Aún no recibes postulaciones.</p>
+                    @endforelse
 
                 </div>
 
