@@ -32,10 +32,11 @@ return [
 
     'connections' => [
 
-	'mongodb' => [
-          'driver' => 'mongodb',
-          'dsn' => env('DB_URI'),
-          'database' => env('DB_DATABASE', 'pw2pia'),
+        'mongodb' => [
+            'driver' => 'mongodb',
+            'dsn' => env('DB_URI', 'mongodb://127.0.0.1:27017'),
+            'database' => env('DB_DATABASE', 'pw2pia'),
+            'options' => ['serverSelectionTimeoutMS' => 5000],
         ],
 
         'sqlite' => [
