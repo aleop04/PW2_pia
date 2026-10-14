@@ -1,977 +1,129 @@
 import { sectorOptions } from '../data/sectorOptions.js';
 
-
 function initRegisterPage() {
+    const page = document.querySelector('[data-register-page]');
+    if (!page) return;
 
-    const registerPage = document.querySelector('[data-register-page]');
+    // JavaScript cambia las pantallas; Laravel recibe los formularios por POST.
+    const screens = [...page.querySelectorAll('[data-register-screen]')];
+    let animationRunning = false;
 
-    if (!registerPage) {
-        return;
-    }
+    function showScreen(name, animate = true, backward = false) {
+        const next = screens.find((screen) => screen.dataset.registerScreen === name);
+        const current = screens.find((screen) => !screen.hidden);
+        if (!next || animationRunning) return;
 
-
-    /* =====================================================
-       PANTALLAS PRINCIPALES
-
-       account-type
-       student
-       company
-    ===================================================== */
-
-    const registerScreens =
-        registerPage.querySelectorAll('[data-register-screen]');
-
-    let registerAnimationRunning = false;
-
-
-    const showRegisterScreen = (
-        screenName,
-        direction = 'forward',
-        animate = true
-    ) => {
-
-        const currentScreen =
-            Array.from(registerScreens).find(
-                (screen) => !screen.hidden
-            );
-
-        const nextScreen =
-            Array.from(registerScreens).find(
-                (screen) =>
-                    screen.dataset.registerScreen === screenName
-            );
-
-
-        if (!nextScreen) {
+        if (!animate || !current || current === next) {
+            screens.forEach((screen) => { screen.hidden = screen !== next; });
             return;
         }
 
-
-        /*
-        * Estado inicial de la página.
-        * Aquí no queremos animación.
-        */
-        if (
-            !animate ||
-            !currentScreen ||
-            currentScreen === nextScreen
-        ) {
-
-            registerScreens.forEach((screen) => {
-
-                screen.hidden =
-                    screen !== nextScreen;
-
-            });
-
-            return;
-        }
-
-
-        /*
-        * Evita clicks repetidos mientras
-        * se está ejecutando el slide.
-        */
-        if (registerAnimationRunning) {
-            return;
-        }
-
-        registerAnimationRunning = true;
-
-
-        const exitClass =
-            direction === 'forward'
-                ? 'slide-exit-left'
-                : 'slide-exit-right';
-
-        const enterClass =
-            direction === 'forward'
-                ? 'slide-enter-right'
-                : 'slide-enter-left';
-
-
-        /* Sale la pantalla actual */
-        currentScreen.classList.add(exitClass);
-
+        animationRunning = true;
+        const exitClass = backward ? 'slide-exit-right' : 'slide-exit-left';
+        const enterClass = backward ? 'slide-enter-left' : 'slide-enter-right';
+        current.classList.add(exitClass);
 
         window.setTimeout(() => {
-
-            /*
-            * Ocultamos la anterior después
-            * de terminar su salida.
-            */
-            currentScreen.hidden = true;
-
-            currentScreen.classList.remove(exitClass);
-
-
-            /*
-            * Preparamos la nueva pantalla.
-            */
-            nextScreen.classList.add(enterClass);
-
-            nextScreen.hidden = false;
-
-
-            /*
-            * Fuerza al navegador a registrar
-            * la posición inicial.
-            */
-            void nextScreen.offsetWidth;
-
-
-            /*
-            * Al quitar la clase vuelve a
-            * translateX(0) y opacity: 1.
-            */
-            nextScreen.classList.remove(enterClass);
-
-
-            window.setTimeout(() => {
-
-                registerAnimationRunning = false;
-
-            }, 400);
-
+            current.hidden = true;
+            current.classList.remove(exitClass);
+            next.classList.add(enterClass);
+            next.hidden = false;
+            void next.offsetWidth;
+            next.classList.remove(enterClass);
+            window.setTimeout(() => { animationRunning = false; }, 400);
         }, 400);
-
-    };
-
-
-    /* =====================================================
-       TIPO DE CUENTA
-    ===================================================== */
-
-    const accountTypeButtons =
-        registerPage.querySelectorAll('[data-account-type]');
-
-
-    accountTypeButtons.forEach((button) => {
-
-        button.addEventListener('click', () => {
-
-            const accountType =
-                button.dataset.accountType;
-
-
-            if (
-                accountType !== 'student' &&
-                accountType !== 'company'
-            ) {
-                return;
-            }
-
-
-            showRegisterScreen(accountType);
-
-        });
-
-    });
-
-
-    /* =====================================================
-       ESTUDIANTE → SELECTOR DE CUENTA
-    ===================================================== */
-
-    const studentBackAccount =
-        registerPage.querySelector(
-            '[data-student-back-account]'
-        );
-
-
-    studentBackAccount?.addEventListener('click', () => {
-
-        showRegisterScreen('account-type');
-
-    });
-
-
-    /* =====================================================
-       EMPRESA → SELECTOR DE CUENTA
-    ===================================================== */
-
-    const companyBack =
-        registerPage.querySelector(
-            '[data-company-back]'
-        );
-
-
-    companyBack?.addEventListener('click', () => {
-
-        showRegisterScreen('account-type');
-
-    });
-
-
-    /* =====================================================
-       PASOS DEL REGISTRO ESTUDIANTE
-    ===================================================== */
-
-    const studentSteps =
-        registerPage.querySelectorAll(
-            '[data-student-step]'
-        );
-
-
-    const showStudentStep = (stepName) => {
-
-        studentSteps.forEach((step) => {
-
-            step.hidden =
-                step.dataset.studentStep !== stepName;
-
-        });
-
-    };
-
-
-    /* =====================================================
-       FORMULARIO ESTUDIANTE
-    ===================================================== */
-
-    const studentForm =
-        registerPage.querySelector(
-            '[data-student-form]'
-        );
-
-
-    studentForm?.addEventListener('submit', (event) => {
-
-        event.preventDefault();
-
-
-        if (!studentForm.checkValidity()) {
-
-            studentForm.reportValidity();
-
-            return;
-        }
-
-
-        const password =
-            studentForm.querySelector(
-                '[name="password"]'
-            );
-
-        const passwordConfirmation =
-            studentForm.querySelector(
-                '[name="password_confirmation"]'
-            );
-
-
-        if (
-            password &&
-            passwordConfirmation &&
-            password.value !== passwordConfirmation.value
-        ) {
-
-            passwordConfirmation.setCustomValidity(
-                'Las contraseñas no coinciden.'
-            );
-
-            passwordConfirmation.reportValidity();
-
-            return;
-        }
-
-
-        passwordConfirmation?.setCustomValidity('');
-
-
-        showStudentStep('kardex');
-
-    });
-
-
-    /* =====================================================
-       QUITAR ERROR DE CONTRASEÑA AL ESCRIBIR
-    ===================================================== */
-
-    const studentPasswordConfirmation =
-        studentForm?.querySelector(
-            '[name="password_confirmation"]'
-        );
-
-
-    studentPasswordConfirmation?.addEventListener(
-        'input',
-        () => {
-
-            studentPasswordConfirmation.setCustomValidity('');
-
-        }
-    );
-
-
-    /* =====================================================
-       KARDEX → DATOS ESTUDIANTE
-    ===================================================== */
-
-    const studentBackData =
-        registerPage.querySelector(
-            '[data-student-back-data]'
-        );
-
-
-    studentBackData?.addEventListener('click', () => {
-
-        showStudentStep('data');
-
-    });
-
-
-    /* =====================================================
-       KARDEX
-    ===================================================== */
-
-    const kardexPicker =
-        registerPage.querySelector(
-            '[data-kardex-picker]'
-        );
-
-    const kardexInput =
-        registerPage.querySelector(
-            '[data-kardex-input]'
-        );
-
-    const kardexName =
-        registerPage.querySelector(
-            '[data-kardex-name]'
-        );
-
-
-    kardexPicker?.addEventListener('click', () => {
-
-        kardexInput?.click();
-
-    });
-
-
-    kardexInput?.addEventListener('change', () => {
-
-        const file =
-            kardexInput.files?.[0];
-
-
-        if (!file) {
-
-            if (kardexName) {
-
-                kardexName.textContent = '';
-                kardexName.hidden = true;
-
-            }
-
-            return;
-        }
-
-
-        const isPdf =
-            file.type === 'application/pdf' ||
-            file.name.toLowerCase().endsWith('.pdf');
-
-
-        if (!isPdf) {
-
-            kardexInput.value = '';
-
-
-            if (kardexName) {
-
-                kardexName.textContent =
-                    'Selecciona únicamente un archivo PDF.';
-
-                kardexName.hidden = false;
-
-            }
-
-            return;
-        }
-
-
-        if (kardexName) {
-
-            kardexName.textContent = file.name;
-
-            kardexName.hidden = false;
-
-        }
-
-    });
-
-
-    /* =====================================================
-       CONFIRMAR REGISTRO ESTUDIANTE
-
-       TODAVÍA NO ENVÍA AL BACKEND.
-    ===================================================== */
-
-    const studentRegisterButton =
-        registerPage.querySelector(
-            '[data-student-register]'
-        );
-
-
-    studentRegisterButton?.addEventListener(
-        'click',
-        () => {
-
-            const kardexFile =
-                kardexInput?.files?.[0];
-
-
-            if (!kardexFile) {
-
-                kardexInput?.click();
-
-                return;
-            }
-
-
-            const studentUrl =
-                registerPage.dataset.studentUrl;
-
-
-            if (!studentUrl) {
-                return;
-            }
-
-
-            window.location.href = studentUrl;
-
-        }
-    );
-
-
-    /* =====================================================
-       SELECTOR DE SECTOR EMPRESARIAL
-    ===================================================== */
-
-    const sectorDropdown =
-        registerPage.querySelector(
-            '[data-sector-dropdown]'
-        );
-
-    const sectorTrigger =
-        registerPage.querySelector(
-            '[data-sector-trigger]'
-        );
-
-    const sectorMenu =
-        registerPage.querySelector(
-            '[data-sector-menu]'
-        );
-
-    const sectorInput =
-        registerPage.querySelector(
-            '[data-sector-input]'
-        );
-
-    const sectorLabel =
-        registerPage.querySelector(
-            '[data-sector-label]'
-        );
-
-    const sectorIcon =
-        registerPage.querySelector(
-            '[data-sector-icon]'
-        );
-
-    const customSector =
-        registerPage.querySelector(
-            '[data-custom-sector]'
-        );
-
-
-    const openSectorDropdown = () => {
-
-        if (
-            !sectorMenu ||
-            !sectorTrigger
-        ) {
-            return;
-        }
-
-
-        sectorMenu.hidden = false;
-
-
-        sectorTrigger.setAttribute(
-            'aria-expanded',
-            'true'
-        );
-
-
-        sectorIcon?.classList.add(
-            'company-register__select-icon--open'
-        );
-
-    };
-
-
-    const closeSectorDropdown = () => {
-
-        if (
-            !sectorMenu ||
-            !sectorTrigger
-        ) {
-            return;
-        }
-
-
-        sectorMenu.hidden = true;
-
-
-        sectorTrigger.setAttribute(
-            'aria-expanded',
-            'false'
-        );
-
-
-        sectorIcon?.classList.remove(
-            'company-register__select-icon--open'
-        );
-
-    };
-
-
-    if (
-        sectorDropdown &&
-        sectorTrigger &&
-        sectorMenu &&
-        sectorInput &&
-        sectorLabel
-    ) {
-
-        sectorMenu.innerHTML = '';
-
-
-        sectorOptions.forEach((option) => {
-
-            const optionButton =
-                document.createElement('button');
-
-
-            optionButton.type = 'button';
-
-            optionButton.className =
-                'company-register__sector-option';
-
-            optionButton.dataset.sectorValue =
-                option.value;
-
-            optionButton.textContent =
-                option.label;
-
-
-            optionButton.addEventListener(
-                'click',
-                () => {
-
-                    sectorInput.value =
-                        option.value;
-
-
-                    sectorLabel.textContent =
-                        option.label;
-
-
-                    sectorLabel.classList.remove(
-                        'company-register__sector-placeholder'
-                    );
-
-
-                    sectorMenu
-                        .querySelectorAll(
-                            '.company-register__sector-option'
-                        )
-                        .forEach((item) => {
-
-                            item.classList.remove(
-                                'company-register__sector-option--selected'
-                            );
-
-                        });
-
-
-                    optionButton.classList.add(
-                        'company-register__sector-option--selected'
-                    );
-
-
-                    if (customSector) {
-
-                        if (option.value === 'other') {
-
-                            customSector.hidden = false;
-
-                            customSector.required = true;
-
-                        } else {
-
-                            customSector.hidden = true;
-
-                            customSector.required = false;
-
-                            customSector.value = '';
-
-                        }
-
-                    }
-
-
-                    sectorTrigger.setAttribute(
-                        'aria-invalid',
-                        'false'
-                    );
-
-
-                    closeSectorDropdown();
-
-                }
-            );
-
-
-            sectorMenu.appendChild(
-                optionButton
-            );
-
-        });
-
-
-        sectorTrigger.addEventListener(
-            'click',
-            () => {
-
-                const isOpen =
-                    sectorTrigger.getAttribute(
-                        'aria-expanded'
-                    ) === 'true';
-
-
-                if (isOpen) {
-
-                    closeSectorDropdown();
-
-                } else {
-
-                    openSectorDropdown();
-
-                }
-
-            }
-        );
-
-
-        document.addEventListener(
-            'click',
-            (event) => {
-
-                if (
-                    event.target instanceof Node &&
-                    !sectorDropdown.contains(event.target)
-                ) {
-
-                    closeSectorDropdown();
-
-                }
-
-            }
-        );
-
-
-        document.addEventListener(
-            'keydown',
-            (event) => {
-
-                if (event.key === 'Escape') {
-
-                    closeSectorDropdown();
-
-                }
-
-            }
-        );
-
     }
 
-
-    /* =====================================================
-       FORMULARIO EMPRESA
-    ===================================================== */
-
-    const companyForm =
-        registerPage.querySelector(
-            '[data-company-form]'
-        );
-
-    const mainStage =
-        registerPage.querySelector(
-            '[data-register-main]'
-        );
-
-    const membershipStage =
-        registerPage.querySelector(
-            '[data-register-membership]'
-        );
-
-
-    companyForm?.addEventListener(
-        'submit',
-        (event) => {
-
-            event.preventDefault();
-
-
-            if (!companyForm.checkValidity()) {
-
-                companyForm.reportValidity();
-
-                return;
-            }
-
-
-            /* Sector obligatorio */
-            if (
-                sectorInput &&
-                !sectorInput.value
-            ) {
-
-                sectorTrigger?.setAttribute(
-                    'aria-invalid',
-                    'true'
-                );
-
-
-                openSectorDropdown();
-
-                sectorTrigger?.focus();
-
-                return;
-            }
-
-
-            /* Contraseñas */
-            const password =
-                companyForm.querySelector(
-                    '[name="password"]'
-                );
-
-            const passwordConfirmation =
-                companyForm.querySelector(
-                    '[name="password_confirmation"]'
-                );
-
-
-            if (
-                password &&
-                passwordConfirmation &&
-                password.value !== passwordConfirmation.value
-            ) {
-
-                passwordConfirmation.setCustomValidity(
-                    'Las contraseñas no coinciden.'
-                );
-
-                passwordConfirmation.reportValidity();
-
-                return;
-            }
-
-
-            passwordConfirmation?.setCustomValidity('');
-
-
-            /* Mostrar membresías */
-            mainStage?.classList.add(
-                'register-flow__stage--main-hidden'
-            );
-
-
-            membershipStage?.classList.add(
-                'register-flow__stage--membership-active'
-            );
-
-        }
-    );
-
-
-    /* =====================================================
-       QUITAR ERROR DE CONTRASEÑA EMPRESA
-    ===================================================== */
-
-    const companyPasswordConfirmation =
-        companyForm?.querySelector(
-            '[name="password_confirmation"]'
-        );
-
-
-    companyPasswordConfirmation?.addEventListener(
-        'input',
-        () => {
-
-            companyPasswordConfirmation.setCustomValidity('');
-
-        }
-    );
-
-
-    /* =====================================================
-       MEMBRESÍA → REGISTRO EMPRESA
-    ===================================================== */
-
-    const membershipBack =
-        registerPage.querySelector(
-            '[data-membership-back]'
-        );
-
-
-    membershipBack?.addEventListener(
-        'click',
-        () => {
-
-            mainStage?.classList.remove(
-                'register-flow__stage--main-hidden'
-            );
-
-
-            membershipStage?.classList.remove(
-                'register-flow__stage--membership-active'
-            );
-
-        }
-    );
-
-
-    /* =====================================================
-       SELECCIÓN DE MEMBRESÍA
-    ===================================================== */
-
-    let selectedMembership = null;
-
-
-    const membershipCards =
-        registerPage.querySelectorAll(
-            '[data-membership]'
-        );
-
-
-    membershipCards.forEach((card) => {
-
-        card.addEventListener(
-            'click',
-            () => {
-
-                membershipCards.forEach(
-                    (item) => {
-
-                        item.classList.remove(
-                            'company-membership__card--selected'
-                        );
-
-                    }
-                );
-
-
-                card.classList.add(
-                    'company-membership__card--selected'
-                );
-
-
-                selectedMembership =
-                    card.dataset.membership;
-
-            }
-        );
-
+    page.querySelectorAll('[data-account-type]').forEach((button) => {
+        button.addEventListener('click', () => showScreen(button.dataset.accountType));
+    });
+    page.querySelectorAll('[data-password-toggle]').forEach((button) => {
+        button.addEventListener('click', () => {
+            const input = document.getElementById(button.dataset.passwordToggle);
+            if (!input) return;
+            const visible = input.type === 'password';
+            input.type = visible ? 'text' : 'password';
+            button.textContent = visible ? 'Ocultar contraseña' : 'Ver contraseña';
+        });
+    });
+    page.querySelectorAll('[data-student-back-account], [data-company-back]').forEach((button) => {
+        button.addEventListener('click', () => showScreen('account-type', true, true));
     });
 
+    const dropdown = page.querySelector('[data-sector-dropdown]');
+    const trigger = page.querySelector('[data-sector-trigger]');
+    const menu = page.querySelector('[data-sector-menu]');
+    const input = page.querySelector('[data-sector-input]');
+    const label = page.querySelector('[data-sector-label]');
+    const icon = page.querySelector('[data-sector-icon]');
+    const custom = page.querySelector('[data-custom-sector]');
+    const error = page.querySelector('[data-sector-error]');
 
-    /* =====================================================
-        FORMULARIO DE PAGO
+    function setMenu(open) {
+        if (!menu || !trigger) return;
+        menu.hidden = !open;
+        trigger.setAttribute('aria-expanded', String(open));
+        icon?.classList.toggle('company-register__select-icon--open', open);
+    }
 
-        POR AHORA SOLAMENTE SIMULADO.
-        ===================================================== */
+    function selectSector(option) {
+        input.value = option.value;
+        label.textContent = option.label;
+        label.classList.remove('company-register__sector-placeholder');
+        menu.querySelectorAll('[data-sector-value]').forEach((button) => {
+            button.classList.toggle('company-register__sector-option--selected',
+                button.dataset.sectorValue === option.value);
+        });
+        if (custom) {
+            custom.hidden = option.value !== 'other';
+            custom.required = option.value === 'other';
+            if (option.value !== 'other') custom.value = '';
+        }
+        trigger.setAttribute('aria-invalid', 'false');
+        if (error) error.hidden = true;
+        setMenu(false);
+    }
 
-        const paymentForm =
-            registerPage.querySelector(
-                '[data-membership-payment-form]'
-            );
+    if (dropdown && trigger && menu && input && label) {
+        menu.replaceChildren();
+        sectorOptions.forEach((option) => {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'company-register__sector-option';
+            button.dataset.sectorValue = option.value;
+            button.textContent = option.label;
+            button.addEventListener('click', () => selectSector(option));
+            menu.appendChild(button);
+        });
 
+        // Al volver por un error del servidor recupera el sector y el campo Otro.
+        const previous = sectorOptions.find((option) => option.value === input.value);
+        if (previous) selectSector(previous);
+        trigger.addEventListener('click', () => setMenu(menu.hidden));
+        document.addEventListener('click', (event) => {
+            if (event.target instanceof Node && !dropdown.contains(event.target)) setMenu(false);
+        });
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') setMenu(false);
+        });
 
-        paymentForm?.addEventListener(
-            'submit',
-            (event) => {
-
+        page.querySelector('[data-company-form]')?.addEventListener('submit', (event) => {
+            if (!input.value) {
                 event.preventDefault();
-
-
-                if (!selectedMembership) {
-
-                    console.warn(
-                        'Selecciona una membresía antes de continuar.'
-                    );
-
-                    membershipCards[0]?.focus();
-
-                    return;
-                }
-
-
-                if (!paymentForm.checkValidity()) {
-
-                    paymentForm.reportValidity();
-
-                    return;
-                }
-
-
-                const companyUrl =
-                    registerPage.dataset.companyUrl;
-
-
-                if (!companyUrl) {
-
-                    console.error(
-                        'No se encontró la URL de la interfaz empresarial.'
-                    );
-
-                    return;
-                }
-
-
-                window.location.href = companyUrl;
-
+                if (error) error.hidden = false;
+                trigger.setAttribute('aria-invalid', 'true');
+                setMenu(true);
+                trigger.focus();
             }
-        );
+        });
+    }
 
-
-    /* =====================================================
-       ESTADO INICIAL
-    ===================================================== */
-
-    showRegisterScreen('account-type');
-
-    showStudentStep('data');
-
-    closeSectorDropdown();
-
+    showScreen(page.dataset.initialScreen || 'account-type', false);
+    setMenu(false);
 }
 
-
-/* =====================================================
-   INICIALIZACIÓN
-===================================================== */
-
 if (document.readyState === 'loading') {
-
-    document.addEventListener(
-        'DOMContentLoaded',
-        initRegisterPage
-    );
-
+    document.addEventListener('DOMContentLoaded', initRegisterPage);
 } else {
-
     initRegisterPage();
-
 }

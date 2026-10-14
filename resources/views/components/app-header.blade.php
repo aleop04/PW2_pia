@@ -29,6 +29,15 @@
 
         <nav class="app-header__actions">
 
+            @auth('web')
+                <span class="app-header__identity">
+                    {{ auth('web')->user()->role === 'company'
+                        ? auth('web')->user()->company_name
+                        : auth('web')->user()->first_name }}
+                    · {{ auth('web')->user()->role === 'company' ? 'Empresa' : 'Estudiante' }}
+                </span>
+            @endauth
+
             {{-- Acción opcional --}}
 
             @if ($actionIcon && $actionRoute)
@@ -63,19 +72,13 @@
             </a>
 
 
-            {{-- Cerrar sesión --}}
-
-            <a
-                href="{{ route('home') }}"
-                class="app-header__button"
-                aria-label="Cerrar sesión"
-            >
-                <img
-                    src="{{ asset('images/Logout.svg') }}"
-                    alt=""
-                    class="app-header__icon"
-                >
-            </a>
+            {{-- Cerrar sesión: POST con CSRF; ahora invalida la sesión real. --}}
+            <form method="POST" action="{{ route('logout') }}" class="app-header__logout">
+                @csrf
+                <button type="submit" class="app-header__button" aria-label="Cerrar sesión" title="Cerrar sesión">
+                    <img src="{{ asset('images/Logout.svg') }}" alt="" class="app-header__icon">
+                </button>
+            </form>
 
         </nav>
 

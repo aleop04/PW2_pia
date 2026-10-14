@@ -1,39 +1,5 @@
 <?php
 
-use App\Http\Controllers\Api\AuthController;
-use Illuminate\Support\Facades\Route;
-
-/* RUTAS PUBLICAS */
-
-Route::get('/prueba', function () {
-    return response()->json([
-        'message' => 'API funcionando correctamente',
-    ]);
-});
-
-Route::post(
-    '/register/student',
-    [AuthController::class, 'registerStudent']
-);
-
-Route::post(
-    '/login',
-    [AuthController::class, 'login']
-);
-
-
-/* RUTAS PROTEGIDAS */
-
-Route::middleware('auth:sanctum')->group(function () {
-
-    Route::get(
-        '/user',
-        [AuthController::class, 'user']
-    );
-
-    Route::post(
-        '/logout',
-        [AuthController::class, 'logout']
-    );
-
-});
+// Bloque 1: los formularios Blade usan routes/web.php y sesiones con CSRF.
+// Se retiran las rutas de prueba y autenticación con tokens para evitar dos flujos.
+// Las futuras rutas de API se definirán cuando se implemente el bloque que las necesite.

@@ -1,0 +1,64 @@
+.auth-feedback {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid;
+    border-radius: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.auth-feedback--error {
+    color: #842029;
+    background: #fff2f2;
+    border-color: #efc0c0;
+}
+
+.auth-feedback--success {
+    color: #16552d;
+    background: #edf9f0;
+    border-color: #b6dec0;
+}
+
+.auth-feedback ul {
+    margin-top: 6px;
+    padding-left: 20px;
+}
+
+.auth-feedback[hidden],
+[data-register-screen][hidden] {
+    display: none;
+}
+
+.auth-field-hint {
+    display: block;
+    margin-top: 5px;
+    color: #606574;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.app-header__logout {
+    margin: 0;
+    display: flex;
+}
+
+.app-header__identity {
+    max-width: 250px;
+    font-size: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 720px) {
+    .app-header__identity {
+        max-width: 110px;
+        font-size: 12px;
+    }
+
+    .app-header__actions {
+        gap: 12px;
+    }
+}

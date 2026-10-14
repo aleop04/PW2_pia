@@ -29,7 +29,14 @@
         <form
             class="company-register__form"
             data-company-form
+            method="POST"
+            action="{{ route('register.company') }}"
         >
+            @csrf
+            <input type="hidden" name="_account_type" value="company">
+            @if ($selectedType === 'company')
+                @include('components.auth-feedback')
+            @endif
 
             <!-- Nombre de empresa -->
             <div class="company-register__field">
@@ -44,6 +51,8 @@
                 <input
                     id="company-name"
                     name="company_name"
+                    maxlength="150"
+                    value="{{ old('company_name') }}"
                     type="text"
                     class="company-register__input"
                     autocomplete="organization"
@@ -66,10 +75,17 @@
                 <input
                     id="company-rfc"
                     name="rfc"
+                    maxlength="12"
+                    minlength="12"
+                    pattern="[A-Za-zÑñ&]{3}[0-9]{6}[A-Za-z0-9]{3}"
+                    value="{{ old('rfc') }}"
                     type="text"
                     class="company-register__input"
+                    aria-describedby="company-rfc-help"
                     required
                 >
+
+                <small id="company-rfc-help" class="auth-field-hint">12 caracteres. Ejemplo: ABC010203AB1.</small>
 
             </div>
 
@@ -91,6 +107,7 @@
                     <input
                         type="hidden"
                         name="sector"
+                        value="{{ old('sector') }}"
                         data-sector-input
                     >
 
@@ -134,6 +151,8 @@
                 <input
                     type="text"
                     name="custom_sector"
+                    maxlength="100"
+                    value="{{ old('custom_sector') }}"
                     class="
                         company-register__input
                         company-register__custom-sector
@@ -165,6 +184,8 @@
                     <input
                         id="company-state"
                         name="state"
+                        maxlength="100"
+                        value="{{ old('state') }}"
                         type="text"
                         class="company-register__input"
                         autocomplete="address-level1"
@@ -190,6 +211,8 @@
                     <input
                         id="company-city"
                         name="city"
+                        maxlength="100"
+                        value="{{ old('city') }}"
                         type="text"
                         class="company-register__input"
                         autocomplete="address-level2"
@@ -214,6 +237,8 @@
                 <input
                     id="company-email"
                     name="email"
+                    maxlength="255"
+                    value="{{ old('email') }}"
                     type="email"
                     class="company-register__input"
                     autocomplete="email"
@@ -236,11 +261,17 @@
                 <input
                     id="company-password"
                     name="password"
+                    minlength="8"
+                    maxlength="72"
                     type="password"
                     class="company-register__input"
                     autocomplete="new-password"
+                    aria-describedby="company-password-help"
                     required
                 >
+
+                <small id="company-password-help" class="auth-field-hint">Usa al menos 8 caracteres, una mayúscula y un número.</small>
+                <button type="button" class="auth-password-toggle" data-password-toggle="company-password" aria-label="Mostrar contraseña">Ver contraseña</button>
 
             </div>
 
@@ -258,11 +289,14 @@
                 <input
                     id="company-password-confirmation"
                     name="password_confirmation"
+                    minlength="8"
+                    maxlength="72"
                     type="password"
                     class="company-register__input"
                     autocomplete="new-password"
                     required
                 >
+                <button type="button" class="auth-password-toggle" data-password-toggle="company-password-confirmation" aria-label="Mostrar confirmación de contraseña">Ver contraseña</button>
 
             </div>
 
@@ -275,9 +309,12 @@
                     company-register__confirm
                 "
             >
-                Confirmar
+                Crear cuenta
             </button>
 
+            <p class="auth-feedback auth-feedback--error" data-sector-error role="alert" hidden>
+                Selecciona un sector antes de crear la cuenta.
+            </p>
         </form>
 
     </div>

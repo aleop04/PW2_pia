@@ -55,7 +55,9 @@
 
 
                     <!-- Formulario -->
-                    <form class="login-form">
+                    <form class="login-form" method="POST" action="{{ route('login.store') }}">
+                        @csrf
+                        @include('components.auth-feedback')
 
                         <!-- Email -->
                         <div class="login-form__field">
@@ -70,6 +72,8 @@
                             <input
                                 id="email"
                                 name="email"
+                                value="{{ old('email') }}"
+                                maxlength="255"
                                 type="email"
                                 class="login-form__input"
                                 placeholder="correoejemplo@gmail.com"
@@ -93,6 +97,7 @@
                             <input
                                 id="password"
                                 name="password"
+                                maxlength="72"
                                 type="password"
                                 class="login-form__input"
                                 placeholder="contraseñaejemplo"
@@ -105,7 +110,7 @@
 
                         <!-- Botón -->
                         <button
-                            type="button"
+                            type="submit"
                             class="login-form__button"
                         >
                             Acceder

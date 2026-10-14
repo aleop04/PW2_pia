@@ -4,11 +4,17 @@
 
 @section('content')
 
+@php
+    $selectedType = old('_account_type', 'account-type');
+    if (! in_array($selectedType, ['account-type', 'student', 'company'], true)) {
+        $selectedType = 'account-type';
+    }
+@endphp
+
 <main
     class="register-page"
     data-register-page
-    data-student-url="{{ route('student.home') }}"
-    data-company-url="{{ route('company.home') }}"
+    data-initial-screen="{{ $selectedType }}"
 >
 
     <div class="register-page__container">
@@ -25,13 +31,15 @@
             >
         </a>
 
+        <a class="register-page__login-link" href="{{ route('login') }}">¿Ya tienes cuenta? Entrar</a>
+
 
         <!-- Flujo completo del registro -->
         <div class="register-flow">
 
             <!-- =========================================
                  ETAPA PRINCIPAL
-                 Selector / estudiante / empresa + imagen
+                 Selector / estudiante / empresa + imagen; el pago pertenece a otro bloque
             ========================================== -->
             <div
                 class="
@@ -49,6 +57,7 @@
                         <!-- Selector de tipo de cuenta -->
                         <div
                             data-register-screen="account-type"
+                            @if ($selectedType !== 'account-type') hidden @endif
                         >
                             @include('auth.register.account-type')
                         </div>
@@ -57,7 +66,7 @@
                         <!-- Registro estudiante -->
                         <div
                             data-register-screen="student"
-                            hidden
+                            @if ($selectedType !== 'student') hidden @endif
                         >
                             @include('auth.register.student-form')
                         </div>
@@ -66,7 +75,7 @@
                         <!-- Registro empresa -->
                         <div
                             data-register-screen="company"
-                            hidden
+                            @if ($selectedType !== 'company') hidden @endif
                         >
                             @include('auth.register.company-form')
                         </div>
@@ -86,22 +95,6 @@
                     </div>
 
                 </div>
-
-            </div>
-
-
-            <!-- =========================================
-                 ETAPA MEMBRESÍA + PAGO
-            ========================================== -->
-            <div
-                class="
-                    register-flow__stage
-                    register-flow__stage--membership
-                "
-                data-register-membership
-            >
-
-                @include('auth.register.company-membership')
 
             </div>
 
