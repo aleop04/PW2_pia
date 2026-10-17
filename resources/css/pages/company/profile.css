@@ -31,6 +31,7 @@
     height: 209px;
 
     object-fit: cover;
+    background: #f1f1f1;
 
     border-radius: 33px;
 
@@ -250,6 +251,12 @@
 
     color: #000;
 }
+
+.company-profile__form-actions { justify-content: flex-start; }
+.nextstep-profile-form .company-profile__edit { background: #e9f8f2; color: #226b56; border: 1px solid #a5d9c7; }
+.nextstep-profile-form .company-profile__save { background: #169e74; color: #fff; }
+.nextstep-profile-form .company-profile__save:disabled { background: #cae6dc; color: #49695e; cursor: default; }
+.company-profile [readonly] { background: #f7faf9; }
 
 
 /* Descripción en modo lectura */

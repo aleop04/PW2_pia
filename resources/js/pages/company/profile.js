@@ -1,120 +1,19 @@
-const companyProfile = document.querySelector('[data-company-profile]')
+document.addEventListener('DOMContentLoaded', () => {
+    const page = document.querySelector('[data-company-profile]')
+    const form = page?.querySelector('[data-company-profile-form]')
+    if (!form) return
 
-if (companyProfile) {
-
-    const editButton = companyProfile.querySelector('[data-edit-button]')
-
-    const profileFields = companyProfile.querySelectorAll(
-        '[data-profile-field]'
-    )
-
-    const passwordFields = companyProfile.querySelector(
-        '[data-password-fields]'
-    )
-
-    const passwordInput = companyProfile.querySelector(
-        '[data-password]'
-    )
-
-    const passwordConfirmationInput = companyProfile.querySelector(
-        '[data-password-confirmation]'
-    )
-
-    const descriptionText = companyProfile.querySelector(
-        '[data-description-text]'
-    )
-
-    const descriptionInput = companyProfile.querySelector(
-        '[data-description-input]'
-    )
-
-
-    let isEditing = false
-
-
-    const resizeDescription = () => {
-
-        if (!descriptionInput) {
-            return
-        }
-
-        descriptionInput.style.height = 'auto'
-
-        descriptionInput.style.height =
-            `${descriptionInput.scrollHeight}px`
-
-    }
-
-
-    const enableEditMode = () => {
-
-        isEditing = true
-
-        profileFields.forEach((field) => {
-            field.disabled = false
-        })
-
-
-        passwordFields.hidden = false
-
-
-        descriptionText.hidden = true
-        descriptionInput.hidden = false
-
-
-        editButton.textContent = 'Guardar datos'
-
-
-        requestAnimationFrame(() => {
-            resizeDescription()
-        })
-
-    }
-
-
-    const disableEditMode = () => {
-
-        isEditing = false
-
-        profileFields.forEach((field) => {
-            field.disabled = true
-        })
-
-
-        passwordFields.hidden = true
-
-
-        passwordInput.value = ''
-        passwordConfirmationInput.value = ''
-
-
-        descriptionText.textContent = descriptionInput.value
-
-        descriptionInput.hidden = true
-        descriptionText.hidden = false
-
-
-        editButton.textContent = 'Editar datos'
-
-    }
-
-
-    editButton.addEventListener('click', () => {
-
-        if (isEditing) {
-            disableEditMode()
-
-            return
-        }
-
-        enableEditMode()
-
+    const fields = page.querySelectorAll('[data-company-editable]')
+    const logo = page.querySelector('[data-company-logo]')
+    const edit = page.querySelector('[data-company-edit]')
+    const save = page.querySelector('[data-company-save]')
+    edit.addEventListener('click', () => {
+        fields.forEach(field => { field.readOnly = false })
+        logo.disabled = false
+        save.disabled = false
+        edit.setAttribute('aria-pressed', 'true')
+        fields[fields.length - 1]?.focus()
     })
-
-
-    descriptionInput.addEventListener(
-        'input',
-        resizeDescription
-    )
-
-}
+    // Los errores de validación dejan los campos editables para corregirlos.
+    if (!save.disabled) edit.setAttribute('aria-pressed', 'true')
+})

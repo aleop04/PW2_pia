@@ -1,269 +1,90 @@
 @extends('layouts.company')
 
 @section('content')
-
 @php
-
-    /*
-    |--------------------------------------------------------------------------
-    | DATOS TEMPORALES DE LA EMPRESA
-    |--------------------------------------------------------------------------
-    |
-    | Después estos datos vendrán de la empresa autenticada en la base
-    | de datos.
-    |
-    */
-
-    $company = [
-        'name' => 'Nombre de empresa',
-        'rating' => '5.0',
-        'rfc' => '',
-        'sector' => '',
-        'email' => '',
-        'state' => '',
-        'city' => '',
-
-        'description' => 'Lorem ipsum dolor sit amet consectetur adipiscing elit ullamcorper, volutpat mattis purus potenti eleifend venenatis facilisi, donec lacus faucibus nam nostra nibh eget. Duis habitasse justo nibh non dapibus risus hendrerit pulvinar, cubilia faucibus dictumst penatibus nunc sagittis litora, auctor nostra mattis in mi taciti turpis. Semper congue convallis erat suscipit vehicula eget libero aliquam facilisis dictum a malesuada justo quis, consequat nullam litora nostra ridiculus morbi sed ligula risus felis taciti varius.
-
-Scelerisque habitasse quis nulla tellus curae interdum inceptos ligula, eros natoque suspendisse mauris rhoncus euismod iaculis imperdiet platea, egestas vulputate hac placerat fermentum lobortis sem. Mollis rutrum maecenas quam ut nec viverra nam felis accumsan odio, hendrerit feugiat fusce est phasellus praesent ac facilisis pretium, tempor cum dapibus aliquet libero pulvinar a taciti aenean. Dictum hac placerat ad vel mollis sollicitudin, blandit metus facilisis nulla arcu feugiat, curae enim aptent sodales rutrum.
-
-Mollis dictumst montes praesent potenti metus semper conubia scelerisque, porta feugiat ligula tortor pharetra auctor rhoncus, enim quam proin nisl litora dapibus tellus. Malesuada erat augue at congue molestie risus vestibulum libero, odio magna vel quisque senectus ac praesent montes facilisi, torquent semper mus lobortis in ullamcorper dis. A penatibus vel conubia bibendum congue nulla porttitor ultrices fringilla fames ornare, gravida quisque massa ad eleifend id venenatis urna volutpat viverra. Dis pretium risus tellus iaculis urna, libero sociis blandit cubilia malesuada, sagittis penatibus auctor ridiculus.',
+    // La sesión web recupera esta cuenta de la colección users de MongoDB.
+    $user = auth('web')->user();
+    $sectorLabels = [
+        'technology' => 'Tecnología e Informática',
+        'health' => 'Salud y Medicina',
+        'education' => 'Educación',
+        'finance' => 'Finanzas y Contabilidad',
+        'engineering' => 'Ingeniería',
+        'business' => 'Administración y Negocios',
+        'marketing' => 'Marketing y Publicidad',
+        'sales' => 'Ventas y Comercio',
+        'rh' => 'Recursos Humanos',
+        'law' => 'Derecho',
+        'architecture' => 'Arquitectura y Diseño',
+        'communication' => 'Comunicación y Medios',
+        'tourism' => 'Turismo, Hotelería y Gastronomía',
+        'manufacturing' => 'Industria y Manufactura',
+        'construction' => 'Construcción',
+        'logistics' => 'Logística y Transporte',
+        'energy' => 'Energía y Medio Ambiente',
+        'agriculture' => 'Agricultura y Agroindustria',
+        'science' => 'Ciencia e Investigación',
+        'government' => 'Sector Público y Gobierno',
+        'other' => 'Otro',
     ];
-
+    $sectorName = $user->sector === 'other'
+        ? $user->custom_sector
+        : ($sectorLabels[$user->sector] ?? $user->sector);
 @endphp
 
-
-<section
-    class="company-profile"
-    data-company-profile
->
-
-    {{-- CABECERA --}}
-
+<section class="company-profile" data-company-profile aria-labelledby="company-profile-title">
+    @include('components.flow-feedback')
     <div class="company-profile__header">
-
-        <img
-            class="company-profile__image"
-            src="https://placehold.co/215x209"
-            alt="Logo de {{ $company['name'] }}"
-        >
-
+        <img class="company-profile__image" src="{{ $user->logo_path ? Storage::disk('public')->url($user->logo_path) : asset('images/User.svg') }}" alt="Logo de {{ $user->company_name }}" />
         <div class="company-profile__identity">
-
-            <h1 class="company-profile__name">
-                {{ $company['name'] }}
-            </h1>
-
-            <div class="company-profile__rating">
-
-                <span>
-                    {{ $company['rating'] }}
-                </span>
-
-                <span class="company-profile__star">
-                    ★
-                </span>
-
-            </div>
-
+            <h1 class="company-profile__name" id="company-profile-title">{{ $user->company_name }}</h1>
+            <p>Datos de tu cuenta empresarial</p>
         </div>
-
     </div>
-
-
-    {{-- INFORMACIÓN --}}
 
     <div class="company-profile__content">
-
-
-        {{-- COLUMNA IZQUIERDA --}}
-
         <div class="company-profile__data">
-
             <div class="company-profile__fields">
-
-
-                {{-- RFC --}}
-
                 <div class="company-profile__field">
-
-                    <label for="company-rfc">
-                        RFC
-                    </label>
-
-                    <input
-                        id="company-rfc"
-                        class="company-profile__locked-input"
-                        type="text"
-                        value="{{ $company['rfc'] }}"
-                        disabled
-                    >
-
+                    <label for="company-rfc">RFC</label>
+                    <input id="company-rfc" class="company-profile__locked-input" type="text" value="{{ $user->rfc }}" disabled>
                 </div>
-
-
-                {{-- SECTOR --}}
-
                 <div class="company-profile__field">
-
-                    <label for="company-sector">
-                        Sector
-                    </label>
-
-                    <input
-                        id="company-sector"
-                        type="text"
-                        value="{{ $company['sector'] }}"
-                        disabled
-                        data-profile-field
-                    >
-
+                    <label for="company-sector">Sector</label>
+                    <input id="company-sector" class="company-profile__locked-input" type="text" value="{{ $sectorName }}" disabled>
                 </div>
-
-
-                {{-- CORREO --}}
-
                 <div class="company-profile__field">
-
-                    <label for="company-email">
-                        Correo electrónico
-                    </label>
-
-                    <input
-                        id="company-email"
-                        class="company-profile__locked-input"
-                        type="email"
-                        value="{{ $company['email'] }}"
-                        disabled
-                    >
-
+                    <label for="company-email">Correo electrónico</label>
+                    <input id="company-email" class="company-profile__locked-input" type="email" value="{{ $user->email }}" disabled>
                 </div>
-
-
-                {{-- ESTADO + CIUDAD --}}
-
                 <div class="company-profile__location">
-
                     <div class="company-profile__field">
-
-                        <label for="company-state">
-                            Estado
-                        </label>
-
-                        <input
-                            id="company-state"
-                            type="text"
-                            value="{{ $company['state'] }}"
-                            disabled
-                            data-profile-field
-                        >
-
+                        <label for="company-state">Estado</label>
+                        <input id="company-state" type="text" name="state" form="company-profile-form" value="{{ old('state', $user->state) }}" data-company-editable @unless($errors->any()) readonly @endunless>
                     </div>
-
-
                     <div class="company-profile__field">
-
-                        <label for="company-city">
-                            Ciudad
-                        </label>
-
-                        <input
-                            id="company-city"
-                            type="text"
-                            value="{{ $company['city'] }}"
-                            disabled
-                            data-profile-field
-                        >
-
+                        <label for="company-city">Ciudad</label>
+                        <input id="company-city" type="text" name="city" form="company-profile-form" value="{{ old('city', $user->city) }}" data-company-editable @unless($errors->any()) readonly @endunless>
                     </div>
-
                 </div>
-
-
-                {{-- CONTRASEÑAS: SOLO MODO EDICIÓN --}}
-
-                <div
-                    class="company-profile__password-fields"
-                    data-password-fields
-                    hidden
-                >
-
-                    <div class="company-profile__field">
-
-                        <label for="company-password">
-                            Contraseña
-                        </label>
-
-                        <input
-                            id="company-password"
-                            type="password"
-                            autocomplete="new-password"
-                            data-password
-                        >
-
-                    </div>
-
-
-                    <div class="company-profile__field">
-
-                        <label for="company-password-confirmation">
-                            Confirmar contraseña
-                        </label>
-
-                        <input
-                            id="company-password-confirmation"
-                            type="password"
-                            autocomplete="new-password"
-                            data-password-confirmation
-                        >
-
-                    </div>
-
-                </div>
-
             </div>
-
-
-            <button
-                class="company-profile__edit-button"
-                type="button"
-                data-edit-button
-            >
-                Editar datos
-            </button>
-
         </div>
-
-
-        {{-- COLUMNA DERECHA --}}
 
         <div class="company-profile__description">
-
-            <h2>
-                Descripción de la empresa
-            </h2>
-
-
-            {{-- MODO LECTURA --}}
-
-            <p
-                class="company-profile__description-text"
-                data-description-text
-            >{{ $company['description'] }}</p>
-
-
-            {{-- MODO EDICIÓN --}}
-
-            <textarea
-                class="company-profile__description-input"
-                data-description-input
-                hidden
-            >{{ $company['description'] }}</textarea>
-
+            <form id="company-profile-form" class="nextstep-profile-form" method="POST" action="{{ route('company.profile.update') }}" enctype="multipart/form-data" data-company-profile-form>
+                @csrf
+                <h2>Descripción de la empresa</h2>
+                <label for="company-description">Cuéntales a los estudiantes sobre tu empresa</label>
+                <p class="nextstep-profile-form__hint">¿Qué hacen y en qué rubro trabajan? ¿A quién ayudan y qué oportunidades ofrecen?</p>
+                <textarea id="company-description" name="description" maxlength="3000" rows="11" data-company-editable @unless($errors->any()) readonly @endunless placeholder="Somos una empresa dedicada al desarrollo de soluciones digitales para pequeños negocios. Diseñamos sitios web y sistemas que les ayudan a organizar sus ventas, atender clientes y simplificar tareas diarias. Trabajamos en el sector de tecnología y diseño. Buscamos estudiantes interesados en desarrollo de software y diseño de interfaces para participar en proyectos reales junto con nuestro equipo.">{{ old('description', $user->description) }}</textarea>
+                <label for="company-logo">Logo de la empresa (JPG, PNG o WebP, máximo 2 MB)</label>
+                <input id="company-logo" type="file" name="logo" accept="image/jpeg,image/png,image/webp" @unless($errors->any()) disabled @endunless data-company-logo>
+                <div class="nextstep-profile-form__actions company-profile__form-actions">
+                    <button type="button" class="company-profile__edit" data-company-edit>Editar</button>
+                    <button type="submit" class="company-profile__save" data-company-save @unless($errors->any()) disabled @endunless>Guardar cambios</button>
+                </div>
+            </form>
         </div>
-
     </div>
-
 </section>
-
 @endsection

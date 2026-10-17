@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CompanyVacancyController;
 use App\Http\Controllers\StudentVacancyController;
 use App\Http\Controllers\ApplicationController;
@@ -38,17 +39,17 @@ Route::prefix('student')
         Route::get('/', [StudentVacancyController::class, 'index'])
             ->name('home');
 
-        // Vista temporal hasta integrar el módulo persistente de guardados.
+        // vista temporal hasta integrar guardados
         Route::view('/bookmarks', 'student.bookmarks')
             ->name('bookmarks');
-
-        Route::get('/applications', [ApplicationController::class, 'studentIndex'])
-            ->name('applications.index');
-
-        // Vista temporal hasta integrar los perfiles persistentes.
-        Route::view('/profile', 'student.profile')
+        Route::get('/profile', [ProfileController::class, 'student'])
             ->name('profile');
-
+        Route::post('/profile', [ProfileController::class, 'updateStudent'])
+            ->name('profile.update');
+        Route::get('/profile/cv', [ProfileController::class, 'cv'])
+            ->name('profile.cv');
+        Route::get('/profile/kardex', [ProfileController::class, 'kardex'])
+            ->name('profile.kardex');
 
         Route::get('/vacancies/{id}', [StudentVacancyController::class, 'show'])
             ->name('vacancies.show');
@@ -107,9 +108,10 @@ Route::prefix('company')
         Route::view('/membership/change', 'company.change-membership')
             ->name('membership.change');
 
-        // Vista temporal hasta integrar los perfiles persistentes.
-        Route::view('/profile', 'company.profile')
+        Route::get('/profile', [ProfileController::class, 'company'])
             ->name('profile');
+        Route::post('/profile', [ProfileController::class, 'updateCompany'])
+            ->name('profile.update');
 
 
     });

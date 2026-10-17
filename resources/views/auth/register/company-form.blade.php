@@ -85,8 +85,6 @@
                     required
                 >
 
-                <small id="company-rfc-help" class="auth-field-hint">12 caracteres. Ejemplo: ABC010203AB1.</small>
-
             </div>
 
 
@@ -258,20 +256,36 @@
                     Contraseña
                 </label>
 
-                <input
-                    id="company-password"
-                    name="password"
-                    minlength="8"
-                    maxlength="72"
-                    type="password"
-                    class="company-register__input"
-                    autocomplete="new-password"
-                    aria-describedby="company-password-help"
-                    required
-                >
+                <div class="auth-password-field">
 
-                <small id="company-password-help" class="auth-field-hint">Usa al menos 8 caracteres, una mayúscula y un número.</small>
-                <button type="button" class="auth-password-toggle" data-password-toggle="company-password" aria-label="Mostrar contraseña">Ver contraseña</button>
+                    <input
+                        id="company-password"
+                        name="password"
+                        minlength="8"
+                        maxlength="72"
+                        type="password"
+                        class="company-register__input auth-password-input"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="auth-password-eye"
+                        data-password-toggle="company-password"
+                        aria-label="Mostrar contraseña"
+                    >
+                        <img
+                            src="{{ asset('images/EyeForm.svg') }}"
+                            data-password-icon
+                            data-eye-visible="{{ asset('images/EyeForm.svg') }}"
+                            data-eye-hidden="{{ asset('images/Eyeoff.svg') }}"
+                            alt=""
+                            class="auth-password-eye__icon"
+                        >
+                    </button>
+
+                </div>
 
             </div>
 
@@ -286,17 +300,36 @@
                     Confirmar contraseña
                 </label>
 
-                <input
-                    id="company-password-confirmation"
-                    name="password_confirmation"
-                    minlength="8"
-                    maxlength="72"
-                    type="password"
-                    class="company-register__input"
-                    autocomplete="new-password"
-                    required
-                >
-                <button type="button" class="auth-password-toggle" data-password-toggle="company-password-confirmation" aria-label="Mostrar confirmación de contraseña">Ver contraseña</button>
+                <div class="auth-password-field">
+
+                    <input
+                        id="company-password-confirmation"
+                        name="password_confirmation"
+                        minlength="8"
+                        maxlength="72"
+                        type="password"
+                        class="company-register__input auth-password-input"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="auth-password-eye"
+                        data-password-toggle="company-password-confirmation"
+                        aria-label="Mostrar contraseña"
+                    >
+                        <img
+                            src="{{ asset('images/EyeForm.svg') }}"
+                            data-password-icon
+                            data-eye-visible="{{ asset('images/EyeForm.svg') }}"
+                            data-eye-hidden="{{ asset('images/Eyeoff.svg') }}"
+                            alt=""
+                            class="auth-password-eye__icon"
+                        >
+                    </button>
+
+                </div>
 
             </div>
 

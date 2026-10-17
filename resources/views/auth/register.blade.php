@@ -31,8 +31,6 @@
             >
         </a>
 
-        <a class="register-page__login-link" href="{{ route('login') }}">¿Ya tienes cuenta? Entrar</a>
-
 
         <!-- Flujo completo del registro -->
         <div class="register-flow">

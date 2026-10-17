@@ -4,7 +4,7 @@
 
 .student-profile-card {
     width: 296px;
-    height: 694px;
+    min-height: 694px;
 
     position: relative;
 
@@ -27,12 +27,12 @@
 
 .student-profile-card__background {
     width: 288px;
-    height: 617px;
 
     position: absolute;
 
     left: 50%;
     top: 77px;
+    bottom: 0;
 
     transform: translateX(-50%);
 
@@ -90,7 +90,59 @@
     width: 199px;
     height: 198px;
 
+    position: relative;
+
     flex-shrink: 0;
+}
+
+/* EDICIÓN DE AVATAR */
+
+.student-profile-card__avatar-container {
+    width: 199px;
+    height: 198px;
+
+    position: relative;
+
+    border-radius: 50%;
+
+    overflow: hidden;
+}
+
+.student-profile-card__avatar-overlay {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.45);
+
+    color: #ffffff;
+
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+
+    opacity: 0;
+    pointer-events: none;
+
+    cursor: pointer;
+
+    transition: opacity 0.2s ease;
+}
+
+.student-profile-card--editing
+.student-profile-card__avatar-container:hover
+.student-profile-card__avatar-overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.student-profile-card__avatar-input {
+    display: none;
 }
 
 .student-profile-card__avatar {
@@ -343,9 +395,9 @@
 
 .student-profile-card--editing {
     height: auto;
-    min-height: 915px;
+    min-height: 0;
 
-    padding-bottom: 30px;
+    padding-bottom: 25px;
 
     box-sizing: border-box;
 }
@@ -596,4 +648,38 @@
 
 .student-profile-card__edit-input--readonly:focus {
     border-color: rgba(0, 0, 0, 0.13);
+}
+
+.student-profile-card__document {
+    text-decoration: none;
+}
+
+.student-profile-card__document:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.student-profile-card__document:disabled:hover {
+    background: rgba(255, 255, 255, 0.55);
+    transform: none;
+}
+
+/* ARCHIVOS EDITABLES */
+
+.student-profile-card__edit-file {
+    width: 182px;
+
+    color: #000000;
+
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 12px;
+}
+
+.student-profile-card__document {
+    text-decoration: none;
+}
+
+.student-profile-card__document--disabled {
+    opacity: 0.5;
+    cursor: default;
 }

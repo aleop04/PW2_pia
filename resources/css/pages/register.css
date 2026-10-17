@@ -25,8 +25,6 @@
   align-items: flex-start;
 }
 
-.register-page__login-link { position: absolute; top: 0; right: 0; padding: 10px 18px; border-radius: 16px; background: #111; color: #fff; text-decoration: none; font: 700 16px 'Nunito Sans', sans-serif; }
-.auth-password-toggle { margin-top: 7px; padding: 4px 0; border: 0; background: transparent; color: #4c6674; font: 600 14px 'Nunito Sans', sans-serif; cursor: pointer; }
 .register-page__left, .student-register, .company-register { height: auto; min-height: 831px; }
 .register-page__content { align-items: flex-start; }
 
@@ -1799,4 +1797,52 @@
     opacity: 0;
 
     transition: none;
+}
+
+/* PASSWORD */
+
+.auth-password-field {
+  width: 100%;
+  position: relative;
+}
+
+.auth-password-input {
+  padding-right: 42px;
+}
+
+.auth-password-eye {
+  width: 35px;
+  height: 35px;
+
+  position: absolute;
+  top: 0;
+  right: 4px;
+
+  padding: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: transparent;
+  border: none;
+
+  cursor: pointer;
+}
+
+.auth-password-eye__icon {
+  width: 20px;
+  height: 20px;
+
+  display: block;
+
+  object-fit: contain;
+
+  pointer-events: none;
+}
+
+.auth-password-eye:focus-visible {
+  outline: 2px solid rgba(0, 0, 0, 0.2);
+  outline-offset: -4px;
+  border-radius: 7px;
 }
