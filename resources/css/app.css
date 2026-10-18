@@ -12,6 +12,7 @@
 
 /* Páginas */
 @import './pages/home.css';
+@import './pages/errors.css';
 @import './pages/login.css';
 @import './pages/register.css';
 @import './pages/student/index.css';
