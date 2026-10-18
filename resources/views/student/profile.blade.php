@@ -2,183 +2,84 @@
 
 @section('content')
 
-@php
-
-    /*
-    |--------------------------------------------------------------------------
-    | DATOS TEMPORALES DEL ESTUDIANTE
-    |--------------------------------------------------------------------------
-    |
-    | Después vendrán de la base de datos.
-    |
-    */
-
-    $student = [
-        'firstName' => 'Nombre',
-        'paternalSurname' => 'Apellido Paterno',
-        'maternalSurname' => 'Apellido Materno',
-
-        'email' => 'correo@gmail.com',
-        'phone' => '1234567890',
-        'location' => 'Ubicación',
-
-        'birthDate' => '2003-01-01',
-        'birthDateValue' => '2003-01-01',
-
-        'avatar' => null,
-    ];
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | POSTULACIONES ENVIADAS
-    |--------------------------------------------------------------------------
-    |
-    | Por ahora cada elemento contiene los datos de la vacante.
-    | Después estas vacantes vendrán de las postulaciones del estudiante.
-    |
-    */
-
-    $applications = [
-
-        [
-            'id' => 1,
-
-            'title' => 'Título de la vacante',
-            'company' => 'Nombre de la empresa',
-            'location' => 'Ubicación',
-
-            'salary' => 'Sueldo',
-            'modality' => 'Modalidad',
-
-            'benefits' => [
-                'Prestaciones',
-                'Prestaciones',
-                'Prestaciones',
-                'Prestaciones',
-            ],
-        ],
-
-        [
-            'id' => 2,
-
-            'title' => 'Título de la vacante',
-            'company' => 'Nombre de la empresa',
-            'location' => 'Ubicación',
-
-            'salary' => 'Sueldo',
-            'modality' => 'Modalidad',
-
-            'benefits' => [
-                'Prestaciones',
-                'Prestaciones',
-                'Prestaciones',
-                'Prestaciones',
-            ],
-        ],
-
-        [
-            'id' => 3,
-
-            'title' => 'Título de la vacante',
-            'company' => 'Nombre de la empresa',
-            'location' => 'Ubicación',
-
-            'salary' => 'Sueldo',
-            'modality' => 'Modalidad',
-
-            'benefits' => [
-                'Prestaciones',
-                'Prestaciones',
-                'Prestaciones',
-                'Prestaciones',
-            ],
-        ],
-
-        [
-            'id' => 4,
-
-            'title' => 'Título de la vacante',
-            'company' => 'Nombre de la empresa',
-            'location' => 'Ubicación',
-
-            'salary' => 'Sueldo',
-            'modality' => 'Modalidad',
-
-            'benefits' => [
-                'Prestaciones',
-                'Prestaciones',
-                'Prestaciones',
-                'Prestaciones',
-            ],
-        ],
-
-    ];
-
-@endphp
-
-
 <main
     class="student-profile-page"
     data-student-profile-page
 >
 
-    {{-- PERFIL  --}}
-
+    {{-- Perfil --}}
     <x-student.profile-card
         :student="$student"
     />
 
 
-    {{-- POSTULACIONES ENVIADAS --}}
+    {{-- Vacantes guardadas y postulaciones --}}
+    <section
+        class="student-profile-page__applications"
+        aria-labelledby="student-profile-saved-title"
+    >
 
-        <section class="student-profile-page__applications">
+        <h1
+            class="student-profile-page__title"
+            id="student-profile-saved-title"
+        >
+            Vacantes guardadas
+        </h1>
 
-            <h1 class="student-profile-page__title">
-                Postulaciones enviadas
-            </h1>
+        <div class="student-profile-page__saved-grid">
 
+            @forelse ($savedVacancies as $vacancy)
 
-            {{-- VACANTES GUARDADAS --}}
-
-            <div class="student-profile-page__applications-actions">
-
-                <a
-                    href="{{ route('student.bookmarks') }}"
-                    class="student-profile-page__bookmarks"
-                >
-                    <img
-                        src="{{ asset('images/Bookmark.svg') }}"
-                        alt=""
-                        class="student-profile-page__bookmarks-icon"
-                    >
-
-                    <span>
-                        Vacantes guardadas
-                    </span>
-                </a>
-
-            </div>
-
-
-            {{-- POSTULACIONES --}}
-
-            <div class="student-profile-page__application-grid">
-
-                @foreach ($applications as $application)
-
+                <div class="student-profile-page__saved-item">
                     <x-vacancy-card
-                        :vacancy="$application"
-                        :href="route('student.vacancies.show', [
-                            'id' => $application['id']
-                        ])"
+                        :vacancy="$vacancy"
+                        :href="route('student.vacancies.show', ['id' => $vacancy['id']])"
                     />
+                    <form method="POST" action="{{ route('student.bookmarks.destroy', $vacancy['id']) }}">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="student-profile-page__remove-bookmark">
+                            Quitar de guardadas
+                        </button>
+                    </form>
+                </div>
 
-                @endforeach
+            @empty
 
-            </div>
+                <p class="student-profile-page__empty">
+                    Aún no has guardado vacantes.
+                </p>
 
-        </section>
+            @endforelse
+
+        </div>
+
+        <h2 class="student-profile-page__subtitle" id="student-profile-applications-title">
+            Mis postulaciones
+        </h2>
+
+        <div class="student-profile-page__application-grid">
+
+            @forelse ($applications as $application)
+
+                <x-vacancy-card
+                    :vacancy="$application"
+                    :href="route('student.vacancies.show', [
+                        'id' => $application['id']
+                    ])"
+                />
+
+            @empty
+
+                <p class="student-profile-page__empty">
+                    Aún no has enviado postulaciones.
+                </p>
+
+            @endforelse
+
+        </div>
+
+    </section>
 
 </main>
 

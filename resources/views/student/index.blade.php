@@ -20,12 +20,17 @@
 <main
     class="student-home"
     data-student-home
+    data-bookmark-icon="{{ asset('images/Bookmark.svg') }}"
+    data-bookmark-filled-icon="{{ asset('images/BookmarkFilled.svg') }}"
     data-vacancy-detail-url="{{ route('student.vacancies.show', ['id' => '__ID__']) }}"
     data-company-profile-url="{{ route('student.companies.show', ['id' => '__ID__']) }}"
+    data-bookmark-url="{{ route('student.bookmarks.store', ['id' => '__ID__']) }}"
     data-application-url="{{ route('student.applications.store', ['id' => '__ID__']) }}"
     data-initial-vacancy-id="{{ old('vacancy_id') }}"
     data-open-on-error="{{ $errors->any() ? 'true' : 'false' }}"
 >
+
+    <p class="flow-feedback flow-feedback--error" data-bookmark-feedback hidden></p>
 
     {{-- Datos temporales para JavaScript --}}
 

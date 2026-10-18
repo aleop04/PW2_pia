@@ -17,14 +17,11 @@
 @import './pages/student/index.css';
 @import './pages/student/company-profile.css';
 @import './pages/student/profile.css';
-@import './pages/student/bookmarks.css';
-@import './pages/student/applications.css';
 @import './pages/company/profile.css';
 @import './pages/company/membership.css';
 @import './pages/company/change-membership.css';
 @import './pages/company/home.css';
 @import './pages/company/dashboard.css';
-@import './pages/company/applications.css';
 @import './pages/company/applicant-profile.css';
 @import './pages/company/ratings.css';
 @import './pages/company/vacancy-create.css';

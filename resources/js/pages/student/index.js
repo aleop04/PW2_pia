@@ -320,6 +320,20 @@ document.addEventListener('DOMContentLoaded', () => {
             applicationForm.querySelector('[name="vacancy_id"]').value = String(vacancy.id)
         }
 
+        const bookmark = getPreviewElement('[data-bookmark-form]')
+        if (bookmark) {
+            bookmark.action = page.dataset.bookmarkUrl.replace('__ID__', vacancy.id)
+            bookmark.dataset.vacancyId = String(vacancy.id)
+            bookmark.dataset.saved = String(Boolean(vacancy.saved))
+            bookmark.querySelector('[data-bookmark-method]').disabled = !vacancy.saved
+            const button = bookmark.querySelector('[data-bookmark-button]')
+            const label = vacancy.saved ? 'Quitar de guardadas' : 'Guardar vacante'
+            button.setAttribute('aria-label', label)
+            button.setAttribute('aria-pressed', String(Boolean(vacancy.saved)))
+            button.title = label
+            bookmark.querySelector('[data-bookmark-image]').src = vacancy.saved ? page.dataset.bookmarkFilledIcon : page.dataset.bookmarkIcon
+        }
+
         /* PRESTACIONES */
 
         const benefitsContainer =
@@ -390,5 +404,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const initial = vacancies.find(item => String(item.id) === page.dataset.initialVacancyId)
         if (initial) updatePreview(initial)
     }
+
+    page.addEventListener('bookmark-changed', event => {
+        const vacancy = vacancies.find(item => String(item.id) === String(event.detail.id))
+        if (vacancy) vacancy.saved = event.detail.saved
+    })
 
 })

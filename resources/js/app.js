@@ -1,6 +1,7 @@
 import './pages/register.js';
 import './pages/student/index.js'
 import './pages/student/vacancy-detail.js'
+import './pages/student/bookmarks.js'
 import './pages/student/company-profile.js'
 import './pages/student/profile.js'
 import './pages/company/profile'
