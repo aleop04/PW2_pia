@@ -40,6 +40,9 @@ Route::prefix('student')
         Route::get('/', [StudentVacancyController::class, 'index'])
             ->name('home');
 
+        // vista temporal hasta integrar guardados
+        Route::view('/bookmarks', 'student.bookmarks')
+            ->name('bookmarks');
         Route::get('/profile', [ProfileController::class, 'student'])
             ->name('profile');
         Route::post('/profile', [ProfileController::class, 'updateStudent'])

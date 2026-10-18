@@ -73,7 +73,7 @@ class ApplicationController extends Controller
             $student->update(['cv_path' => $path, 'cv_name' => $name]);
         }
 
-        return redirect()->route('student.applications.index')
+        return redirect()->route('student.profile')
             ->with('success', 'Postulación exitosa.');
     }
 
@@ -93,26 +93,6 @@ class ApplicationController extends Controller
         });
 
         return view('company.applications', compact('applications'));
-    }
-
-    public function studentIndex(Request $request)
-    {
-        $applications = Application::where('student_user_id', (string) $request->user()->getKey())
-            ->latest()->get()->map(function (Application $record) {
-                $vacancy = Vacancy::find($record->vacancy_id);
-                $company = $vacancy ? User::find($vacancy->company_user_id) : null;
-
-                return [
-                    'vacancy_id' => $record->vacancy_id,
-                    'title' => $vacancy?->title ?? 'Vacante retirada',
-                    'company' => $company?->company_name ?? 'Empresa no disponible',
-                    'date' => $record->created_at?->format('d/m/Y'),
-                    'status' => $record->status,
-                    'available' => $vacancy?->status === 'published' && $company !== null,
-                ];
-            });
-
-        return view('student.applications', compact('applications'));
     }
 
     public function show(Request $request, string $id)

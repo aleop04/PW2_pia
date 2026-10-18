@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Application;
+<<<<<<< HEAD
 use App\Models\Bookmark;
+=======
+>>>>>>> origin/main
 use App\Models\User;
 use App\Models\Vacancy;
 use App\Models\StudentProfile;
@@ -84,6 +87,9 @@ class ProfileController extends Controller
             'student',
             'applications',
             'savedVacancies'
+        return view('student.profile', compact(
+            'student',
+            'applications'
         ));
     }
 

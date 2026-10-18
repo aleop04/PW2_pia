@@ -94,8 +94,64 @@
    GRIDS DE VACANTES
 ======================================== */
 
+<<<<<<< HEAD
 .student-profile-page__application-grid,
 .student-profile-page__saved-grid {
+=======
+.student-profile-page__bookmarks {
+    min-height: 42px;
+
+    padding: 8px 18px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    border-radius: 16px;
+
+    background: #000000;
+
+    color: #ffffff;
+
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    box-sizing: border-box;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.student-profile-page__bookmarks:hover {
+    transform: translateY(-2px);
+}
+
+.student-profile-page__bookmarks:active {
+    transform: translateY(0);
+}
+
+.student-profile-page__bookmarks-icon {
+    width: 22px;
+    height: 22px;
+
+    flex-shrink: 0;
+
+    filter: brightness(0) invert(1);
+}
+
+
+/* ========================================
+   GRID DE POSTULACIONES
+======================================== */
+
+.student-profile-page__application-grid {
+>>>>>>> origin/main
     width: 100%;
 
     display: grid;

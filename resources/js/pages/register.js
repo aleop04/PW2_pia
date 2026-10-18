@@ -37,15 +37,26 @@ function initRegisterPage() {
     page.querySelectorAll('[data-account-type]').forEach((button) => {
         button.addEventListener('click', () => showScreen(button.dataset.accountType));
     });
+
     page.querySelectorAll('[data-password-toggle]').forEach((button) => {
         button.addEventListener('click', () => {
             const input = document.getElementById(button.dataset.passwordToggle);
-            if (!input) return;
-            const visible = input.type === 'password';
-            input.type = visible ? 'text' : 'password';
-            button.textContent = visible ? 'Ocultar contraseña' : 'Ver contraseña';
+            const icon = button.querySelector('[data-password-icon]');
+
+            if (!input || !icon) return;
+
+            const isHidden = input.type === 'password';
+
+            input.type = isHidden ? 'text' : 'password';
+            icon.src = isHidden ? icon.dataset.eyeHidden : icon.dataset.eyeVisible;
+
+            button.setAttribute(
+                'aria-label',
+                isHidden ? 'Ocultar contraseña' : 'Mostrar contraseña'
+            );
         });
     });
+
     page.querySelectorAll('[data-student-back-account], [data-company-back]').forEach((button) => {
         button.addEventListener('click', () => showScreen('account-type', true, true));
     });

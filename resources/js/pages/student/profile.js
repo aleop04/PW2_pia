@@ -18,6 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
+    const form = card.querySelector(
+        '[data-profile-form]'
+    )
+
     const background = card.querySelector(
         '[data-profile-background]'
     )
@@ -46,21 +50,43 @@ document.addEventListener('DOMContentLoaded', () => {
         '[data-profile-edit-actions]'
     )
 
-    const confirmButton = card.querySelector(
-        '[data-profile-confirm]'
-    )
-
     const cancelButton = card.querySelector(
         '[data-profile-cancel]'
     )
 
+    const password = card.querySelector(
+        '[data-profile-password]'
+    )
 
-    const originalValues = {}
+    const passwordConfirmation = card.querySelector(
+        '[data-profile-password-confirmation]'
+    )
+
+    const avatarInput = card.querySelector(
+        '[data-profile-avatar-input]'
+    )
+
+    const avatarContainer = card.querySelector(
+        '[data-profile-avatar-container]'
+    )
 
 
     const profileInputs = card.querySelectorAll(
         '[data-profile-input]'
     )
+
+    const profileFiles = card.querySelectorAll(
+        '[data-profile-file]'
+    )
+
+    const originalValues = {}
+
+    let originalAvatarHtml = ''
+
+
+    if (avatarContainer) {
+        originalAvatarHtml = avatarContainer.innerHTML
+    }
 
 
     const setEditing = (editing) => {
@@ -70,19 +96,34 @@ document.addEventListener('DOMContentLoaded', () => {
             editing
         )
 
-        background.classList.toggle(
+        background?.classList.toggle(
             'student-profile-card__background--editing',
             editing
         )
 
-        viewName.hidden = editing
-        viewInfo.hidden = editing
+        if (viewName) {
+            viewName.hidden = editing
+        }
 
-        editName.hidden = !editing
-        editInfo.hidden = !editing
+        if (viewInfo) {
+            viewInfo.hidden = editing
+        }
 
-        editButton.hidden = editing
-        editActions.hidden = !editing
+        if (editName) {
+            editName.hidden = !editing
+        }
+
+        if (editInfo) {
+            editInfo.hidden = !editing
+        }
+
+        if (editButton) {
+            editButton.hidden = editing
+        }
+
+        if (editActions) {
+            editActions.hidden = !editing
+        }
 
     }
 
@@ -115,13 +156,118 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
+    const clearFiles = () => {
+
+        profileFiles.forEach((input) => {
+
+            input.value = ''
+
+        })
+
+    }
+
+
+    const clearPasswords = () => {
+
+        if (password) {
+            password.value = ''
+        }
+
+        if (passwordConfirmation) {
+            passwordConfirmation.value = ''
+            passwordConfirmation.setCustomValidity('')
+        }
+
+    }
+
+
+    const restoreAvatar = () => {
+
+        if (!avatarContainer) {
+            return
+        }
+
+        avatarContainer.innerHTML = originalAvatarHtml
+
+    }
+
+
+    const previewAvatar = (file) => {
+
+        if (
+            !file ||
+            !avatarContainer
+        ) {
+            return
+        }
+
+        const reader = new FileReader()
+
+        reader.addEventListener('load', () => {
+
+            const image = avatarContainer.querySelector(
+                '[data-profile-avatar-image]'
+            )
+
+            const emptyAvatar = avatarContainer.querySelector(
+                '[data-profile-avatar-empty]'
+            )
+
+            if (emptyAvatar) {
+                emptyAvatar.remove()
+            }
+
+            if (image) {
+
+                image.src = reader.result
+
+                return
+            }
+
+            const newImage = document.createElement('img')
+
+            newImage.src = reader.result
+            newImage.alt = 'Foto del perfil'
+            newImage.className = 'student-profile-card__avatar'
+            newImage.dataset.profileAvatarImage = ''
+
+            avatarContainer.prepend(newImage)
+
+        })
+
+        reader.readAsDataURL(file)
+
+    }
+
+
     editButton?.addEventListener(
         'click',
         () => {
 
             saveOriginalValues()
 
+            if (avatarContainer) {
+                originalAvatarHtml = avatarContainer.innerHTML
+            }
+
             setEditing(true)
+
+        }
+    )
+
+
+    avatarInput?.addEventListener(
+        'change',
+        () => {
+
+            const file =
+                avatarInput.files?.[0]
+
+            if (!file) {
+                return
+            }
+
+            previewAvatar(file)
 
         }
     )
@@ -132,26 +278,45 @@ document.addEventListener('DOMContentLoaded', () => {
         () => {
 
             restoreOriginalValues()
-
+            clearFiles()
+            clearPasswords()
+            restoreAvatar()
             setEditing(false)
 
         }
     )
 
 
-    confirmButton?.addEventListener(
-        'click',
+    password?.addEventListener(
+        'input',
         () => {
 
-            const password =
-                card.querySelector(
-                    '[data-profile-password]'
-                )
+            passwordConfirmation?.setCustomValidity('')
 
-            const passwordConfirmation =
-                card.querySelector(
-                    '[data-profile-password-confirmation]'
-                )
+        }
+    )
+
+
+    passwordConfirmation?.addEventListener(
+        'input',
+        () => {
+
+            passwordConfirmation.setCustomValidity('')
+
+        }
+    )
+
+
+    form?.addEventListener(
+        'submit',
+        (event) => {
+
+            if (
+                !password ||
+                !passwordConfirmation
+            ) {
+                return
+            }
 
 
             if (
@@ -159,82 +324,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 passwordConfirmation.value
             ) {
 
-                alert(
+                event.preventDefault()
+
+                passwordConfirmation.setCustomValidity(
                     'Las contraseñas no coinciden.'
                 )
 
-                return
+                passwordConfirmation.reportValidity()
+
             }
 
-
-            const profileData = {}
-
-            profileInputs.forEach((input) => {
-
-                profileData[
-                    input.dataset.profileInput
-                ] = input.value
-
-            })
-
-
-            profileData.password =
-                password.value
-
-            profileData.passwordConfirmation =
-                passwordConfirmation.value
-
-
-            console.log(
-                'Datos actualizados del estudiante:',
-                profileData
-            )
-
-
-            /*
-             * Más adelante estos datos se enviarán
-             * al backend para actualizar el perfil.
-             */
-
-
-            setEditing(false)
-
         }
     )
 
 
-    /*  DOCUMENTOS  */
+    if (
+        card.dataset.initialEditing === 'true'
+    ) {
 
-    const kardexButton = card.querySelector(
-        '[data-profile-kardex]'
-    )
+        saveOriginalValues()
 
-    const cvButton = card.querySelector(
-        '[data-profile-cv]'
-    )
-
-
-    kardexButton?.addEventListener(
-        'click',
-        () => {
-
-            console.log(
-                'Abrir Kardex del estudiante'
-            )
-
+        if (avatarContainer) {
+            originalAvatarHtml = avatarContainer.innerHTML
         }
-    )
 
+        setEditing(true)
 
-    cvButton?.addEventListener(
-        'click',
-        () => {
-
-            console.log(
-                'Abrir CV del estudiante'
-            )
-
-        }
-    )
+    }
 
 })

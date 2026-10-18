@@ -30,15 +30,6 @@
     display: none;
 }
 
-.auth-field-hint {
-    display: block;
-    margin-top: 5px;
-    color: #606574;
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 12px;
-    line-height: 1.4;
-}
-
 .app-header__logout {
     margin: 0;
     display: flex;
