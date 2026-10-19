@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Application;
-<<<<<<< HEAD
 use App\Models\Bookmark;
-=======
->>>>>>> origin/main
 use App\Models\User;
 use App\Models\Vacancy;
 use App\Models\StudentProfile;
@@ -87,9 +84,6 @@ class ProfileController extends Controller
             'student',
             'applications',
             'savedVacancies'
-        return view('student.profile', compact(
-            'student',
-            'applications'
         ));
     }
 
@@ -171,9 +165,17 @@ class ProfileController extends Controller
     public function cv(Request $request)
     {
         $user = $request->user();
-        abort_unless($user->cv_path && Storage::disk('local')->exists($user->cv_path), 404);
 
-        return Storage::disk('local')->download($user->cv_path, $user->cv_name ?? 'CV.pdf');
+        abort_unless(
+            $user->cv_path &&
+            Storage::disk('local')->exists($user->cv_path),
+            404
+        );
+
+        return Storage::disk('local')->download(
+            $user->cv_path,
+            $user->cv_name ?? 'CV.pdf'
+        );
     }
 
     public function kardex(Request $request)
@@ -197,7 +199,9 @@ class ProfileController extends Controller
 
     public function company(Request $request)
     {
-        return view('company.profile', ['user' => $request->user()]);
+        return view('company.profile', [
+            'user' => $request->user()
+        ]);
     }
 
     public function updateCompany(Request $request)
@@ -211,13 +215,30 @@ class ProfileController extends Controller
 
         $user = $request->user();
         $oldLogo = $user->logo_path;
-        $user->fill(collect($data)->only(['description', 'state', 'city'])->all());
-        if ($request->hasFile('logo')) {
-            $user->logo_path = $request->file('logo')->store('company-logos', 'public');
-        }
-        $user->save();
-        if ($request->hasFile('logo') && $oldLogo) Storage::disk('public')->delete($oldLogo);
 
-        return back()->with('success', 'Perfil empresarial guardado.');
+        $user->fill(
+            collect($data)->only([
+                'description',
+                'state',
+                'city'
+            ])->all()
+        );
+
+        if ($request->hasFile('logo')) {
+            $user->logo_path = $request
+                ->file('logo')
+                ->store('company-logos', 'public');
+        }
+
+        $user->save();
+
+        if ($request->hasFile('logo') && $oldLogo) {
+            Storage::disk('public')->delete($oldLogo);
+        }
+
+        return back()->with(
+            'success',
+            'Perfil empresarial guardado.'
+        );
     }
 }
