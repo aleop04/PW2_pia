@@ -45,7 +45,11 @@ Artisan::command('nextstep:prepare-opportunities', function () {
             ['company_user_id' => 1, 'created_at' => -1],
             ['name' => 'applications_company_recent']
         );
-        $this->info('Colecciones e índices de vacantes y postulaciones preparados.');
+        $connection->getCollection('bookmarks')->createIndex(
+            ['student_user_id' => 1, 'vacancy_id' => 1],
+            ['unique' => true, 'name' => 'bookmarks_student_vacancy_unique']
+        );
+        $this->info('Colecciones e índices de vacantes, postulaciones y guardados preparados.');
         return 0;
     } catch (\Throwable $exception) {
         $this->error('No se pudieron preparar los índices. Comprueba MongoDB y revisa postulaciones duplicadas.');

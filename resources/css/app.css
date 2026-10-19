@@ -12,12 +12,12 @@
 
 /* Páginas */
 @import './pages/home.css';
+@import './pages/errors.css';
 @import './pages/login.css';
 @import './pages/register.css';
 @import './pages/student/index.css';
 @import './pages/student/company-profile.css';
 @import './pages/student/profile.css';
-@import './pages/student/bookmarks.css';
 @import './pages/company/profile.css';
 @import './pages/company/membership.css';
 @import './pages/company/change-membership.css';

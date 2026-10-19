@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Application;
+use App\Models\Bookmark;
 use App\Models\User;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
@@ -14,14 +15,17 @@ class StudentVacancyController extends Controller
     {
         $appliedIds = Application::where('student_user_id', (string) $request->user()->getKey())
             ->pluck('vacancy_id')->map(fn ($id) => (string) $id)->all();
+        $savedIds = Bookmark::where('student_user_id', (string) $request->user()->getKey())
+            ->pluck('vacancy_id')->map(fn ($id) => (string) $id)->all();
         $vacancies = Vacancy::where('status', 'published')->latest()->get()
-            ->map(function (Vacancy $vacancy) use ($appliedIds) {
+            ->map(function (Vacancy $vacancy) use ($appliedIds, $savedIds) {
                 $company = User::find($vacancy->company_user_id);
                 if (!$company) {
                     return null;
                 }
                 $card = $vacancy->card($company);
                 $card['applied'] = in_array($card['id'], $appliedIds, true);
+                $card['saved'] = in_array($card['id'], $savedIds, true);
                 return $card;
             })->filter()->values();
 
@@ -36,7 +40,11 @@ class StudentVacancyController extends Controller
         $student = $request->user();
         $alreadyApplied = Application::where('vacancy_id', $id)
             ->where('student_user_id', (string) $student->getKey())->exists();
-        return view('student.vacancy-detail', compact('vacancy', 'student', 'alreadyApplied'));
+        $saved = Bookmark::where('vacancy_id', $id)
+            ->where('student_user_id', (string) $student->getKey())
+            ->exists();
+
+        return view('student.vacancy-detail', compact('vacancy', 'student', 'alreadyApplied', 'saved'));
     }
 
     public function company(string $id)

@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Application;
+<<<<<<< HEAD
+use App\Models\Bookmark;
+=======
+>>>>>>> origin/main
 use App\Models\User;
 use App\Models\Vacancy;
 use App\Models\StudentProfile;
@@ -59,6 +63,30 @@ class ProfileController extends Controller
             ->filter()
             ->values();
 
+        $savedVacancies = Bookmark::where(
+            'student_user_id',
+            (string) $user->getKey()
+        )
+            ->latest()
+            ->get()
+            ->map(function (Bookmark $bookmark) {
+                $vacancy = Vacancy::where('_id', $bookmark->vacancy_id)
+                    ->where('status', 'published')
+                    ->first();
+
+                $company = $vacancy
+                    ? User::find($vacancy->company_user_id)
+                    : null;
+
+                return $company ? $vacancy->card($company) : null;
+            })
+            ->filter()
+            ->values();
+
+        return view('student.profile', compact(
+            'student',
+            'applications',
+            'savedVacancies'
         return view('student.profile', compact(
             'student',
             'applications'

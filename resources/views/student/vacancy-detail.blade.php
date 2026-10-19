@@ -5,8 +5,11 @@
 <main
     class="vacancy-detail-page"
     data-student-vacancy-detail
+    data-bookmark-icon="{{ asset('images/Bookmark.svg') }}"
+    data-bookmark-filled-icon="{{ asset('images/BookmarkFilled.svg') }}"
     data-open-on-error="{{ $errors->any() ? 'true' : 'false' }}"
 >
+    <p class="flow-feedback flow-feedback--error" data-bookmark-feedback hidden></p>
     @include('components.flow-feedback')
 
 
@@ -19,6 +22,8 @@
     >
 
         <x-slot:actions>
+
+            <x-student.bookmark-form :id="$vacancy['id']" :saved="$saved" variant="vacancy-detail" />
 
             {{-- POSTULARSE --}}
 

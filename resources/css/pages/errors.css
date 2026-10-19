@@ -1,0 +1,72 @@
+.nextstep-error {
+    min-height: 100vh;
+    padding: 32px 24px 72px;
+    background: linear-gradient(180deg, #fff 4%, #edfff9 70%, #dcf8ef 100%);
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.nextstep-error__shell { width: min(100%, 990px); margin: 0 auto; }
+.nextstep-error__brand { display: inline-flex; align-items: center; min-height: 44px; }
+.nextstep-error__brand img { width: 155px; height: auto; }
+
+.nextstep-error__card {
+    width: min(100%, 720px);
+    margin: clamp(55px, 11vh, 125px) auto 0;
+    padding: clamp(32px, 6vw, 72px);
+    border: 1px solid rgba(30, 212, 161, .28);
+    border-radius: 34px;
+    background: rgba(255, 255, 255, .86);
+    box-shadow: 0 18px 55px rgba(41, 123, 101, .12);
+    text-align: center;
+}
+
+.nextstep-error__code {
+    display: inline-block;
+    min-width: 84px;
+    padding: 8px 20px;
+    border-radius: 99px;
+    background: #fce2f5;
+    color: #88446f;
+    font: 800 22px/1 'Nunito', sans-serif;
+}
+
+.nextstep-error__card h1 {
+    margin: 25px 0 16px;
+    color: #172b25;
+    font: 700 clamp(32px, 5vw, 46px)/1.15 'Nunito', sans-serif;
+}
+
+.nextstep-error__card p {
+    max-width: 500px;
+    margin: 0 auto;
+    color: #566c63;
+    font-size: 18px;
+    line-height: 1.55;
+}
+
+.nextstep-error__action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    margin-top: 32px;
+    padding: 10px 26px;
+    border-radius: 18px;
+    background: #1baf83;
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background .2s ease, transform .2s ease;
+}
+
+.nextstep-error__action:hover { background: #14835f; transform: translateY(-2px); }
+.nextstep-error__action:focus-visible, .nextstep-error__brand:focus-visible {
+    outline: 3px solid #88446f;
+    outline-offset: 4px;
+}
+
+@media (max-width: 600px) {
+    .nextstep-error { padding: 22px 16px 50px; }
+    .nextstep-error__card { margin-top: 55px; border-radius: 24px; }
+    .nextstep-error__card p { font-size: 16px; }
+}

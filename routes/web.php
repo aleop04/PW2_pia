@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CompanyVacancyController;
 use App\Http\Controllers\StudentVacancyController;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\BookmarkController;
 
 
 /* Páginas públicas */
@@ -54,6 +55,10 @@ Route::prefix('student')
         Route::get('/vacancies/{id}', [StudentVacancyController::class, 'show'])
             ->name('vacancies.show');
         Route::post('/vacancies/{id}/applications', [ApplicationController::class, 'store'])->name('applications.store');
+        Route::post('/vacancies/{id}/bookmark', [BookmarkController::class, 'store'])
+            ->name('bookmarks.store');
+        Route::delete('/vacancies/{id}/bookmark', [BookmarkController::class, 'destroy'])
+            ->name('bookmarks.destroy');
         
         Route::get('/companies/{id}', [StudentVacancyController::class, 'company'])
             ->name('companies.show');

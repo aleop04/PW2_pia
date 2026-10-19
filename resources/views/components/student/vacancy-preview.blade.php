@@ -49,6 +49,8 @@
 
             </div>
 
+            <x-student.bookmark-form :id="$vacancy['id']" :saved="$vacancy['saved'] ?? false" />
+
         </div>
 
     </header>
