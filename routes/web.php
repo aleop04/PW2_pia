@@ -1,12 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\CompanyVacancyController;
-use App\Http\Controllers\StudentVacancyController;
-use App\Http\Controllers\ApplicationController;
-use App\Http\Controllers\BookmarkController;
+use Illuminate\Support\Facades\Route; // crea rutas
+use App\Http\Controllers\Api\AuthController; // controlador d login registro y logout
+use App\Http\Controllers\ProfileController; // controlador perfiles
+use App\Http\Controllers\CompanyVacancyController; // controlador vacantes d empresas
+use App\Http\Controllers\StudentVacancyController; // controlador vacantes d estudiante
+use App\Http\Controllers\ApplicationController; // controlador postulaciones
+use App\Http\Controllers\BookmarkController; // controlador vacantes guardadas
 
 
 /* Páginas públicas */
