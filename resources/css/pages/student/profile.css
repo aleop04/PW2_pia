@@ -56,11 +56,15 @@
 
 .student-profile-page__subtitle {
     width: 100%;
+
     margin: 52px 0 20px;
+
     color: #000000;
+
     font-family: 'Nunito', sans-serif;
     font-size: 32px;
     font-weight: 700;
+
     line-height: 1.1;
     text-align: center;
 }
@@ -82,6 +86,7 @@
     line-height: 1.6;
 
     text-align: center;
+
     transform: translateX(55%);
 }
 
@@ -90,14 +95,6 @@
    ACCIONES DE POSTULACIONES
 ======================================== */
 
-/* ========================================
-   GRIDS DE VACANTES
-======================================== */
-
-<<<<<<< HEAD
-.student-profile-page__application-grid,
-.student-profile-page__saved-grid {
-=======
 .student-profile-page__bookmarks {
     min-height: 42px;
 
@@ -147,11 +144,11 @@
 
 
 /* ========================================
-   GRID DE POSTULACIONES
+   GRIDS DE VACANTES
 ======================================== */
 
-.student-profile-page__application-grid {
->>>>>>> origin/main
+.student-profile-page__application-grid,
+.student-profile-page__saved-grid {
     width: 100%;
 
     display: grid;
@@ -165,16 +162,24 @@
     row-gap: 42px;
 }
 
+
+/* ========================================
+   VACANTES GUARDADAS
+======================================== */
+
 .student-profile-page__saved-item {
     min-width: 0;
+
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
     gap: 12px;
 }
 
 .student-profile-page__saved-item .vacancy-card {
     max-width: 100%;
+
     height: auto;
     min-height: 251px;
 }
@@ -182,9 +187,13 @@
 .student-profile-page__remove-bookmark {
     border: 1px solid #a5d9c7;
     border-radius: 12px;
+
     padding: 10px 16px;
+
     background: #e9f8f2;
+
     color: #226b56;
+
     font: 700 15px 'Nunito Sans', sans-serif;
 }
 
