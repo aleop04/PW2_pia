@@ -197,6 +197,7 @@ class ProfileController extends Controller
         );
     }
 
+
     public function company(Request $request)
     {
         return view('company.profile', [
@@ -207,22 +208,72 @@ class ProfileController extends Controller
     public function updateCompany(Request $request)
     {
         $data = $request->validate([
-            'description' => ['nullable', 'string', 'max:3000'],
-            'state' => ['nullable', 'string', 'max:100'],
-            'city' => ['nullable', 'string', 'max:100'],
-            'logo' => ['nullable', 'image', 'mimes:jpeg,png,webp', 'max:2048'],
+            'sector' => [
+                'required',
+                'string',
+                'in:technology,health,education,finance,engineering,business,marketing,sales,rh,law,architecture,communication,tourism,manufacturing,construction,logistics,energy,agriculture,science,government,other',
+            ],
+
+            'custom_sector' => [
+                'nullable',
+                'required_if:sector,other',
+                'string',
+                'max:100',
+            ],
+
+            'state' => [
+                'nullable',
+                'string',
+                'max:100',
+            ],
+
+            'city' => [
+                'nullable',
+                'string',
+                'max:100',
+            ],
+
+            'description' => [
+                'nullable',
+                'string',
+                'max:3000',
+            ],
+
+            'password' => [
+                'nullable',
+                'string',
+                'min:8',
+                'max:72',
+                'confirmed',
+            ],
+
+            'logo' => [
+                'nullable',
+                'image',
+                'mimes:jpeg,png,webp',
+                'max:2048',
+            ],
         ]);
 
         $user = $request->user();
+
         $oldLogo = $user->logo_path;
 
-        $user->fill(
-            collect($data)->only([
-                'description',
-                'state',
-                'city'
-            ])->all()
-        );
+        $user->fill([
+            'sector' => $data['sector'],
+
+            'custom_sector' => $data['sector'] === 'other'
+                ? $data['custom_sector']
+                : null,
+
+            'state' => $data['state'] ?? null,
+            'city' => $data['city'] ?? null,
+            'description' => $data['description'] ?? null,
+        ]);
+
+        if (!empty($data['password'])) {
+            $user->password = $data['password'];
+        }
 
         if ($request->hasFile('logo')) {
             $user->logo_path = $request
@@ -238,7 +289,7 @@ class ProfileController extends Controller
 
         return back()->with(
             'success',
-            'Perfil empresarial guardado.'
+            'Perfil empresarial actualizado.'
         );
     }
 }

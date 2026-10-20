@@ -25,6 +25,7 @@
 @import './pages/company/dashboard.css';
 @import './pages/company/applicant-profile.css';
 @import './pages/company/ratings.css';
+@import './pages/company/applications.css';
 @import './pages/company/vacancy-create.css';
 @import './pages/company/vacancy-review.css';
 @import './pages/company/vacancies.css';

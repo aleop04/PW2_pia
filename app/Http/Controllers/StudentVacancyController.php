@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Application;
 use App\Models\Bookmark;
 use App\Models\User;
+use App\Models\CompanyProfileView;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -47,9 +48,18 @@ class StudentVacancyController extends Controller
         return view('student.vacancy-detail', compact('vacancy', 'student', 'alreadyApplied', 'saved'));
     }
 
-    public function company(string $id)
+    public function company(Request $request, string $id)
     {
         $record = User::where('role', 'company')->where('_id', $id)->firstOrFail();
+        
+        $studentId = (string) $request->user()->getKey();
+
+        CompanyProfileView::firstOrCreate([
+            'company_user_id' => (string) $record->getKey(),
+            'student_user_id' => $studentId,
+            'viewed_on' => now()->format('Y-m-d'),
+        ]);
+
         $sectorLabels = [
             'technology' => 'Tecnología e Informática', 'health' => 'Salud y Medicina',
             'education' => 'Educación', 'finance' => 'Finanzas y Contabilidad',

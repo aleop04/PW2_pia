@@ -93,7 +93,7 @@ Route::prefix('company')
         Route::get('/vacancies/{id}', [CompanyVacancyController::class, 'show'])
             ->name('vacancies.show');
 
-        Route::get('/applications', [ApplicationController::class, 'index'])
+        Route::get('/applications', [ApplicationController::class, 'companyIndex'])
             ->name('applications');
 
         Route::get('/applications/{id}', [ApplicationController::class, 'show'])

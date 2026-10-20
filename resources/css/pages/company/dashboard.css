@@ -3,457 +3,629 @@
 ======================================== */
 
 .company-dashboard {
-  width: 1067px;
-  max-width: calc(100% - 80px);
+    width: 1067px;
+    max-width: calc(100% - 80px);
 
-  margin: 45px auto 60px;
+    margin: 45px auto 60px;
 
-  transform: none;
-  
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 
-  gap: 36px;
+    gap: 36px;
 
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
+
 
 /* ========================================
    HEADER
 ======================================== */
 
 .company-dashboard__header {
-  width: 100%;
-  min-height: 122px;
+    width: 100%;
+    min-height: 122px;
 
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 
-  gap: 13px;
+    gap: 13px;
 }
+
 
 .company-dashboard .company-section-title {
-  width: 100%;
+    width: 100%;
 
-  margin: 0;
+    margin: 0;
 
-  color: #000;
+    color: #000;
 
-  font-family: 'Nunito', sans-serif;
-  font-size: 48px;
-  font-weight: 700;
-  line-height: 1.15;
+    font-family: 'Nunito', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.15;
 }
+
 
 .company-dashboard__welcome {
-  width: 100%;
+    width: 100%;
 
-  margin: 0;
+    margin: 0;
 
-  color: #d4cdd3;
+    color: #d4cdd3;
 
-  font-family: 'Nunito', sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.4;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
 }
+
 
 /* ========================================
    MAIN CONTENT
 ======================================== */
 
 .company-dashboard__content {
-  width: 1048px;
-  max-width: 100%;
+    width: 1048px;
+    max-width: 100%;
 
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 
-  gap: 38px;
+    gap: 38px;
 }
+
 
 /* ========================================
    SUMMARY CARDS
 ======================================== */
 
 .company-dashboard__summary {
-  width: 100%;
+    width: 100%;
 
-  display: grid;
-  grid-template-columns: repeat(3, 314px);
+    display: grid;
+    grid-template-columns: repeat(3, 314px);
 
-  gap: 53px;
+    gap: 53px;
 }
+
 
 .company-dashboard__summary-card {
-  width: 314px;
-  height: 164px;
+    width: 314px;
+    height: 164px;
 
-  padding: 26px 23px 18px;
+    padding: 26px 23px 18px;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-  gap: 19px;
+    gap: 19px;
 
-  box-sizing: border-box;
+    box-sizing: border-box;
 
-  border-radius: 29px;
+    border-radius: 29px;
 
-  background: linear-gradient(
-    180deg,
-    #ffb7f3 0%,
-    #f291e2 100%
-  );
+    background: linear-gradient(
+        180deg,
+        #ffb7f3 0%,
+        #f291e2 100%
+    );
 }
+
 
 /* ========================================
    SUMMARY TOP
 ======================================== */
 
 .company-dashboard__summary-top {
-  width: 100%;
-  height: 58px;
+    width: 100%;
+    height: 58px;
 
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-
-  gap: 23px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 
 .company-dashboard__summary-value {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  gap: 16px;
+    gap: 16px;
 }
+
 
 .company-dashboard__summary-value span {
-  min-width: 78px;
+    min-width: 78px;
 
-  color: #fff;
+    color: #fff;
 
-  font-family: 'Nunito', sans-serif;
-  font-size: 64px;
-  font-weight: 700;
-  line-height: 1;
+    font-family: 'Nunito', sans-serif;
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1;
 
-  text-align: center;
+    text-align: center;
 }
+
 
 .company-dashboard__summary-icon {
-  width: 58px;
-  height: 58px;
+    width: 58px;
+    height: 58px;
 
-  flex-shrink: 0;
+    flex-shrink: 0;
 
-  object-fit: contain;
+    object-fit: contain;
 }
 
-/* ========================================
-   TREND
-======================================== */
-
-.company-dashboard__trend {
-  height: 18px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  gap: 6px;
-}
-
-.company-dashboard__trend-icon {
-  width: 21px;
-  height: 18px;
-
-  flex-shrink: 0;
-
-  object-fit: contain;
-}
-
-.company-dashboard__trend span {
-  color: #fff;
-
-  font-family: 'Nunito', sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 18px;
-}
 
 /* ========================================
    SUMMARY DESCRIPTION
 ======================================== */
 
 .company-dashboard__summary-description {
-  width: 100%;
+    width: 100%;
 
-  margin: 0;
+    margin: 0;
 
-  color: #fff;
+    color: #fff;
 
-  font-family: 'Nunito', sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1.25;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.25;
 
-  text-align: center;
+    text-align: center;
 }
+
 
 /* ========================================
    BOTTOM
 ======================================== */
 
 .company-dashboard__bottom {
-  width: 100%;
+    width: 100%;
 
-  display: grid;
-  grid-template-columns: 314px 680px;
+    display: grid;
+    grid-template-columns: 314px 680px;
 
-  gap: 53px;
+    gap: 53px;
 
-  align-items: start;
+    align-items: start;
 }
+
 
 /* ========================================
    REACH CARD
 ======================================== */
 
 .company-dashboard__reach-card {
-  width: 314px;
-  height: 318px;
+    width: 314px;
+    height: 318px;
 
-  padding: 29px 31px;
+    padding: 29px 31px;
 
-  box-sizing: border-box;
+    box-sizing: border-box;
 
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 
-  border-radius: 29px;
+    border-radius: 29px;
 
-  background: linear-gradient(
-    180deg,
-    rgba(89, 230, 255, 0.78) 0%,
-    rgba(65, 142, 242, 0.88) 100%
-  );
+    background: linear-gradient(
+        180deg,
+        rgba(89, 230, 255, 0.78) 0%,
+        rgba(65, 142, 242, 0.88) 100%
+    );
 }
+
 
 .company-dashboard__reach-graphic {
-  width: 252px;
-  height: 142px;
+    width: 252px;
+    height: 142px;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 
 .company-dashboard__reach-icon {
-  width: 126px;
-  height: auto;
+    width: 126px;
+    height: auto;
 
-  object-fit: contain;
+    object-fit: contain;
 }
+
 
 .company-dashboard__reach-info {
-  width: 100%;
+    width: 100%;
 
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 
-  gap: 17px;
+    gap: 17px;
 }
+
 
 .company-dashboard__reach-info strong {
-  color: #fff;
+    max-width: 100%;
 
-  font-family: 'Nunito', sans-serif;
-  font-size: 64px;
-  font-weight: 700;
-  line-height: 1;
+    color: #fff;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+
 
 .company-dashboard__reach-info span {
-  color: #fff;
+    color: #fff;
 
-  font-family: 'Nunito', sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1.2;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.2;
 }
+
 
 /* ========================================
    APPLICATIONS CARD
 ======================================== */
 
 .company-dashboard__applications-card {
-  width: 680px;
-  height: 318px;
+    width: 680px;
+    height: 318px;
 
-  padding: 28px 39px 28px 38px;
+    padding: 28px 39px 28px 38px;
 
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 
-  gap: 26px;
+    gap: 26px;
 
-  box-sizing: border-box;
+    box-sizing: border-box;
 
-  border-radius: 29px;
+    border-radius: 29px;
 
-  background: linear-gradient(
-    180deg,
-    rgba(89, 230, 255, 0.78) 0%,
-    rgba(65, 142, 242, 0.88) 100%
-  );
+    background: linear-gradient(
+        180deg,
+        rgba(89, 230, 255, 0.78) 0%,
+        rgba(65, 142, 242, 0.88) 100%
+    );
 }
+
 
 /* ========================================
    APPLICATIONS HEADER
 ======================================== */
 
 .company-dashboard__applications-header {
-  width: 100%;
+    width: 100%;
 
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
 
-  gap: 20px;
+    gap: 20px;
 }
+
 
 .company-dashboard__applications-header h2 {
-  margin: 0;
+    margin: 0;
 
-  color: #fff;
+    color: #fff;
 
-  font-family: 'Nunito', sans-serif;
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 27px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 27px;
 }
+
 
 .company-dashboard__applications-link {
-  display: inline-flex;
-  align-items: center;
+    display: inline-flex;
+    align-items: center;
 
-  gap: 2px;
+    gap: 2px;
 
-  color: #fff;
+    color: #fff;
 
-  font-family: 'Nunito', sans-serif;
-  font-size: 15px;
-  font-weight: 700;
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
 
-  text-decoration: none;
+    text-decoration: none;
 
-  white-space: nowrap;
+    white-space: nowrap;
 }
+
 
 .company-dashboard__applications-link img {
-  width: 19px;
-  height: 19px;
+    width: 19px;
+    height: 19px;
 
-  object-fit: contain;
+    object-fit: contain;
 }
+
 
 .company-dashboard__applications-link:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
+
 
 /* ========================================
    APPLICATIONS TABLE
 ======================================== */
 
 .company-dashboard__applications-table {
-  width: 100%;
+    width: 100%;
 
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Cada fila usa las mismas columnas */
+
+/* Cada fila utiliza las mismas columnas */
+
 .company-dashboard__application-row {
-  width: 100%;
+    width: 100%;
+    min-height: 43px;
 
-  min-height: 43px;
+    display: grid;
+    grid-template-columns:
+        minmax(90px, 1.3fr)
+        minmax(100px, 1fr)
+        minmax(70px, 0.8fr)
+        minmax(75px, 0.7fr);
 
-  display: grid;
-  grid-template-columns: 71px 110px 45px 65px;
-  justify-content: space-between;
-  align-items: center;
+    column-gap: 20px;
 
-  border-bottom: 1px solid #fff;
+    align-items: center;
 
-  box-sizing: border-box;
+    border-bottom: 1px solid #fff;
 
-  color: #fff;
+    box-sizing: border-box;
 
-  font-family: 'Nunito Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 300;
+    color: #fff;
+
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
 }
 
-/* Encabezados */
+
+/* ========================================
+   TABLE HEADER
+======================================== */
+
 .company-dashboard__application-row--header {
-  min-height: 34px;
+    min-height: 34px;
 
-  font-size: 16px;
-  font-weight: 600;
+    font-size: 16px;
+    font-weight: 600;
 }
 
-/* Última fila sin línea inferior */
+
+/* ========================================
+   APPLICATION TEXT
+======================================== */
+
+.company-dashboard__application-name,
+.company-dashboard__application-cv {
+    min-width: 0;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* ========================================
+   LAST ROW
+======================================== */
+
 .company-dashboard__application-row:last-child {
-  border-bottom: none;
+    border-bottom: none;
 }
+
+
+/* ========================================
+   EMPTY APPLICATIONS
+======================================== */
+
+.company-dashboard__empty {
+    width: 100%;
+    min-height: 80px;
+
+    display: flex;
+    align-items: center;
+
+    color: #fff;
+
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+}
+
 
 /* ========================================
    APPLICATION STATUS
 ======================================== */
 
 .company-dashboard__status {
-  width: max-content;
-  min-width: 63px;
-  height: 19px;
+    width: max-content;
+    min-width: 63px;
+    height: 19px;
 
-  padding: 2px 6px;
+    padding: 2px 6px;
 
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
 
-  justify-self: start;
+    justify-self: start;
 
-  box-sizing: border-box;
+    box-sizing: border-box;
 
-  border-radius: 15px;
+    border-radius: 15px;
 
-  color: #fff;
+    color: #fff;
 
-  font-family: 'Nunito Sans', sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  line-height: 1;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
 
-  text-align: center;
+    text-align: center;
 }
+
 
 .company-dashboard__status--accepted {
-  background: #33ff00;
+    background: #33ff00;
 }
+
 
 .company-dashboard__status--rejected {
-  background: #ff0004;
+    background: #ff0004;
 }
 
+
 .company-dashboard__status--pending {
-  background: #ffcc00;
+    background: #ffcc00;
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 1250px) {
+
+    .company-dashboard {
+        width: calc(100% - 60px);
+        max-width: 1048px;
+    }
+
+
+    .company-dashboard__summary {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+
+        gap: 30px;
+    }
+
+
+    .company-dashboard__summary-card {
+        width: 100%;
+    }
+
+
+    .company-dashboard__bottom {
+        grid-template-columns: minmax(280px, 314px) minmax(0, 1fr);
+
+        gap: 30px;
+    }
+
+
+    .company-dashboard__reach-card,
+    .company-dashboard__applications-card {
+        width: 100%;
+    }
+
+}
+
+
+@media (max-width: 950px) {
+
+    .company-dashboard {
+        width: calc(100% - 40px);
+
+        margin-top: 35px;
+    }
+
+
+    .company-dashboard__summary {
+        grid-template-columns: 1fr;
+    }
+
+
+    .company-dashboard__summary-card {
+        max-width: 400px;
+    }
+
+
+    .company-dashboard__bottom {
+        grid-template-columns: 1fr;
+    }
+
+
+    .company-dashboard__reach-card {
+        width: 100%;
+        max-width: 400px;
+    }
+
+
+    .company-dashboard__applications-card {
+        width: 100%;
+
+        overflow-x: auto;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .company-dashboard {
+        width: calc(100% - 32px);
+
+        margin-top: 30px;
+
+        gap: 30px;
+    }
+
+
+    .company-dashboard .company-section-title {
+        font-size: 38px;
+    }
+
+
+    .company-dashboard__header {
+        min-height: auto;
+    }
+
+
+    .company-dashboard__summary-value span,
+    .company-dashboard__reach-info strong {
+        font-size: 52px;
+    }
+
+
+    .company-dashboard__applications-card {
+        padding: 24px;
+    }
+
+
+    .company-dashboard__applications-header {
+        align-items: flex-start;
+        flex-direction: column;
+
+        gap: 10px;
+    }
+
+
+    .company-dashboard__application-row {
+        min-width: 560px;
+    }
+
 }

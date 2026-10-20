@@ -6,7 +6,6 @@
     $vacancies = collect($applications)
         ->unique('vacancyId')
         ->values();
-
 @endphp
 
 
@@ -16,6 +15,8 @@
 >
     @include('components.flow-feedback')
 
+
+    {{-- ENCABEZADO --}}
     <div class="company-applications__header">
 
         <h1 class="company-applications__title">
@@ -23,37 +24,37 @@
         </h1>
 
 
-        {{-- FILTRO --}}
-
+        {{-- FILTRO POR VACANTE --}}
         <div
             class="company-applications__filter"
             data-vacancy-filter
         >
             <div class="company-applications__dropdown">
 
+                {{-- BOTÓN DEL FILTRO --}}
                 <button
                     type="button"
                     class="company-applications__filter-trigger"
                     data-vacancy-trigger
                     aria-expanded="false"
                 >
-
                     <span data-vacancy-trigger-text>
                         Todas las vacantes
                     </span>
 
-                    <span class="company-applications__filter-arrow">
-                    </span>
-
+                    <span
+                        class="company-applications__filter-arrow"
+                        aria-hidden="true"
+                    ></span>
                 </button>
 
 
+                {{-- OPCIONES --}}
                 <div
                     class="company-applications__filter-menu"
                     data-vacancy-menu
                     hidden
                 >
-
                     <button
                         type="button"
                         class="
@@ -83,12 +84,12 @@
                 </div>
 
             </div>
-
         </div>
 
     </div>
 
 
+    {{-- SOLICITUDES --}}
     <div
         class="company-applications__grid"
         data-applications-grid
@@ -102,12 +103,17 @@
             )
 
         @empty
-            <p>Aún no recibes postulaciones.</p>
+
+            <p class="company-applications__empty">
+                Aún no recibes postulaciones.
+            </p>
+
         @endforelse
 
     </div>
 
 
+    {{-- SIN RESULTADOS DEL FILTRO --}}
     <p
         class="company-applications__empty"
         data-applications-empty

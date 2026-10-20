@@ -2,28 +2,89 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CompanyReview;
 use App\Models\User;
 use App\Models\Vacancy;
 use App\Models\Application;
 use Illuminate\Http\Request;
+use App\Models\CompanyProfileView;
 
 class CompanyVacancyController extends Controller
 {
     public function dashboard(Request $request)
     {
         $id = (string) $request->user()->getKey();
-        $vacancyCount = Vacancy::where('company_user_id', $id)->where('status', 'published')->count();
-        $records = Application::where('company_user_id', $id)->latest()->get();
-        $applicationCount = $records->count();
-        $applications = $records->take(5)->map(fn (Application $record) => [
-            'name' => $record->full_name,
-            'date' => $record->created_at?->format('d/m/Y'),
-            'cv' => $record->cv_name,
-            'status' => ['pending' => 'Pendiente', 'accepted' => 'Aceptada', 'rejected' => 'Rechazada'][$record->status] ?? $record->status,
-            'statusClass' => $record->status,
-        ]);
 
-        return view('company.index', compact('vacancyCount', 'applicationCount', 'applications'));
+        /* Todas las solicitudes recibidas por esta empresa */
+        $records = Application::where('company_user_id', $id)
+            ->latest()
+            ->get();
+
+
+        /* Estudiantes únicos que han visitado el perfil */
+        $profileVisitorCount = CompanyProfileView::where(
+            'company_user_id',
+            $id
+        )
+            ->pluck('student_user_id')
+            ->filter()
+            ->unique()
+            ->count();
+
+
+        /* Alcance total: Cada registro representa como máximo una visita por estudiante, empresa y día */
+        $profileReachCount = CompanyProfileView::where(
+            'company_user_id',
+            $id
+        )->count();
+
+
+        /* Estudiantes únicos que se han postulado */
+        $applicationUserCount = $records
+            ->pluck('student_user_id')
+            ->filter()
+            ->unique()
+            ->count();
+
+
+        /* Estudiantes únicos que han valorado a la empresa */
+        $reviewerCount = CompanyReview::where(
+            'company_user_id',
+            $id
+        )
+            ->pluck('student_user_id')
+            ->filter()
+            ->unique()
+            ->count();
+
+
+        /* Últimas solicitudes para la tabla */
+        $applications = $records
+            ->take(4)
+            ->map(fn (Application $record) => [
+                'name' => $record->full_name,
+
+                'date' => $record->created_at?->format('d/m/Y'),
+
+                'cv' => $record->cv_name,
+
+                'status' => [
+                    'pending' => 'Pendiente',
+                    'accepted' => 'Aceptada',
+                    'rejected' => 'Rechazada',
+                ][$record->status] ?? $record->status,
+
+                'statusClass' => $record->status,
+            ]);
+
+
+        return view('company.index', compact(
+            'profileVisitorCount',
+            'profileReachCount',
+            'applicationUserCount',
+            'reviewerCount',
+            'applications'
+        ));
     }
 
     private function owned(Request $request, string $id): Vacancy

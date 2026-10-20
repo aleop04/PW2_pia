@@ -4,17 +4,30 @@
 
 @php
     $companyName = auth('web')->user()->company_name;
+
     $summaryCards = [
-        ['icon' => 'Eye.svg', 'value' => $vacancyCount, 'description' => 'Vacantes publicadas'],
-        ['icon' => 'Users.svg', 'value' => $applicationCount, 'description' => 'Postulaciones recibidas'],
+        [
+            'icon' => 'Eye.svg',
+            'value' => $profileVisitorCount,
+            'description' => 'Usuarios que han entrado a tu perfil',
+        ],
+        [
+            'icon' => 'Users.svg',
+            'value' => $applicationUserCount,
+            'description' => 'Usuarios que se han postulado en tus vacantes',
+        ],
+        [
+            'icon' => 'Starwhite.svg',
+            'value' => $reviewerCount,
+            'description' => 'Usuarios que han valorado tus vacantes',
+        ],
     ];
 @endphp
 
+
 <section class="company-dashboard">
 
-
-    {{--  ENCABEZADO  --}}
-
+    {{-- ENCABEZADO --}}
     <div class="company-dashboard__header">
 
         <h1 class="company-section-title">
@@ -22,20 +35,19 @@
         </h1>
 
         <p class="company-dashboard__welcome">
-            Bienvenido, {{ $companyName }}. Aquí puedes revisar tus vacantes publicadas
-            y las postulaciones recibidas.
+            Bienvenido, {{ $companyName }}. Dentro de esta sección tendrás
+            acceso a la información de interacción que los usuarios tienen
+            con tu cuenta y las postulaciones que compartas.
         </p>
 
     </div>
 
 
-    {{--  CONTENIDO  --}}
-
+    {{-- CONTENIDO --}}
     <div class="company-dashboard__content">
 
 
         {{-- TARJETAS DE ESTADÍSTICAS --}}
-
         <div class="company-dashboard__summary">
 
             @foreach ($summaryCards as $card)
@@ -43,7 +55,6 @@
                 <article class="company-dashboard__summary-card">
 
                     <div class="company-dashboard__summary-top">
-
 
                         <div class="company-dashboard__summary-value">
 
@@ -59,7 +70,6 @@
 
                         </div>
 
-
                     </div>
 
                     <p class="company-dashboard__summary-description">
@@ -73,13 +83,11 @@
         </div>
 
 
-        {{--  BLOQUES INFERIORES  --}}
-
+        {{-- BLOQUES INFERIORES --}}
         <div class="company-dashboard__bottom">
 
 
             {{-- ALCANCE TOTAL --}}
-
             <article class="company-dashboard__reach-card">
 
                 <div class="company-dashboard__reach-graphic">
@@ -92,15 +100,14 @@
 
                 </div>
 
-
                 <div class="company-dashboard__reach-info">
 
                     <strong>
-                        {{ $vacancyCount }}
+                        {{ $profileReachCount }}
                     </strong>
 
                     <span>
-                        Vacantes publicadas
+                        Total de alcance de tu perfil
                     </span>
 
                 </div>
@@ -109,16 +116,15 @@
 
 
             {{-- SOLICITUDES RECIBIDAS --}}
-
             <article class="company-dashboard__applications-card">
 
 
+                {{-- CABECERA --}}
                 <div class="company-dashboard__applications-header">
 
                     <h2>
                         Solicitudes recibidas
                     </h2>
-
 
                     <a
                         href="{{ route('company.applications') }}"
@@ -140,12 +146,10 @@
 
 
                 {{-- TABLA --}}
-
                 <div class="company-dashboard__applications-table">
 
 
                     {{-- ENCABEZADOS --}}
-
                     <div
                         class="
                             company-dashboard__application-row
@@ -162,12 +166,14 @@
 
 
                     {{-- FILAS --}}
-
                     @forelse ($applications as $application)
 
                         <div class="company-dashboard__application-row">
 
-                            <span>
+                            <span
+                                class="company-dashboard__application-name"
+                                title="{{ $application['name'] }}"
+                            >
                                 {{ $application['name'] }}
                             </span>
 
@@ -175,7 +181,10 @@
                                 {{ $application['date'] }}
                             </span>
 
-                            <span>
+                            <span
+                                class="company-dashboard__application-cv"
+                                title="{{ $application['cv'] }}"
+                            >
                                 {{ $application['cv'] }}
                             </span>
 
@@ -191,7 +200,11 @@
                         </div>
 
                     @empty
-                        <p>Aún no recibes postulaciones.</p>
+
+                        <div class="company-dashboard__empty">
+                            Aún no recibes postulaciones.
+                        </div>
+
                     @endforelse
 
                 </div>
