@@ -31,3 +31,5 @@ Thumbs.db
 
 /storage/app/private/kardex/*
 !/storage/app/private/kardex/.gitignore
+.postman/
+postman/
