@@ -7,7 +7,7 @@ use MongoDB\Laravel\Eloquent\Model;
 class Membership extends Model
 {
     protected $connection = 'mongodb';
-    
+
     protected $fillable = [
         'code',
         'name',
@@ -15,6 +15,14 @@ class Membership extends Model
         'vacancy_limit',
         'priority',
         'benefits',
-        'active'
+        'active',
+    ];
+
+    protected $casts = [
+        'price' => 'float',
+        'vacancy_limit' => 'integer',
+        'priority' => 'integer',
+        'benefits' => 'array',
+        'active' => 'boolean',
     ];
 }
