@@ -4,464 +4,81 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use Illuminate\Validation\Rules\Password;
-use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
-    // Normaliza texto antes de validar y guardar
-    private function normalizeUserFields(Request $request): void
-    {
-        $textFields = [
-            'first_name',
-            'paternal_last_name',
-            'maternal_last_name',
-            'company_name',
-            'rfc',
-            'sector',
-            'custom_sector',
-            'state',
-            'city',
-            'email',
-            'role',
-        ];
-
-        foreach ($textFields as $field) {
-            if ($request->has($field) && is_string($request->input($field))) {
-                $request->merge([
-                    $field => trim($request->input($field)),
-                ]);
-            }
-        }
-
-        if ($request->has('email')) {
-            $request->merge([
-                'email' => strtolower($request->input('email')),
-            ]);
-        }
-
-        if ($request->has('rfc')) {
-            $request->merge([
-                'rfc' => mb_strtoupper($request->input('rfc')),
-            ]);
-        }
-
-        if ($request->has('role')) {
-            $request->merge([
-                'role' => strtolower($request->input('role')),
-            ]);
-        }
-    }
-
-        // Rechaza campos que no pertenecen al tipo de usuario.
-    private function rejectUnexpectedFields(
-        Request $request,
-        array $allowedFields
-    ): void {
-        $unexpectedFields = array_diff(
-            array_keys($request->all()),
-            $allowedFields
-        );
-
-        if ($unexpectedFields === []) {
-            return;
-        }
-
-        $errors = [];
-
-        foreach ($unexpectedFields as $field) {
-            $errors[$field] = [
-                "El campo {$field} no está permitido para este tipo de usuario.",
-            ];
-        }
-
-        throw ValidationException::withMessages($errors);
-    }
-
-    // POST /api/users
-    // Crea solamente estudiantes o empresas.
-
+    // POST: Crear un usuario (Estudiante o Empresa)
     public function store(Request $request)
     {
-        $this->normalizeUserFields($request);
+        $validated = $request->validate([
+            'role' => 'required|string|in:student,company',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:6',
+            'phone' => 'nullable|string|max:20',
+            
+            // Validaciones condicionales para Estudiantes
+            'first_name' => 'required_if:role,student|nullable|string|max:255',
+            'paternal_last_name' => 'required_if:role,student|nullable|string|max:255',
+            'maternal_last_name' => 'nullable|string|max:255',
+            'birth_date' => 'required_if:role,student|nullable|date',
 
-        $role = $request->validate([
-            'role' => [
-                'required',
-                'string',
-                'in:student,company',
-            ],
-        ])['role'];
+            // Validaciones condicionales para Empresas
+            'company_name' => 'required_if:role,company|nullable|string|max:255',
+            'rfc' => 'required_if:role,company|nullable|string|max:13',
+            'sector' => 'required_if:role,company|nullable|string|max:255',
+            'state' => 'required_if:role,company|nullable|string|max:255',
+            'city' => 'required_if:role,company|nullable|string|max:255',
+        ]);
 
-        $allowedFields = [
-            'role',
-            'email',
-            'password',
-            'password_confirmation',
-        ];
-        
-        if ($role === 'student') {
-            $allowedFields = array_merge($allowedFields, [
-                'first_name',
-                'paternal_last_name',
-                'maternal_last_name',
-                'birth_date',
-                'phone',
-            ]);
-        }
-        
-        if ($role === 'company') {
-            $allowedFields = array_merge($allowedFields, [
-                'company_name',
-                'rfc',
-                'sector',
-                'custom_sector',
-                'state',
-                'city',
-                
-            ]);
-        }
-        
-        $this->rejectUnexpectedFields($request, $allowedFields);
-
-
-        $rules = [
-            'role' => [
-                'required',
-                'string',
-                'in:student,company',
-            ],
-
-            'email' => [
-                'required',
-                'string',
-                'email',
-                'max:255',
-                Rule::unique(User::class, 'email'),
-            ],
-
-            'password' => [
-                'required',
-                'string',
-                'max:72',
-                'confirmed',
-                Password::min(8)->numbers(),
-                'regex:/[A-Z]/',
-            ],
-        ];
-
-        if ($role === 'student') {
-            $rules = array_merge($rules, [
-                'first_name' => [
-                    'required',
-                    'string',
-                    'max:100',
-                ],
-
-                'paternal_last_name' => [
-                    'required',
-                    'string',
-                    'max:100',
-                ],
-
-                'maternal_last_name' => [
-                    'required',
-                    'string',
-                    'max:100',
-                ],
-
-                'birth_date' => [
-                    'required',
-                    'date_format:Y-m-d',
-                    'before:today',
-                ],
-
-                'phone' => [
-                    'required',
-                    'string',
-                    'regex:/^[0-9]{10}$/',
-                ],
-            ]);
-        }
-
-        if ($role === 'company') {
-            $rules = array_merge($rules, [
-                'company_name' => [
-                    'required',
-                    'string',
-                    'max:150',
-                ],
-
-                'rfc' => [
-                    'required',
-                    'string',
-                    'regex:/^[A-ZÑ&]{3}[0-9]{6}[A-Z0-9]{3}$/u',
-                ],
-
-                'sector' => [
-                    'required',
-                    Rule::in([
-                        'technology',
-                        'health',
-                        'education',
-                        'finance',
-                        'engineering',
-                        'business',
-                        'marketing',
-                        'sales',
-                        'rh',
-                        'law',
-                        'architecture',
-                        'communication',
-                        'tourism',
-                        'manufacturing',
-                        'construction',
-                        'logistics',
-                        'energy',
-                        'agriculture',
-                        'science',
-                        'government',
-                        'other',
-                    ]),
-                ],
-
-                'custom_sector' => [
-                    'exclude_unless:sector,other',
-                    'required',
-                    'string',
-                    'max:100',
-                ],
-
-                'state' => [
-                    'required',
-                    'string',
-                    'max:100',
-                ],
-
-                'city' => [
-                    'required',
-                    'string',
-                    'max:100',
-                ],
-            ]);
-        }
-
-        $validated = $request->validate($rules);
-
+        // El cast 'hashed' en el modelo User encripta la contraseña automáticamente
         $user = User::create($validated);
-
+        
         return response()->json($user, 201);
     }
 
-    // GET /api/users
+    // GET: Obtener todos los usuarios
     public function index()
     {
         return response()->json(User::all(), 200);
     }
 
-    // GET /api/users/{id}
+    // GET: Obtener un solo usuario por ID
     public function show($id)
     {
         $user = User::findOrFail($id);
-
         return response()->json($user, 200);
     }
 
-    // PUT o PATCH /api/users/{id}
-    // Nunca permite cambiar el rol mediante esta ruta
-
+    // PUT: Actualizar usuario
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
-
-        $this->normalizeUserFields($request);
-
-        $allowedFields = [
-            'email',
-            'password',
-            'password_confirmation',
-        ];
-
-        if ($user->role === 'student') {
-            $allowedFields = array_merge($allowedFields, [
-                'first_name',
-                'paternal_last_name',
-                'maternal_last_name',
-                'birth_date',
-                'phone',
-            ]);
-
-        }
-        if ($user->role === 'company') {
-            $allowedFields = array_merge($allowedFields, [
-                'company_name',
-                'rfc',
-                'sector',
-                'custom_sector',
-                'state',
-                'city',
-            ]);
-        }
-
-        $this->rejectUnexpectedFields($request, $allowedFields);    
-
-        $rules = [
-            'role' => [
-                'prohibited',
-            ],
-
-            'email' => [
-                'sometimes',
-                'required',
-                'string',
-                'email',
-                'max:255',
-                Rule::unique(User::class, 'email')
-                    ->ignore($user->getKey(), '_id'),
-            ],
-
-            'password' => [
-                'sometimes',
-                'required',
-                'string',
-                'max:72',
-                'confirmed',
-                Password::min(8)->numbers(),
-                'regex:/[A-Z]/',
-            ],
-        ];
-
-        if ($user->role === 'student') {
-            $rules = array_merge($rules, [
-                'first_name' => [
-                    'sometimes',
-                    'required',
-                    'string',
-                    'max:100',
-                ],
-
-                'paternal_last_name' => [
-                    'sometimes',
-                    'required',
-                    'string',
-                    'max:100',
-                ],
-
-                'maternal_last_name' => [
-                    'sometimes',
-                    'required',
-                    'string',
-                    'max:100',
-                ],
-
-                'birth_date' => [
-                    'sometimes',
-                    'required',
-                    'date_format:Y-m-d',
-                    'before:today',
-                ],
-
-                'phone' => [
-                    'sometimes',
-                    'required',
-                    'string',
-                    'regex:/^[0-9]{10}$/',
-                ],
-            ]);
-        }
-
-        if ($user->role === 'company') {
-            $rules = array_merge($rules, [
-                'company_name' => [
-                    'sometimes',
-                    'required',
-                    'string',
-                    'max:150',
-                ],
-
-                'rfc' => [
-                    'sometimes',
-                    'required',
-                    'string',
-                    'regex:/^[A-ZÑ&]{3}[0-9]{6}[A-Z0-9]{3}$/u',
-                ],
-
-                'sector' => [
-                    'sometimes',
-                    'required',
-                    Rule::in([
-                        'technology',
-                        'health',
-                        'education',
-                        'finance',
-                        'engineering',
-                        'business',
-                        'marketing',
-                        'sales',
-                        'rh',
-                        'law',
-                        'architecture',
-                        'communication',
-                        'tourism',
-                        'manufacturing',
-                        'construction',
-                        'logistics',
-                        'energy',
-                        'agriculture',
-                        'science',
-                        'government',
-                        'other',
-                    ]),
-                ],
-
-                'custom_sector' => [
-                    'exclude_unless:sector,other',
-                    'required_if:sector,other',
-                    'nullable',
-                    'string',
-                    'max:100',
-                ],
-
-                'state' => [
-                    'sometimes',
-                    'required',
-                    'string',
-                    'max:100',
-                ],
-
-                'city' => [
-                    'sometimes',
-                    'required',
-                    'string',
-                    'max:100',
-                ],
-            ]);
-        }
-
-        $validated = $request->validate($rules);
-
-        if (
-            array_key_exists('sector', $validated) &&
-            $validated['sector'] !== 'other'
-        ) {
-            $validated['custom_sector'] = null;
-        }
+        
+        $validated = $request->validate([
+            'first_name' => 'sometimes|required|string|max:255',
+            'paternal_last_name' => 'sometimes|required|string|max:255',
+            'maternal_last_name' => 'nullable|string|max:255',
+            'email' => 'sometimes|required|email|unique:users,email,'.$id.',_id',
+            'password' => 'sometimes|required|string|min:6',
+            'phone' => 'nullable|string|max:20',
+            'company_name' => 'sometimes|required|string|max:255',
+            'rfc' => 'sometimes|required|string|max:13',
+            'sector' => 'sometimes|required|string|max:255',
+            'state' => 'sometimes|required|string|max:255',
+            'city' => 'sometimes|required|string|max:255',
+        ]);
 
         $user->update($validated);
-
+        
         return response()->json($user, 200);
     }
 
-    // DELETE /api/users/{id}
+    // DELETE: Eliminar usuario
     public function destroy($id)
     {
         $user = User::findOrFail($id);
-
         $user->delete();
-
-        return response()->json([
-            'message' => 'Usuario eliminado correctamente.',
-        ], 200);
+        
+        return response()->json(['message' => 'Usuario eliminado'], 200);
     }
 }

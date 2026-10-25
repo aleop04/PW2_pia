@@ -7,19 +7,18 @@ use Illuminate\Http\Request;
 
 class VacancyController extends Controller
 {
-    // POST: Crear una vacante
     public function store(Request $request)
     {
         $validated = $request->validate([
             'company_user_id' => 'required|string',
-            'title' => 'required|string',
-            'modality' => 'required|string', // remote, hybrid, onsite
-            'location' => 'required|string',
+            'title' => 'required|string|max:255',
+            'modality' => 'required|string', 
+            'location' => 'required|string|max:255',
             'stay_duration' => 'required|string',
-            'salary_fixed' => 'nullable|numeric',
-            'periodicity' => 'required|string', // weekly, monthly
+            'salary_fixed' => 'required|numeric|min:1', 
+            'periodicity' => 'required|string', 
             'description' => 'required|string',
-            'benefits' => 'array',
+            'benefits' => 'required|array', 
         ]);
 
         $validated['status'] = 'published';
@@ -28,21 +27,31 @@ class VacancyController extends Controller
         return response()->json($vacancy, 201);
     }
 
-    // GET: Obtener todas las vacantes
     public function index()
     {
         return response()->json(Vacancy::all(), 200);
     }
 
-    // PUT: Actualizar una vacante
     public function update(Request $request, $id)
     {
         $vacancy = Vacancy::findOrFail($id);
-        $vacancy->update($request->all());
+        
+        $validated = $request->validate([
+            'title' => 'sometimes|required|string|max:255',
+            'description' => 'sometimes|required|string',
+            'modality' => 'sometimes|required|string',
+            'location' => 'sometimes|required|string|max:255',
+            'stay_duration' => 'sometimes|required|string',
+            'salary_fixed' => 'sometimes|required|numeric|min:1',
+            'periodicity' => 'sometimes|required|string',
+            'benefits' => 'sometimes|required|array',
+            'status' => 'sometimes|required|string|in:published,closed'
+        ]);
+
+        $vacancy->update($validated);
         return response()->json($vacancy, 200);
     }
 
-    // DELETE: Eliminar una vacante
     public function destroy($id)
     {
         $vacancy = Vacancy::findOrFail($id);
