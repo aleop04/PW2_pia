@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Application;
 use App\Models\CompanyProfileView;
 use App\Models\CompanyReview;
-use App\Models\Subscription;
 use App\Models\Vacancy;
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
 
 class CompanyVacancyController extends Controller
 {
@@ -116,17 +114,6 @@ class CompanyVacancyController extends Controller
     public function store(Request $request)
     {
         $fields = $this->fields($request);
-        $companyId = (string) $request->user('web')->getKey();
-        $subscription = Subscription::where('company_user_id', $companyId)
-            ->where('payment_status', 'paid')->where('status', 'active')
-            ->where('started_at', '<=', now())->where('ended_at', '>', now())->latest('started_at')->first();
-        if (! $subscription) {
-            throw ValidationException::withMessages(['membership' => 'Necesitas una membresía pagada y vigente para publicar vacantes.']);
-        }
-        $limit = $subscription->membership_vacancy_limit;
-        if ($limit !== null && Vacancy::where('company_user_id', $companyId)->where('status', 'published')->count() >= $limit) {
-            throw ValidationException::withMessages(['membership' => 'Alcanzaste el límite de vacantes publicadas de tu membresía.']);
-        }
         $fields['company_user_id'] = (string) $request->user()->getKey();
         $fields['status'] = 'published';
         $vacancy = Vacancy::create($fields);

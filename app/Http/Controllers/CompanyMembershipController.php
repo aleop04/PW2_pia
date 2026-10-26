@@ -15,12 +15,15 @@ class CompanyMembershipController extends Controller
         $currentSubscription = Subscription::where('company_user_id', $companyId)
             ->where('payment_status', 'paid')->where('status', 'active')
             ->where('started_at', '<=', now())->where('ended_at', '>', now())->latest('started_at')->first();
+        // La solicitud pendiente es el plan seleccionado más reciente, todavía sin confirmar.
+        $selectedSubscription = Subscription::where('company_user_id', $companyId)
+            ->where('payment_status', 'pending')->where('status', 'pending')->latest()->first();
         $orders = Subscription::where('company_user_id', $companyId)->latest()->paginate(10)->withQueryString();
         if ($request->expectsJson() || $request->is('api/*')) {
-            return response()->json(['current_subscription' => $currentSubscription?->summary($request->user('web')), 'orders' => $orders->through(fn ($order) => $order->summary($request->user('web')))]);
+            return response()->json(['current_subscription' => $currentSubscription?->summary($request->user('web')), 'selected_subscription' => $selectedSubscription?->summary($request->user('web')), 'orders' => $orders->through(fn ($order) => $order->summary($request->user('web')))]);
         }
 
-        return view('company.membership', compact('currentSubscription', 'orders'));
+        return view('company.membership', compact('currentSubscription', 'selectedSubscription', 'orders'));
     }
 
     public function catalog(): mixed
@@ -59,7 +62,7 @@ class CompanyMembershipController extends Controller
             return response()->json($order->summary($request->user('web')), 201);
         }
 
-        return redirect()->route('company.membership')->with('success', 'Solicitud registrada. El pago está pendiente de confirmación.');
+        return redirect()->route('company.membership')->with('success', 'Plan seleccionado. El pago está pendiente de confirmación; ya puedes publicar vacantes.');
     }
 
     public function cancel(Request $request, string $id): mixed
