@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CompanyReview;
-use App\Models\User;
-use App\Models\Vacancy;
 use App\Models\Application;
-use Illuminate\Http\Request;
 use App\Models\CompanyProfileView;
+use App\Models\CompanyReview;
+use App\Models\Subscription;
+use App\Models\Vacancy;
+use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class CompanyVacancyController extends Controller
 {
@@ -20,7 +21,6 @@ class CompanyVacancyController extends Controller
             ->latest()
             ->get();
 
-
         /* Estudiantes únicos que han visitado el perfil */
         $profileVisitorCount = CompanyProfileView::where(
             'company_user_id',
@@ -31,13 +31,11 @@ class CompanyVacancyController extends Controller
             ->unique()
             ->count();
 
-
         /* Alcance total: Cada registro representa como máximo una visita por estudiante, empresa y día */
         $profileReachCount = CompanyProfileView::where(
             'company_user_id',
             $id
         )->count();
-
 
         /* Estudiantes únicos que se han postulado */
         $applicationUserCount = $records
@@ -45,7 +43,6 @@ class CompanyVacancyController extends Controller
             ->filter()
             ->unique()
             ->count();
-
 
         /* Estudiantes únicos que han valorado a la empresa */
         $reviewerCount = CompanyReview::where(
@@ -56,7 +53,6 @@ class CompanyVacancyController extends Controller
             ->filter()
             ->unique()
             ->count();
-
 
         /* Últimas solicitudes para la tabla */
         $applications = $records
@@ -76,7 +72,6 @@ class CompanyVacancyController extends Controller
 
                 'statusClass' => $record->status,
             ]);
-
 
         return view('company.index', compact(
             'profileVisitorCount',
@@ -121,6 +116,17 @@ class CompanyVacancyController extends Controller
     public function store(Request $request)
     {
         $fields = $this->fields($request);
+        $companyId = (string) $request->user('web')->getKey();
+        $subscription = Subscription::where('company_user_id', $companyId)
+            ->where('payment_status', 'paid')->where('status', 'active')
+            ->where('started_at', '<=', now())->where('ended_at', '>', now())->latest('started_at')->first();
+        if (! $subscription) {
+            throw ValidationException::withMessages(['membership' => 'Necesitas una membresía pagada y vigente para publicar vacantes.']);
+        }
+        $limit = $subscription->membership_vacancy_limit;
+        if ($limit !== null && Vacancy::where('company_user_id', $companyId)->where('status', 'published')->count() >= $limit) {
+            throw ValidationException::withMessages(['membership' => 'Alcanzaste el límite de vacantes publicadas de tu membresía.']);
+        }
         $fields['company_user_id'] = (string) $request->user()->getKey();
         $fields['status'] = 'published';
         $vacancy = Vacancy::create($fields);
@@ -132,6 +138,7 @@ class CompanyVacancyController extends Controller
     public function show(Request $request, string $id)
     {
         $vacancy = $this->owned($request, $id)->card($request->user());
+
         return view('company.vacancy-detail', compact('vacancy'));
     }
 
@@ -139,6 +146,7 @@ class CompanyVacancyController extends Controller
     {
         $record = $this->owned($request, $id);
         $vacancy = $record->card($request->user());
+
         return view('company.vacancy-edit', compact('vacancy'));
     }
 
@@ -154,6 +162,7 @@ class CompanyVacancyController extends Controller
     public function destroy(Request $request, string $id)
     {
         $this->owned($request, $id)->update(['status' => 'closed']);
+
         return redirect()->route('company.vacancies.index')
             ->with('success', 'Vacante retirada de la publicación.');
     }

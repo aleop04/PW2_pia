@@ -1,13 +1,15 @@
 <?php
 
-use Illuminate\Support\Facades\Route; // crea rutas
+use App\Http\Controllers\AdminController; // crea rutas
 use App\Http\Controllers\Api\AuthController; // controlador d login registro y logout
-use App\Http\Controllers\ProfileController; // controlador perfiles
-use App\Http\Controllers\CompanyVacancyController; // controlador vacantes d empresas
-use App\Http\Controllers\StudentVacancyController; // controlador vacantes d estudiante
-use App\Http\Controllers\ApplicationController; // controlador postulaciones
-use App\Http\Controllers\BookmarkController; // controlador vacantes guardadas
-
+use App\Http\Controllers\ApplicationController; // controlador perfiles
+use App\Http\Controllers\BookmarkController; // controlador vacantes d empresas
+use App\Http\Controllers\CompanyMembershipController; // controlador vacantes d estudiante
+use App\Http\Controllers\CompanyVacancyController; // controlador postulaciones
+use App\Http\Controllers\MembershipController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StudentVacancyController;
+use Illuminate\Support\Facades\Route; // controlador vacantes guardadas
 
 /* Páginas públicas */
 
@@ -28,7 +30,6 @@ Route::middleware('guest:web')->group(function () {
 
 Route::post('/logout', [AuthController::class, 'logout'])
     ->middleware('auth:web')->name('logout');
-
 
 /* Interfaz estudiantil */
 
@@ -59,7 +60,7 @@ Route::prefix('student')
             ->name('bookmarks.store');
         Route::delete('/vacancies/{id}/bookmark', [BookmarkController::class, 'destroy'])
             ->name('bookmarks.destroy');
-        
+
         Route::get('/companies/{id}', [StudentVacancyController::class, 'company'])
             ->name('companies.show');
 
@@ -74,7 +75,6 @@ Route::prefix('company')
 
         Route::get('/', [CompanyVacancyController::class, 'dashboard'])
             ->name('home');
-
 
         /* Dashboard */
 
@@ -104,13 +104,12 @@ Route::prefix('company')
         Route::view('/ratings', 'company.ratings')
             ->name('ratings');
 
-
         /* Membresía */
 
-        Route::view('/membership', 'company.membership')
+        Route::get('/membership', [CompanyMembershipController::class, 'index'])
             ->name('membership');
 
-        Route::view('/membership/change', 'company.change-membership')
+        Route::get('/membership/change', [CompanyMembershipController::class, 'catalog'])
             ->name('membership.change');
 
         Route::get('/profile', [ProfileController::class, 'company'])
@@ -118,5 +117,26 @@ Route::prefix('company')
         Route::post('/profile', [ProfileController::class, 'updateCompany'])
             ->name('profile.update');
 
-
     });
+
+/* Administración: la misma sesión web, con rol leído desde MongoDB. */
+Route::prefix('admin')->name('admin.')->middleware(['auth:web', 'role:admin'])->group(function () {
+    Route::redirect('/', '/admin/students')->name('home');
+    Route::get('/students', [AdminController::class, 'students'])->name('students.index');
+    Route::get('/students/{id}', [AdminController::class, 'student'])->where('id', '[a-f0-9]{24}')->name('students.show');
+    Route::get('/students/{id}/{document}', [AdminController::class, 'document'])->where('id', '[a-f0-9]{24}')->where('document', 'cv|kardex')->name('students.document');
+    Route::get('/companies', [AdminController::class, 'companies'])->name('companies.index');
+    Route::get('/companies/{id}', [AdminController::class, 'company'])->where('id', '[a-f0-9]{24}')->name('companies.show');
+    Route::get('/memberships', [MembershipController::class, 'index'])->name('memberships.index');
+    Route::get('/memberships/create', [MembershipController::class, 'create'])->name('memberships.create');
+    Route::post('/memberships', [MembershipController::class, 'store'])->name('memberships.store');
+    Route::get('/memberships/{id}/edit', [MembershipController::class, 'edit'])->where('id', '[a-f0-9]{24}')->name('memberships.edit');
+    Route::put('/memberships/{id}', [MembershipController::class, 'update'])->where('id', '[a-f0-9]{24}')->name('memberships.update');
+    Route::delete('/memberships/{id}', [MembershipController::class, 'destroy'])->where('id', '[a-f0-9]{24}')->name('memberships.destroy');
+    Route::get('/payments', [AdminController::class, 'payments'])->name('payments.index');
+    Route::get('/payments/{id}', [AdminController::class, 'payment'])->where('id', '[a-f0-9]{24}')->name('payments.show');
+});
+Route::middleware(['auth:web', 'role:company'])->group(function () {
+    Route::post('/company/membership/orders', [CompanyMembershipController::class, 'store'])->name('company.membership.orders.store');
+    Route::patch('/company/membership/orders/{id}/cancel', [CompanyMembershipController::class, 'cancel'])->where('id', '[a-f0-9]{24}')->name('company.membership.orders.cancel');
+});

@@ -1,10 +1,10 @@
 <?php
 
+use App\Http\Middleware\EnsureRole;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
-use App\Http\Middleware\EnsureRole;
 use MongoDB\Driver\Exception\Exception as MongoDBException;
 
 return Application::configure(basePath: dirname(__DIR__))
@@ -21,6 +21,7 @@ return Application::configure(basePath: dirname(__DIR__))
             match ($request->user('web')?->role) {
                 'student' => 'student.home',
                 'company' => 'company.home',
+                'admin' => 'admin.home',
                 default => 'home',
             }
         ));

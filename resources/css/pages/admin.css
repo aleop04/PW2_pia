@@ -1,0 +1,46 @@
+.admin-layout { min-height:100vh; display:flex; flex-direction:column; color:#171717; }
+.admin-header { min-height:100px; padding:28px 5%; display:flex; justify-content:space-between; align-items:center; gap:20px; box-shadow:0 2px 5px #00000020; }
+.admin-header img { object-fit:contain; }
+.admin-header__actions { display:flex; align-items:center; gap:20px; font-weight:700; }
+.admin-shell { display:grid; grid-template-columns:190px minmax(0,1fr); flex:1; }
+.admin-navigation { padding-top:150px; }
+.admin-sidebar { padding:35px 16px; display:flex; flex-direction:column; gap:20px; margin-right:12px; background:linear-gradient(180deg,#9dffe3,#1ed4a1); border-radius:0 65px 65px 0; }
+.admin-sidebar a { display:flex; align-items:center; gap:9px; border-radius:12px; padding:12px 7px; font-family:'Nunito',sans-serif; font-weight:700; color:#245748; }
+.admin-sidebar a[aria-current] { background:#ffffffbd; color:#111; }
+.admin-main { width:100%; max-width:1200px; min-width:0; margin:0 auto; padding:40px 35px 60px 22px; }
+.admin-main h1 { font:800 40px/1.2 'Nunito',sans-serif; margin:5px 0 8px; overflow-wrap:anywhere; }
+.admin-main h2 { font:700 22px 'Nunito',sans-serif; margin:26px 0 16px; }
+.admin-subtitle { color:#626773; margin-bottom:26px; }
+.admin-summary { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-bottom:26px; }
+.admin-stat { padding:20px; border-radius:24px; background:linear-gradient(180deg,#ffdcf8,#f6b3eb); color:#513449; }
+.admin-stat:nth-child(2) { background:linear-gradient(180deg,#d4f7ff,#a9cffa); color:#214c68; }
+.admin-stat:nth-child(3) { background:linear-gradient(180deg,#d2f9eb,#9ae5cf); color:#205545; }
+.admin-stat strong { display:block; font:800 34px 'Nunito',sans-serif; overflow-wrap:anywhere; }
+.admin-stat span { font-size:13px; }
+.admin-toolbar { display:flex; flex-wrap:wrap; align-items:end; gap:12px; margin:20px 0; }
+.admin-toolbar label,.admin-form label { display:flex; flex-direction:column; gap:6px; font-weight:700; font-size:14px; }
+.admin-toolbar input,.admin-toolbar select,.admin-form input,.admin-form select,.admin-form textarea { font:inherit; padding:10px 12px; border:1px solid #d6dce3; border-radius:10px; background:#fff; color:#171717; min-height:42px; max-width:100%; }
+.admin-search { min-width:160px; flex:1; max-width:300px; }
+.admin-button { display:inline-flex; align-items:center; justify-content:center; border:1px solid #d8dfe5; border-radius:10px; background:#fff; padding:9px 13px; color:#253c4f; font:700 14px 'Nunito Sans',sans-serif; min-height:40px; }
+.admin-button--primary { background:#1ed4a1; border-color:#1ed4a1; color:#103c30; }
+.admin-link { padding:5px 0; border:0; background:transparent; text-decoration:underline; color:#245f91; font:700 14px 'Nunito Sans',sans-serif; display:inline-block; }
+.admin-table-wrap { overflow-x:auto; border:1px solid #e5e9ed; border-radius:16px; }
+.admin-table { border-collapse:collapse; width:100%; font-size:14px; }
+.admin-table th { text-align:left; background:#effaf6; padding:14px 12px; color:#315747; white-space:nowrap; }
+.admin-table td { padding:16px 12px; border-top:1px solid #e5e9ed; }
+.admin-table td strong { display:block; }
+.admin-table td small { display:block; color:#626773; margin-top:4px; }
+.admin-badge { display:inline-block; padding:4px 9px; border-radius:20px; background:#e3f6ef; color:#206849; font-size:12px; white-space:nowrap; font-weight:700; }
+.admin-badge--pending { background:#fff2cf; color:#7d5809; }.admin-badge--failed { background:#ffe5e7; color:#9a3241; }.admin-badge--neutral { background:#edf0f3; color:#606674; }
+.admin-empty { padding:30px!important; text-align:center; color:#626773; }
+.admin-pagination { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:15px; margin:20px 0; color:#626773; font-size:13px; }
+.admin-pagination div { display:flex; gap:8px; }
+.admin-form { display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:800px; }
+.admin-form__full { grid-column:1/-1; }.admin-form small { color:#626773; font-weight:400; }
+.admin-details { display:grid; grid-template-columns:1fr 1fr; gap:22px; padding:24px; background:#f7f9fb; border-radius:20px; margin:25px 0; }
+.admin-details dt { color:#626773; font-size:13px; margin-bottom:5px; }.admin-details dd { margin:0; overflow-wrap:anywhere; }
+.admin-feedback,.admin-errors,.admin-note { padding:14px 18px; border-radius:12px; margin:15px 0; background:#e3f6ef; color:#206849; }.admin-errors { background:#ffe5e7; color:#9a3241; }.admin-errors ul { margin:10px 0 0 20px; }.admin-note { background:#eef8ff; color:#315371; font-size:14px; }
+.admin-vacancies { margin:15px 0 25px 20px; }.admin-vacancies li { margin-bottom:10px; }
+.ns-catalog { width:100%; max-width:1100px; margin:0 auto; padding:0 24px; }.ns-catalog h1 { font:800 36px 'Nunito',sans-serif; margin:15px 0; }.ns-catalog__plans { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; margin:25px 0; }.ns-catalog__plan { display:block; padding:24px; border-radius:25px; background:linear-gradient(180deg,#d2f9eb,#9ae5cf); }.ns-catalog__plan:nth-child(2) { background:linear-gradient(180deg,#d4f7ff,#a9cffa); }.ns-catalog__plan:nth-child(3n) { background:linear-gradient(180deg,#ffdcf8,#f6b3eb); }.ns-catalog__plan h2 { font:800 25px 'Nunito',sans-serif; margin:10px 0; }.ns-catalog__plan ul { margin:15px 0 15px 18px; }.ns-catalog__plan:has(input:checked) { outline:3px solid #197858; }.ns-membership-content { width:100%; }.ns-order-history { margin-top:30px; }.ns-order-history h2 { margin-bottom:15px; }
+@media(max-width:850px) { .admin-shell{grid-template-columns:1fr}.admin-navigation{padding-top:16px}.admin-sidebar{flex-direction:row;flex-wrap:wrap;gap:6px;padding:12px;border-radius:0 30px 30px 0}.admin-sidebar a{padding:10px}.admin-main{padding:25px 20px 40px}.admin-main h1{font-size:32px}.admin-header{padding:22px 20px}.admin-header__actions{gap:10px;font-size:13px}.ns-catalog__plans{grid-template-columns:1fr} }
+@media(max-width:520px) { .admin-header{flex-wrap:wrap}.admin-summary{grid-template-columns:1fr;gap:10px}.admin-stat{padding:16px}.admin-stat strong{font-size:28px}.admin-form,.admin-details{grid-template-columns:1fr}.admin-table{font-size:13px}.admin-toolbar input,.admin-form input,.admin-form select,.admin-form textarea{font-size:16px}.admin-main{padding:24px 14px}.admin-sidebar a{font-size:13px;gap:6px}.admin-sidebar img{width:20px;height:20px} }

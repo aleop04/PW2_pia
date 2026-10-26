@@ -53,7 +53,7 @@ class AuthController extends Controller
         return $this->startSession($request, $user);
     }
 
-    public function login(LoginRequest $request): RedirectResponse
+    public function login(LoginRequest $request): mixed
     {
         $data = $request->validated();
 
@@ -61,7 +61,7 @@ class AuthController extends Controller
         $authenticated = Auth::guard('web')->attempt([
             'email' => $data['email'],
             'password' => $data['password'],
-            'role' => ['student', 'company'],
+            'role' => ['student', 'company', 'admin'],
         ]);
 
         if (! $authenticated) {
@@ -75,14 +75,22 @@ class AuthController extends Controller
         // Siempre va al inicio de su rol, incluso si intentó abrir una URL del otro rol.
         $role = Auth::guard('web')->user()->role;
 
+        if ($request->expectsJson()) {
+            return response()->json(['user' => ['id' => (string) Auth::guard('web')->id(), 'email' => $data['email'], 'role' => $role], 'csrf_token' => csrf_token()]);
+        }
+
         return redirect()->route($role.'.home');
     }
 
-    public function logout(Request $request): RedirectResponse
+    public function logout(Request $request): mixed
     {
         Auth::guard('web')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
+        if ($request->expectsJson()) {
+            return response()->json(['message' => 'Sesión cerrada.', 'csrf_token' => csrf_token()]);
+        }
 
         return redirect()->route('login')->with('status', 'Sesión cerrada correctamente.');
     }
