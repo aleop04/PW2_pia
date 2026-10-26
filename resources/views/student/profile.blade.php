@@ -7,47 +7,54 @@
     data-student-profile-page
 >
 
-    {{-- Perfil --}}
-    <x-student.profile-card
-        :student="$student"
-    />
+    {{-- ------- perfil del estudiante ------- --}}
+
+    <x-student.profile-card :student="$student" />
 
 
-    {{-- Vacantes guardadas y postulaciones --}}
-    <section
-        class="student-profile-page__applications"
-        aria-labelledby="student-profile-saved-title"
-    {{-- Mis postulaciones --}}
-    <section
-        class="student-profile-page__applications"
-        aria-labelledby="student-profile-applications-title"
-    >
+    {{-- ------- vacantes y postulaciones ------- --}}
+
+    <section class="student-profile-page__applications">
+
+        {{-- ------- vacantes guardadas ------- --}}
 
         <h1
             class="student-profile-page__title"
-            id="student-profile-saved-title"
+            id="vacantes-guardadas"
         >
             Vacantes guardadas
         </h1>
 
         <div class="student-profile-page__saved-grid">
-            id="student-profile-applications-title"
-        >
-            Mis postulaciones
-        </h1>
+
             @forelse ($savedVacancies as $vacancy)
+
                 <div class="student-profile-page__saved-item">
+
+                    {{-- tarjeta que abre el detalle --}}
                     <x-vacancy-card
                         :vacancy="$vacancy"
-                        :href="route('student.vacancies.show', ['id' => $vacancy['id']])"
+                        :href="route('student.vacancies.show', [
+                            'id' => $vacancy['id']
+                        ])"
                     />
-                    <form method="POST" action="{{ route('student.bookmarks.destroy', $vacancy['id']) }}">
+
+                    {{-- boton para quitar la vacante --}}
+                    <form
+                        method="POST"
+                        action="{{ route('student.bookmarks.destroy', $vacancy['id']) }}"
+                    >
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="student-profile-page__remove-bookmark">
+
+                        <button
+                            type="submit"
+                            class="student-profile-page__remove-bookmark"
+                        >
                             Quitar de guardadas
                         </button>
                     </form>
+
                 </div>
 
             @empty
@@ -60,7 +67,10 @@
 
         </div>
 
-        <h2 class="student-profile-page__subtitle" id="student-profile-applications-title">
+
+        {{-- ------- postulaciones enviadas ------- --}}
+
+        <h2 class="student-profile-page__subtitle">
             Mis postulaciones
         </h2>
 
@@ -68,6 +78,7 @@
 
             @forelse ($applications as $application)
 
+                {{-- abre el detalle de la vacante --}}
                 <x-vacancy-card
                     :vacancy="$application"
                     :href="route('student.vacancies.show', [
@@ -82,46 +93,7 @@
                 </p>
 
             @endforelse
-        {{-- Vacantes guardadas --}}
-        <div class="student-profile-page__applications-actions">
 
-            <a
-                href="{{ route('student.bookmarks') }}"
-                class="student-profile-page__bookmarks"
-            >
-                <img
-                    src="{{ asset('images/Bookmark.svg') }}"
-                    alt=""
-                    class="student-profile-page__bookmarks-icon"
-                >
-
-                <span>
-                    Vacantes guardadas
-                </span>
-            </a>
-
-        </div>
-
-
-        {{-- Postulaciones --}}
-        <div class="student-profile-page__application-grid">
-
-            @forelse ($applications as $application)
-
-                <x-vacancy-card
-                    :vacancy="$application"
-                    :href="route('student.vacancies.show', [
-                        'id' => $application['id']
-                    ])"
-                />
-
-            @empty
-
-                <p class="student-profile-page__empty">
-                    Aún no has enviado postulaciones.
-                </p>
-
-            @endforelse
         </div>
 
     </section>
